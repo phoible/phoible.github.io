@@ -1,0 +1,6 @@
+name: "PHOIBLE"
+description: "Database of phonological inventories for the world's languages"
+url: "phoible.org"
+markdown: redcarpet
+permalink: pretty
+pygments: true
