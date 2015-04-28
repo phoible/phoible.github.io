@@ -3,4 +3,7 @@ layout: default
 title:  "PHOIBLE"
 ---
 
-Some day this will be the home of the PHOIBLE documentation. For now, the work-in-progress documentation is located on [the GitHub wiki pages for PHOIBLE](https://github.com/phoible/phoible/wiki/About-PHOIBLE).
+This is the work-in-progress documentation website for the PHOIBLE database. Here are some links:
+
+- [phoible.org](http://phoible.org/): the web-browsable published version of the database
+- [The GitHub repository](https://github.com/phoible/phoible) where all the in-progress and experimental stuff happens
