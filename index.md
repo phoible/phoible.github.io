@@ -7,3 +7,4 @@ This is the work-in-progress documentation website for the PHOIBLE database. Her
 
 - [phoible.org](http://phoible.org/): the web-browsable published version of the database
 - [The GitHub repository](https://github.com/phoible/phoible) where all the in-progress and experimental stuff happens
+- [PHOIBLE Conventions](https://github.com/phoible/phoible.github.io/blob/master/conventions.md) (work in progress)
