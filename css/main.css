@@ -5,26 +5,26 @@
 /* IPA-friendly typeface */
 @font-face {
   font-family: CharisSILW;
-  src: url('../fonts/CharisSIL-R.woff');
+  src: url('/fonts/CharisSIL-R.woff') format('woff');
 }
 /* use Charis SIL - Italic in .woff format */
 @font-face {
   font-family: CharisSILW;
   font-style: italic;
-  src: url('../fonts/CharisSIL-I.woff');
+  src: url('/fonts/CharisSIL-I.woff') format('woff');
 }
 
 @font-face {
 	font-family: CharisSILW;
 	font-weight: bold;
-	src: url('../fonts/CharisSIL-B.woff');
+	src: url('/fonts/CharisSIL-B.woff') format('woff');
 }
 
 @font-face {
 	font-family: CharisSILW;
 	font-weight: bold;
 	font-style: italic;
-	src: url('../fonts/CharisSIL-BI.woff');
+	src: url('/fonts/CharisSIL-BI.woff') format('woff');
 }
 
 /* Global Reset */
@@ -66,7 +66,7 @@ ul.posts li {
 
 ul.posts span {
   color: #aaa;
-  font-family: Monaco, "Courier New", monospace;
+  font-family: "M+ 1m", "DejaVu Sans Mono", monospace;
   font-size: 80%;
 }
 
