@@ -1,8 +1,31 @@
-/*****************************************************************************/
-/*
-/* Common
-/*
-/*****************************************************************************/
+/**********************************************************************/
+/* Common                                                             */
+/**********************************************************************/
+
+/* IPA-friendly typeface */
+@font-face {
+  font-family: CharisSILW;
+  src: url('../fonts/CharisSIL-R.woff');
+}
+/* use Charis SIL - Italic in .woff format */
+@font-face {
+  font-family: CharisSILW;
+  font-style: italic;
+  src: url('../fonts/CharisSIL-I.woff');
+}
+
+@font-face {
+	font-family: CharisSILW;
+	font-weight: bold;
+	src: url('../fonts/CharisSIL-B.woff');
+}
+
+@font-face {
+	font-family: CharisSILW;
+	font-weight: bold;
+	font-style: italic;
+	src: url('../fonts/CharisSIL-BI.woff');
+}
 
 /* Global Reset */
 * {
@@ -14,7 +37,7 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
+  font: CharisSILW, "M+ 1c", "DejaVu Sans", sans-serif;
   font-size: small;
   text-align: center;
 }
@@ -29,11 +52,9 @@ a         { color: #00a; }
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
 
-/*****************************************************************************/
-/*
-/* Home
-/*
-/*****************************************************************************/
+/**********************************************************************/
+/* Home                                                               */
+/**********************************************************************/
 ul.posts {
   list-style-type: none;
   margin-bottom: 2em;
@@ -49,16 +70,14 @@ ul.posts span {
   font-size: 80%;
 }
 
-/*****************************************************************************/
-/*
-/* Site
-/*
-/*****************************************************************************/
+/**********************************************************************/
+/* Site                                                               */
+/**********************************************************************/
 
 .site {
   font-size: 115%;
   text-align: justify;
-  width: 42em;
+  width: 45em;
   margin: 3em auto 2em;
   line-height: 1.5em;
 }
