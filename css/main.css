@@ -4,48 +4,47 @@
 /* IPA-friendly proportional serif typeface */
 @font-face {
   font-family: 'charis';
-  src: url('fonts/CharisSIL-R.woff') format('woff');
+  src: url('/fonts/CharisSIL-R.woff') format('woff');
 }
 @font-face {
   font-family: 'charis';
   font-style: italic;
-  src: url('fonts/CharisSIL-I.woff') format('woff');
+  src: url('/fonts/CharisSIL-I.woff') format('woff');
 }
 @font-face {
 	font-family: 'charis';
 	font-weight: bold;
-	src: url('fonts/CharisSIL-B.woff') format('woff');
+	src: url('/fonts/CharisSIL-B.woff') format('woff');
 }
 @font-face {
 	font-family: 'charis';
 	font-weight: bold;
 	font-style: italic;
-	src: url('fonts/CharisSIL-BI.woff') format('woff');
+	src: url('/fonts/CharisSIL-BI.woff') format('woff');
 }
 /* IPA-friendly monospaced sans-serif typeface */
 @font-face {
 	font-family: 'mplus';
-	src: url('fonts/mplus-1m-regular.woff') format('woff');
+	src: url('/fonts/mplus-1m-regular.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus';
 	font-weight: bold;
-	src: url('fonts/mplus-1m-bold.woff') format('woff');
+	src: url('/fonts/mplus-1m-bold.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus-medium';
-	src: url('fonts/mplus-1m-medium.woff') format('woff');
+	src: url('/fonts/mplus-1m-medium.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus-thin';
-	src: url('fonts/mplus-1m-thin.woff') format('woff');
+	src: url('/fonts/mplus-1m-thin.woff') format('woff');
 }
 @font-face {
 	font-family: 'mplus-thin';
 	font-weight: bold;
-	src: url('fonts/mplus-1m-light.woff') format('woff');
+	src: url('/fonts/mplus-1m-light.woff') format('woff');
 }
-
 
 /* Global Reset */
 * {
