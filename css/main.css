@@ -4,27 +4,27 @@
 
 /* IPA-friendly typeface */
 @font-face {
-  font-family: CharisSILW;
-  src: url('/fonts/CharisSIL-R.woff') format('woff');
+  font-family: 'CharisSILW';
+  src: url('fonts/CharisSIL-R.woff') format('woff');
 }
 /* use Charis SIL - Italic in .woff format */
 @font-face {
-  font-family: CharisSILW;
+  font-family: 'CharisSILW';
   font-style: italic;
-  src: url('/fonts/CharisSIL-I.woff') format('woff');
+  src: url('fonts/CharisSIL-I.woff') format('woff');
 }
 
 @font-face {
-	font-family: CharisSILW;
+	font-family: 'CharisSILW';
 	font-weight: bold;
-	src: url('/fonts/CharisSIL-B.woff') format('woff');
+	src: url('fonts/CharisSIL-B.woff') format('woff');
 }
 
 @font-face {
-	font-family: CharisSILW;
+	font-family: 'CharisSILW';
 	font-weight: bold;
 	font-style: italic;
-	src: url('/fonts/CharisSIL-BI.woff') format('woff');
+	src: url('fonts/CharisSIL-BI.woff') format('woff');
 }
 
 /* Global Reset */
@@ -37,7 +37,7 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: CharisSILW, "M+ 1c", "DejaVu Sans", sans-serif;
+  font: 'CharisSILW';  /* "M+ 1c", "DejaVu Sans", sans-serif */
   font-size: small;
   text-align: center;
 }
