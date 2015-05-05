@@ -1,26 +1,36 @@
 /**********************************************************************/
 /* Common                                                             */
 /**********************************************************************/
-/* IPA-friendly typeface */
+/* IPA-friendly proportional serif typeface */
 @font-face {
-  font-family: 'CharisSILW';
+  font-family: 'charis';
   src: url('fonts/CharisSIL-R.woff') format('woff');
 }
 @font-face {
-  font-family: 'CharisSILW';
+  font-family: 'charis';
   font-style: italic;
   src: url('fonts/CharisSIL-I.woff') format('woff');
 }
 @font-face {
-	font-family: 'CharisSILW';
+	font-family: 'charis';
 	font-weight: bold;
 	src: url('fonts/CharisSIL-B.woff') format('woff');
 }
 @font-face {
-	font-family: 'CharisSILW';
+	font-family: 'charis';
 	font-weight: bold;
 	font-style: italic;
 	src: url('fonts/CharisSIL-BI.woff') format('woff');
+}
+/* IPA-friendly monospaced sans-serif typeface */
+@font-face {
+	font-family: 'mplus';
+	src: url('fonts/mplus-1m-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus';
+	font-weight: bold;
+	src: url('fonts/mplus-1m-bold.woff') format('woff');
 }
 
 /* Global Reset */
@@ -33,7 +43,7 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 'CharisSILW', sans-serif;  /* "M+ 1c", "DejaVu Sans", sans-serif */
+  font: 'charis', sans-serif;  /* "M+ 1c", "DejaVu Sans", sans-serif */
   font-size: small;
   text-align: center;
 }
@@ -79,6 +89,7 @@ ul.posts span {
 }
 
 .site .header a {
+  font: 'mplus';
   font-weight: bold;
   text-decoration: none;
 }
@@ -111,6 +122,7 @@ ul.posts span {
 
 .site .footer {
   font-size: 80%;
+  font: 'mplus';
   color: #666;
   border-top: 4px solid #eee;
   margin-top: 2em;
@@ -136,11 +148,9 @@ ul.posts span {
   border: 0;
 }
 
-/*****************************************************************************/
-/*
-/* Posts
-/*
-/*****************************************************************************/
+/**********************************************************************/
+/* Posts                                                              */
+/**********************************************************************/
 
 /* standard */
 .post pre {
