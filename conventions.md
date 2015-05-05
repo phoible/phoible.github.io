@@ -43,13 +43,13 @@ Glyph | Codepoint | Description                          | Meaning in PHOIBLE
 ͉      | `0349`    | COMBINING LEFT ANGLE BELOW           | Lenis
 ͓      | `0353`    | COMBINING X BELOW                    | Frictionalized
 ͇      | `0347`    | COMBINING EQUALS SIGN BELOW          | Non-sibilant
-‼     | `203C`    | DOUBLE EXCLAMATION MARK              | Retroflex click
+‼    | `203C`    | DOUBLE EXCLAMATION MARK              | Retroflex click
 ˀ     | `02C0`    | MODIFIER LETTER GLOTTAL STOP         | (Pre-)glottalization
 ʱ     | `02B1`    | MODIFIER LETTER SMALL H WITH HOOK    | Pre-aspirated voiced
 
 # Idiosyncratic usages
 ## Place matching
-In PHOIBLE, all affricates, prenasalized stops, and pre-stopped nasals adhere to strict place-matching. For example, although it is common to use `t` or `d` to designate the stop portion of all coronal affricates, in PHOIBLE a palatal affricate will always be represented as `cç` (not `tç`). A similar constraint holds for dental affricates `t̪s̪` and `t̪θ`, post-alveolar affricates `t̠ʃ` and `t̠ɕ`, and retroflex affricates `ʈʂ`.
+In PHOIBLE, all affricates, prenasalized stops, and pre-stopped nasals adhere to strict place-matching. For example, although it is common to use `t` or `d` to designate the stop portion of all coronal affricates, in PHOIBLE a palatal affricate will always be represented as `cç` (not `tç`). A similar constraint holds for dental affricates `t̪s̪` and `t̪θ`, post-alveolar affricates `t̠ʃ`, and retroflex affricates `ʈʂ`. Note that `tɕ` is considered simultaneously (lamino-)alveolar and palatal, so no retraction diacritic is used on the `t`.
 
 ## Labialization, velarization and pharyngealization
 In PHOIBLE we do not use `̴` (`0334` COMBINING TILDE OVERLAY), which the IPA defines as a “velarized or pharyngealized” diacritic. For velarized articulations we use `ˠ` (`02E0` MODIFIER LETTER SMALL GAMMA), for pharyngealized articulations we use `ˤ` (`02E4` MODIFIER LETTER REVERSED GLOTTAL STOP).
