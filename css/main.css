@@ -22,28 +22,45 @@
 	font-style: italic;
 	src: url('/fonts/CharisSIL-BI.woff') format('woff');
 }
-/* IPA-friendly monospaced sans-serif typeface */
+/* IPA-friendly proportional sans-serif typeface */
 @font-face {
 	font-family: 'mplus';
+	src: url('/fonts/mplus-1c-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus';
+	font-style: italic;
+	src: url('/fonts/mplus-1c-medium.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus';
+	font-weight: bold;
+	src: url('/fonts/mplus-1c-bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus';
+	font-weight: bold;
+	font-style: italic;
+	src: url('/fonts/mplus-1c-heavy.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus-light';
+	src: url('/fonts/mplus-1c-light.woff') format('woff');
+}
+@font-face {
+	font-family: 'mplus-light';
+	font-weight: bold;
+	src: url('/fonts/mplus-1c-medium.woff') format('woff');
+}
+/* IPA-friendly monospaced sans-serif typeface */
+@font-face {
+	font-family: 'mplus-mono';
 	src: url('/fonts/mplus-1m-regular.woff') format('woff');
 }
 @font-face {
-	font-family: 'mplus';
+	font-family: 'mplus-mono';
 	font-weight: bold;
 	src: url('/fonts/mplus-1m-bold.woff') format('woff');
-}
-@font-face {
-	font-family: 'mplus-medium';
-	src: url('/fonts/mplus-1m-medium.woff') format('woff');
-}
-@font-face {
-	font-family: 'mplus-thin';
-	src: url('/fonts/mplus-1m-thin.woff') format('woff');
-}
-@font-face {
-	font-family: 'mplus-thin';
-	font-weight: bold;
-	src: url('/fonts/mplus-1m-light.woff') format('woff');
 }
 
 /* Global Reset */
@@ -56,13 +73,15 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 'charis', sans-serif;  /* "M+ 1c", "DejaVu Sans", sans-serif */
+  font-family: 'charis', 'Linux Libertine O', 'DejaVu Serif', 'FreeSerif', serif;
   font-size: small;
   text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  font-family: 'mplus', 'DejaVu Sans', 'FreeSans', sans-serif;
+  font-size: 100%; 
+}
 
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
@@ -101,9 +120,11 @@ ul.posts span {
   line-height: 1.5em;
 }
 
+.site .header {
+  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
+}
+
 .site .header a {
-  font: 'mplus';
-  font-weight: bold;
   text-decoration: none;
 }
 
@@ -113,15 +134,15 @@ ul.posts span {
 }
 
 .site .header h1.title a {
-  color: #a00;
-}
-
-.site .header h1.title a:hover {
   color: #000;
 }
 
+.site .header h1.title a:hover {
+  color: #a00;
+}
+
 .site .header a.extra {
-  color: #aaa;
+  color: #333;
   margin-left: 1em;
 }
 
@@ -135,11 +156,14 @@ ul.posts span {
 
 .site .footer {
   font-size: 80%;
-  font: 'mplus';
-  color: #666;
+  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
   border-top: 4px solid #eee;
   margin-top: 2em;
   overflow: hidden;
+}
+
+.site .footer a {
+  text-decoration: none;
 }
 
 .site .footer .contact {
@@ -166,33 +190,33 @@ ul.posts span {
 /**********************************************************************/
 
 /* standard */
-.post pre {
+pre {
   border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .4em;
 }
 
-.post ul, .post ol {
+ul, .post ol {
   margin-left: 1.35em;
 }
 
-.post code {
+code {
   border: 1px solid #ddd;
-  background-color: #eef;
+  background-color: #eee;
   padding: 0 .2em;
 }
 
-.post pre code {
+pre code {
   border: none;
 }
 
 /* terminal */
-.post pre.terminal {
+pre.terminal {
   border: 1px solid #000;
   background-color: #333;
   color: #FFF;
 }
 
-.post pre.terminal code {
+pre.terminal code {
   background-color: #333;
 }
