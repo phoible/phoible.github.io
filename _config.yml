@@ -2,5 +2,7 @@ name: "PHOIBLE"
 description: "Database of phonological inventories for the world's languages"
 url: "phoible.org"
 markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "highlight", "strikethrough"]
 permalink: pretty
-pygments: true
+highlighter: pygments
