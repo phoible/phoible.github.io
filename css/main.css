@@ -32,7 +32,7 @@
 @font-face { font-family: 'mplus-mono';
              font-weight: bold;
              src: url('/fonts/mplus-1m-medium.woff') format('woff'); }
-/* body ***************************************************************/
+/* basics *************************************************************/
 body {
   margin: 0;
   padding: 0;
@@ -41,72 +41,39 @@ body {
   font-size: medium;
   color: #333;
 }
-/* site ***************************************************************/
-.site {
-  background-color: #fff;
-  text-align: justify;
-  width: 50em;
-  margin: 0 auto;
-  padding: 2em 0 0;
-  line-height: 1.75em;
-}
-/* header *************************************************************/
-.site .header {
-  border-bottom: #aaa solid thin;
-  margin-bottom: 1em;
+p {
+  margin: 0.25em 0 0.5em;
   padding: 0 20px;
-  color: #000;
 }
-.site .header h1.title {
-  font-family: 'mplus-thin';
-  font-size: xx-large;
-  display: inline-block;
-  background-color: inherit;
-  color: #000;
-  margin: 0;
-}
-.site .header a.nav {
-  text-decoration: none;
-  margin-left: 1em;
-  color: #000;
-}
-.site .header a.nav:hover { color: #a00; }
-/* footer *************************************************************/
-.site .footer {
-  background-color: #eee;
-  font-size: small;
-  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
-  border-top: #aaa solid thin;
-  margin: 2em 0 4em;
-  padding: 0.5em 0 0;
-  overflow: hidden;
-}
-.site .footer a { text-decoration: none; }
+/* lists **************************************************************/
+ol, ul { margin: 0 30px; }
 .site .footer ul {
+  margin: 0;
   padding: 0 20px;
-  display: inline;
 }
 .site .footer ul li {
   display: inline;
   margin-right: 1.25em;
 }
-/* basics *************************************************************/
-p {
-  margin: 0.25em 0 0.5em;
-  padding: 0 20px;
-}
-ol, ul { margin: 0 30px; }
-/* links */
-.site a {
-  text-decoration: none;
+
+/* links **************************************************************/
+a, a:visited {
   color: #060;
+  text-decoration: none;
 }
-.site a:visited { color: #060; }
-.site a:hover {
+a:hover {
   color: #a00;
   text-decoration: underline;
 }
-/* headings */
+.site .header a.nav {
+  margin-left: 1em;
+  color: #000;
+}
+.site .header a.nav:hover, .site .footer a:hover {
+  color: #a00;
+  text-decoration: none;
+}
+/* headings ***********************************************************/
 h1, h2, h3, h4, h5, h6 {
   margin: 1.5em 0 0.25em;
   padding: 0 20px;
@@ -124,8 +91,19 @@ h1 {
   color: #fff;
   border: none;
 }
-/* tables */
-table { margin: 0 auto; }
+.site .header h1.title {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: 'mplus-thin';
+  font-size: xx-large;
+  background-color: inherit;
+  color: #000;
+}
+/* tables *************************************************************/
+table {
+  margin: 0 auto;
+}
 th {
   font-weight: bold;
   background: #fff;
@@ -133,22 +111,39 @@ th {
 tr:nth-child(odd) {
   background: #eee;
 }
-td, th { padding: 0.2em 0.8em }
+td, th {
+  padding: 0.2em 0.8em;
+}
 td code, th code {
   background-color: inherit;
   border: none;
 }
-/* Posts **************************************************************/
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
-}
-ul.posts li {
+/* site ***************************************************************/
+.site {
+  margin: 0 auto;
+  padding: 2em 0 0;
+  width: 50em;
+  max-width: 95%;
+  text-align: justify;
   line-height: 1.75em;
+  background-color: #fff;
 }
-ul.posts span {
-  color: #aaa;
+/* header *************************************************************/
+.site .header {
+  margin-bottom: 1em;
+  padding: 0 20px;
+  color: #000;
+  border-bottom: #aaa solid thin;
+}
+/* footer *************************************************************/
+.site .footer {
+  margin: 2em 0 4em;
+  padding: 0.5em 0 0;
+  overflow: hidden;
+  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
   font-size: small;
+  background-color: #eee;
+  border-top: #aaa solid thin;
 }
 /* custom *************************************************************/
 /* markdown ==double equals== yields the <mark> tag, used here for    */
@@ -158,16 +153,16 @@ mark {
   font-weight: normal;
   font-size: small;
   background-color: inherit;
-  border: none;
   color: #999;
+  border: none;
 }
 /* <code> is hijacked for pretty rendering of IPA glyphs **************/
 code {
+  padding: 0em 0.125em 0.125em;
   font-family: 'charis', 'Linux Libertine O', 'DejaVu Serif', 'FreeSerif', serif;
   font-size: large;
-  border: 1px solid #e0e0e0;
   background-color: #eee;
-  padding: 0em 0.125em 0.125em;
+  border: 1px solid #e0e0e0;
 }
 /* We use ~~`code within double-tildes`~~ for isolated diacritics.    */
 /* Normally in markdown this yields strikethrough formatting. Here,   */
@@ -190,4 +185,16 @@ pre {
 pre code {
   border: none;
   font-family: 'mplus-mono', 'DejaVu Sans Mono', monospace;
+}
+/* Posts **************************************************************/
+ul.posts {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+ul.posts li {
+  line-height: 1.75em;
+}
+ul.posts span {
+  color: #aaa;
+  font-size: small;
 }
