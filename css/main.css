@@ -64,14 +64,20 @@ h1 {
   margin: 1.75em 0 0;
   font-size: x-large;
   color: #fff;
-  background-color: #aaa;
-	  padding: 0 15px 0.125em;
+  background-color: #999;
+  padding: 0 15px 0.125em;
   border: none;
 }
 /* links */
-a         { color: #00a; }
-a:hover   { color: #a00; }
-a:visited { color: #00a; }
+a {
+  text-decoration: none; 
+  color: #060;
+}
+a:hover { 
+  color: #a00; 
+  text-decoration: underline; 
+}
+a:visited { color: #060; }
 /* tables */
 table { margin: 0 auto; }
 th {
@@ -121,36 +127,39 @@ ul.posts span {
   margin-bottom: 1em; 
   padding: 0 15px;
 }
+.title {
+  font-family: 'mplus-thin';
+  font-size: xx-large;
+  display: inline-block;
+}
 .site .header a { 
   text-decoration: none;
   color: #000;
 }
 .site .header a:hover { color: #a00; }
 .site .header a.nav { margin-left: 1em; }
-.site .header .title {
-  font-family: 'mplus-thin';
-  font-size: xx-large;
-  display: inline-block;
-}
 .site .footer {
   background-color: #eee;
   font-size: small;
   font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
   border-top: #aaa solid thin;
-  margin: 2em 0 3em;
-  padding: 0.5em 1em;
+  margin: 2em 0 4em;
+  padding: 0.5em 0 0;
   overflow: hidden;
 }
-.site .footer a { text-decoration: none; }
-.site .footer .contact {
-  float: left;
-  margin-right: 3em;
+.site .footer a { 
+  text-decoration: none; 
+  color: #060;
 }
-.site .footer .contact ul li {
-	display: inline;
-	margin-right: 1.25em;
+.site .footer a:hover { color: #a00; }
+.site .footer ul {
+  padding: 0 15px;
+  display: inline;
 }
-.site .footer .contact a { color: #060; }
+.site .footer ul li {
+  display: inline;
+  margin-right: 1.25em;
+}
 /**********************************************************************/
 /* Custom                                                             */
 /**********************************************************************/
