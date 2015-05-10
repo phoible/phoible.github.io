@@ -32,112 +32,43 @@
 @font-face { font-family: 'mplus-mono';
              font-weight: bold;
              src: url('/fonts/mplus-1m-medium.woff') format('woff'); }
-/* basics */
+/* body ***************************************************************/
 body {
   margin: 0;
   padding: 0;
   background-color: #eee;
   font-family: 'mplus', 'DejaVu Sans', 'FreeSans', sans-serif;
   font-size: medium;
-  text-align: center;
   color: #333;
 }
-p { 
-  margin: 0.25em 0 0.5em; 
-  padding: 0 15px;
-}
-ol {
-  list-style-position: outside;
-  margin: 0 45px;
-}
-/* headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'mplus-light', 'DejaVu Sans', 'FreeSans', sans-serif;
-  font-weight: normal;
-  font-size: large;
-  margin: 1.5em 0 0.25em;
-  padding: 0 15px;
-  color: #000;
-  border-bottom: #ccc solid thin;
-}
-h1 { 
-  margin: 1.75em 0 0;
-  font-size: x-large;
-  color: #fff;
-  background-color: #999;
-  padding: 0 15px 0.125em;
-  border: none;
-}
-/* links */
-a {
-  text-decoration: none; 
-  color: #060;
-}
-a:hover { 
-  color: #a00; 
-  text-decoration: underline; 
-}
-a:visited { color: #060; }
-/* tables */
-table { margin: 0 auto; }
-th {
-  font-weight: bold;
-  background: #fff;
-}
-tr:nth-child(odd) {
-  background: #eee;	
-}
-td, th { padding: 0.2em 0.8em }
-td code, th code { 
-  background-color: inherit; 
-  border: none;
-}
-
-/**********************************************************************/
-/* Posts                                                              */
-/**********************************************************************/
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
-}
-
-ul.posts li {
-  line-height: 1.75em;
-}
-
-ul.posts span {
-  color: #aaa;
-  font-size: small;
-}
-
-/**********************************************************************/
-/* Site                                                               */
-/**********************************************************************/
+/* site ***************************************************************/
 .site {
   background-color: #fff;
   text-align: justify;
   width: 50em;
-  max-width: 95%;
-  margin: 0 auto 0;
+  margin: 0 auto;
   padding: 2em 0 0;
   line-height: 1.75em;
 }
-.site .header { 
+/* header *************************************************************/
+.site .header {
   border-bottom: #aaa solid thin;
-  margin-bottom: 1em; 
-  padding: 0 15px;
+  margin-bottom: 1em;
+  padding: 0 20px;
+  color: #000;
 }
-.title {
+.site .header .title {
   font-family: 'mplus-thin';
   font-size: xx-large;
   display: inline-block;
 }
-.site .header a { 
+.site .header a.nav {
   text-decoration: none;
+  margin-left: 1em;
   color: #000;
 }
-.site .header a:hover { color: #a00; }
-.site .header a.nav { margin-left: 1em; }
+.site .header a.nav:hover { color: #a00; }
+/* footer *************************************************************/
 .site .footer {
   background-color: #eee;
   font-size: small;
@@ -147,22 +78,76 @@ ul.posts span {
   padding: 0.5em 0 0;
   overflow: hidden;
 }
-.site .footer a { 
-  text-decoration: none; 
-  color: #060;
-}
-.site .footer a:hover { color: #a00; }
+.site .footer a { text-decoration: none; }
 .site .footer ul {
-  padding: 0 15px;
+  padding: 0 20px;
   display: inline;
 }
 .site .footer ul li {
   display: inline;
   margin-right: 1.25em;
 }
-/**********************************************************************/
-/* Custom                                                             */
-/**********************************************************************/
+/* basics *************************************************************/
+p {
+  margin: 0.25em 0 0.5em;
+  padding: 0 20px;
+}
+ol, ul { margin: 0 30px; }
+/* links */
+a {
+  text-decoration: none;
+  color: #060;
+}
+a:visited { color: #060; }
+a:hover {
+  color: #a00;
+  text-decoration: underline;
+}
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5em 0 0.25em;
+  padding: 0 20px;
+  font-family: 'mplus-light', 'DejaVu Sans', 'FreeSans', sans-serif;
+  font-weight: normal;
+  font-size: large;
+  color: #000;
+  border-bottom: #ccc solid thin;
+}
+h1 {
+  margin: 1.75em 0 0;
+  padding: 0 20px 0.125em;
+  font-size: x-large;
+  background-color: #999;
+  color: #fff;
+  border: none;
+}
+/* tables */
+table { margin: 0 auto; }
+th {
+  font-weight: bold;
+  background: #fff;
+}
+tr:nth-child(odd) {
+  background: #eee;
+}
+td, th { padding: 0.2em 0.8em }
+td code, th code {
+  background-color: inherit;
+  border: none;
+}
+/* Posts **************************************************************/
+ul.posts {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+ul.posts li {
+  line-height: 1.75em;
+}
+ul.posts span {
+  color: #aaa;
+  font-size: small;
+}
+/* custom *************************************************************/
 /* markdown ==double equals== yields the <mark> tag, used here for    */
 /* formatting Unicode codepoints and descriptions                     */
 mark {
@@ -173,7 +158,7 @@ mark {
   border: none;
   color: #999;
 }
-/* <code> is hijacked for pretty rendering of IPA glyphs */
+/* <code> is hijacked for pretty rendering of IPA glyphs **************/
 code {
   font-family: 'charis', 'Linux Libertine O', 'DejaVu Serif', 'FreeSerif', serif;
   font-size: large;
@@ -188,7 +173,7 @@ code {
 /* because in LaTeX ~ means "non-breaking space".                     */
 del { text-decoration: none; }
 del code::before { content: '\00A0' }
-/* use for inline code, since we hijacked <code> for IPA */
+/* use class="mono" for inline code, since we hijacked <code> for IPA */
 .mono {
 	font-family: 'mplus-mono', 'DejaVu Sans Mono', monospace;
 	font-weight: bold;
