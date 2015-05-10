@@ -57,10 +57,13 @@ body {
   padding: 0 20px;
   color: #000;
 }
-.site .header div.title {
+.site .header h1.title {
   font-family: 'mplus-thin';
   font-size: xx-large;
   display: inline-block;
+  background-color: inherit;
+  color: #000;
+  margin: 0;
 }
 .site .header a.nav {
   text-decoration: none;
