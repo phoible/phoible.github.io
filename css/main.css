@@ -41,6 +41,34 @@ body {
   font-size: medium;
   color: #333;
 }
+/* site ***************************************************************/
+.site {
+  margin: 0 auto;
+  padding: 2em 0 0;
+  width: 50em;
+  max-width: 95%;
+  text-align: justify;
+  line-height: 1.75em;
+  background-color: #fff;
+}
+/* header *************************************************************/
+.site .header {
+  margin-bottom: 1em;
+  padding: 0 20px;
+  color: #000;
+  border-bottom: #aaa solid thin;
+}
+/* footer *************************************************************/
+.site .footer {
+  margin: 2em 0 4em;
+  padding: 0.5em 0 0;
+  overflow: hidden;
+  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
+  font-size: small;
+  background-color: #eee;
+  border-top: #aaa solid thin;
+}
+/* p ******************************************************************/
 p {
   margin: 0.25em 0 0.5em;
   padding: 0 20px;
@@ -117,33 +145,6 @@ td, th {
 td code, th code {
   background-color: inherit;
   border: none;
-}
-/* site ***************************************************************/
-.site {
-  margin: 0 auto;
-  padding: 2em 0 0;
-  width: 50em;
-  max-width: 95%;
-  text-align: justify;
-  line-height: 1.75em;
-  background-color: #fff;
-}
-/* header *************************************************************/
-.site .header {
-  margin-bottom: 1em;
-  padding: 0 20px;
-  color: #000;
-  border-bottom: #aaa solid thin;
-}
-/* footer *************************************************************/
-.site .footer {
-  margin: 2em 0 4em;
-  padding: 0.5em 0 0;
-  overflow: hidden;
-  font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
-  font-size: small;
-  background-color: #eee;
-  border-top: #aaa solid thin;
 }
 /* custom *************************************************************/
 /* markdown ==double equals== yields the <mark> tag, used here for    */
