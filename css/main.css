@@ -109,8 +109,8 @@ ul.posts span {
 .site {
   background-color: #fff;
   text-align: justify;
-  max-width: 70em;
-  width: 95%;
+  width: 50em;
+  max-width: 95%;
   margin: 0 auto 0;
   padding: 2em 0 0;
   line-height: 1.75em;
