@@ -51,25 +51,25 @@ body {
   line-height: 1.75em;
 }
 /* header *************************************************************/
-.site .header {
+.header {
   border-bottom: #aaa solid thin;
   margin-bottom: 1em;
   padding: 0 20px;
   color: #000;
 }
-.site .header .title {
+.title {
   font-family: 'mplus-thin';
   font-size: xx-large;
   display: inline-block;
 }
-.site .header a.nav {
+a.nav {
   text-decoration: none;
   margin-left: 1em;
   color: #000;
 }
-.site .header a.nav:hover { color: #a00; }
+a.nav:hover { color: #a00; }
 /* footer *************************************************************/
-.site .footer {
+.footer {
   background-color: #eee;
   font-size: small;
   font-family: 'mplus-light', 'DejaVu Sans', sans-serif;
@@ -78,12 +78,12 @@ body {
   padding: 0.5em 0 0;
   overflow: hidden;
 }
-.site .footer a { text-decoration: none; }
-.site .footer ul {
+.footer a { text-decoration: none; }
+.footer ul {
   padding: 0 20px;
   display: inline;
 }
-.site .footer ul li {
+.footer ul li {
   display: inline;
   margin-right: 1.25em;
 }
