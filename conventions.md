@@ -104,11 +104,11 @@ Marginal phonemes are those that are notably different phonologically from the m
 # Pitch accent
 This section lists inventories that are known to have pitch accents among their tonemes, and describes how the pitch accents were encoded in PHOIBLE. This list should not be considered exhaustive; there may be doculects where the author chose not to describe pitch accent even though it was present in the object language, or (in doculects absorbed into PHOIBLE from other databases) cases where the original database aggregator ignored information about pitch accent when building their database.
 
-- <span class="mono">nld</span> (Dutch)
-    - Hasselt dialect, source: Peters 2006
-      accent 1: no underlying tone, accent 2: low tone. The key passage starts at the bottom of page 121 (emphasis added):
-      > The timing difference between accent 1 and accent 2 can be accounted for by assuming that **accent 2 words have a lexical L tone**, while accent 1 words are lexically toneless. In nuclear position, the lexical L tone, which is pre-linked to the accented syllable, does not allow  H∗ to  associate.
+## <span class="mono">nld</span> (Dutch)
+### Hasselt dialect
+Accent 1: no underlying tone. Accent 2: low tone. Peters 2006, p.121 (emphasis added):
+> The timing difference between accent 1 and accent 2 can be accounted for by assuming that **accent 2 words have a lexical L tone**, while accent 1 words are lexically toneless. In nuclear position, the lexical L tone, which is pre-linked to the accented syllable, does not allow  H∗ to  associate.
 
-    - Maastricht dialect, source: Gussenhoven 1999
-      accent 1: no underlying tone, accent 2: high tone. Page 162 (emphasis added):
-      > ... the fundamental frequency of syllables with Accent 2 differs from those with Accent 1. In view of its effect in utterances with Accent 2 as compared with equivalent utterances with Accent 1, **it is reasonable to assume that Accent 2 is a H-tone** occurring in or immediately after the stressed syllable.
+### Maastricht dialect
+Accent 1: no underlying tone. Accent 2: high tone. Gussenhoven 1999, p.162 (emphasis added):
+> ... the fundamental frequency of syllables with Accent 2 differs from those with Accent 1. In view of its effect in utterances with Accent 2 as compared with equivalent utterances with Accent 1, **it is reasonable to assume that Accent 2 is a H-tone** occurring in or immediately after the stressed syllable.
