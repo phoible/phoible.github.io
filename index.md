@@ -3,7 +3,7 @@ layout: default
 title:  "PHOIBLE"
 ---
 
-This is the work-in-progress documentation website for the PHOIBLE database. Here is some IPA text for testing whether our webfont is loading correctly: `ɲ̊ⱱ̤̥ɐ̃̋`. Above are links to the various pages in this documentation; the footer contains links to various other websites associated with PHOIBLE.
+This is the work-in-progress documentation website for the PHOIBLE database. Above are links to the various pages in this documentation; the footer contains links to various other websites associated with PHOIBLE. Here is some IPA text for testing whether our webfont is loading correctly: `ɲ̊ⱱ̤̥ɐ̃̋` (text) should resemble ![IPA rendering comparison image (raster)](/images/ipa-test.png "portable network graphic (png)") (png) and ![IPA rendering comparison image (vector)](/images/ipa-test.svg "scalable vector graphic (svg)") (svg).
 
 # About PHOIBLE
 PHOIBLE is a database of phonological inventories and distinctive features, encompassing more than 1600 languages (and growing). PHOIBLE data is published in browsable form at [PHOIBLE Online](http://phoible.org), which corresponds with the most recent year-numbered [release](https://github.com/phoible/phoible/releases) of [the development repository](https://github.com/phoible/phoible).

@@ -74,6 +74,9 @@ p {
   margin: 0.25em 0 0.5em;
   padding: 0 20px;
 }
+p img {
+  vertical-align: middle;
+}
 /* lists **************************************************************/
 ol { margin: 0 30px; }
 ul {
