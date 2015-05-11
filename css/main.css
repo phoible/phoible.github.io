@@ -1,26 +1,20 @@
 /* IPA-friendly proportional serif typeface, used in <code> */
 @font-face { font-family: 'charis';
              src: url('/fonts/CharisSIL-R.woff') format('woff'); }
-@font-face { font-family: 'charis';
-			 font-style: italic;
+@font-face { font-family: 'charis'; font-style: italic;
 			 src: url('/fonts/CharisSIL-I.woff') format('woff'); }
-@font-face { font-family: 'charis';
-             font-weight: bold;
+@font-face { font-family: 'charis'; font-weight: bold;
              src: url('/fonts/CharisSIL-B.woff') format('woff'); }
-@font-face { font-family: 'charis';
-             font-weight: bold;
-             font-style: italic;
+@font-face { font-family: 'charis'; font-weight: bold; font-style: italic;
              src: url('/fonts/CharisSIL-BI.woff') format('woff'); }
 /* IPA-friendly proportional sans-serif typeface */
 @font-face { font-family: 'mplus';
              src: url('/fonts/mplus-1c-regular.woff') format('woff'); }
-@font-face { font-family: 'mplus';
-             font-weight: bold;
+@font-face { font-family: 'mplus'; font-weight: bold;
              src: url('/fonts/mplus-1c-bold.woff') format('woff'); }
 @font-face { font-family: 'mplus-light';
              src: url('/fonts/mplus-1c-light.woff') format('woff'); }
-@font-face { font-family: 'mplus-light';
-			 font-weight: bold;
+@font-face { font-family: 'mplus-light'; font-weight: bold;
              src: url('/fonts/mplus-1c-medium.woff') format('woff'); }
 @font-face { font-family: 'mplus-thin';
              src: url('/fonts/mplus-1c-thin.woff') format('woff'); }
@@ -29,8 +23,7 @@
 /* IPA-friendly monospaced sans-serif typeface */
 @font-face { font-family: 'mplus-mono';
              src: url('/fonts/mplus-1m-light.woff') format('woff'); }
-@font-face { font-family: 'mplus-mono';
-             font-weight: bold;
+@font-face { font-family: 'mplus-mono'; font-weight: bold;
              src: url('/fonts/mplus-1m-medium.woff') format('woff'); }
 /* basics *************************************************************/
 body {
@@ -40,6 +33,14 @@ body {
   font-family: 'mplus', 'DejaVu Sans', 'FreeSans', sans-serif;
   font-size: medium;
   color: #333;
+}
+blockquote {
+  background-color: #eef6ee;
+  border-left: #cdc solid 12px;
+  font-size: small;
+  line-height: 1.5;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 /* site ***************************************************************/
 .site {
@@ -74,7 +75,18 @@ p {
   padding: 0 20px;
 }
 /* lists **************************************************************/
-ol, ul { margin: 0 30px; }
+ol { margin: 0 30px; }
+ul {
+  list-style-type: none;
+  padding: 0 20px;
+}
+ul li { position: relative; }
+ul li:before {
+  position: absolute;
+  left: 0;
+  content: '\25AA';
+  color: #aaa;
+}
 .site .footer ul {
   margin: 0;
   padding: 0 20px;
@@ -82,6 +94,9 @@ ol, ul { margin: 0 30px; }
 .site .footer ul li {
   display: inline;
   margin-right: 1.25em;
+}
+.site .footer ul li:before {
+  content: '';
 }
 
 /* links **************************************************************/
@@ -103,13 +118,10 @@ a:hover {
 }
 /* headings ***********************************************************/
 h1, h2, h3, h4, h5, h6 {
-  margin: 1.5em 0 0.25em;
   padding: 0 20px;
   font-family: 'mplus-light', 'DejaVu Sans', 'FreeSans', sans-serif;
   font-weight: normal;
-  font-size: large;
   color: #000;
-  border-bottom: #ccc solid thin;
 }
 h1 {
   margin: 1.75em 0 0;
@@ -117,7 +129,16 @@ h1 {
   font-size: x-large;
   background-color: #999;
   color: #fff;
-  border: none;
+}
+h2 {
+  margin: 1.5em 0 0.25em;
+  font-size: large;
+  border-bottom: #ccc solid thin;
+}
+h3, h4, h5, h6 {
+  margin: 1em 0 -0.25em;
+  font-size: normal;
+  font-weight: bold;
 }
 .site .header h1.title {
   display: inline-block;
@@ -130,7 +151,8 @@ h1 {
 }
 /* tables *************************************************************/
 table {
-  margin: 0 auto;
+  margin: 0 auto 1.5em;
+  line-height: 1.25;
 }
 th {
   font-weight: bold;
@@ -140,11 +162,15 @@ tr:nth-child(odd) {
   background: #eee;
 }
 td, th {
-  padding: 0.2em 0.8em;
+  padding: 0.4em 0.8em;
 }
 td code, th code {
   background-color: inherit;
   border: none;
+}
+td .sm {
+  font-size: smaller;
+  line-height: 1;
 }
 /* custom *************************************************************/
 /* markdown ==double equals== yields the <mark> tag, used here for    */
