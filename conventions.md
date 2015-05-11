@@ -100,3 +100,15 @@ The ordering conventions used in PHOIBLE are as follows:
 
 # Marginal phonemes
 Marginal phonemes are those that are notably different phonologically from the majority of segments found in a particular language. For example, loanwords containing non-native sounds can introduce maringal phonemes into the borrowing language. Any type of phoneme described as “marginal”, “dubious” or “occurs only in loan words” is included in the database alongside other phonemes, but is marked with a boolean <span class="mono">TRUE</span> value in the <span class="mono">Marginal</span> column of the data file. Ordinary phonemes typically have the value <span class="mono">FALSE</span>, although for data sources that explicitly exclude marginal phonemes, the <span class="mono">Marginal</span> column is given <span class="mono">NA</span> values for those inventories.
+
+# Pitch accent
+This section lists inventories that are known to have pitch accents among their tonemes, and describes how the pitch accents were encoded in PHOIBLE. This list should not be considered exhaustive; there may be doculects where the author chose not to describe pitch accent even though it was present in the object language, or (in doculects absorbed into PHOIBLE from other databases) cases where the original database aggregator ignored information about pitch accent when building their database.
+
+- <span class="mono">nld</span> (Dutch)
+    - Hasselt dialect, source: Peters 2006
+      accent 1: no underlying tone, accent 2: low tone. The key passage starts at the bottom of page 121 (emphasis added):
+      > The timing difference between accent 1 and accent 2 can be accounted for by assuming that **accent 2 words have a lexical L tone**, while accent 1 words are lexically toneless. In nuclear position, the lexical L tone, which is pre-linked to the accented syllable, does not allow  H∗ to  associate.
+
+    - Maastricht dialect, source: Gussenhoven 1999
+      accent 1: no underlying tone, accent 2: high tone. Page 162 (emphasis added):
+      > ... the fundamental frequency of syllables with Accent 2 differs from those with Accent 1. In view of its effect in utterances with Accent 2 as compared with equivalent utterances with Accent 1, **it is reasonable to assume that Accent 2 is a H-tone** occurring in or immediately after the stressed syllable.
