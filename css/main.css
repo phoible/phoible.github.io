@@ -35,7 +35,9 @@ body {
   color: #333;
 }
 blockquote {
-  background-color: #eef6ee;
+  margin: 1em 6em;
+  background-color: #f0f9f0;
+  border: #cdc solid 1px;
   border-left: #cdc solid 12px;
   font-size: small;
   line-height: 1.5;
@@ -96,28 +98,39 @@ ul li:before {
 }
 .site .footer ul li {
   display: inline;
-  margin-right: 1.25em;
+  margin-right: 1.5em;
 }
 .site .footer ul li:before {
   content: '';
 }
 
 /* links **************************************************************/
-a, a:visited {
-  color: #060;
+a {
+  color: #173;
+  text-decoration: none;
+}
+a:visited {
+  color: #328;
   text-decoration: none;
 }
 a:hover {
-  color: #a00;
+  color: #825;
   text-decoration: underline;
+  text-decoration-color: #E6B2BB;
 }
 .site .header a.nav {
   margin-left: 1em;
   color: #000;
 }
 .site .header a.nav:hover, .site .footer a:hover {
-  color: #a00;
+  color: #825;
   text-decoration: none;
+}
+.site .footer a, .site .footer a:visited, blockquote a, blockquote a:visited {
+  color: inherit;
+}
+.site .footer a:hover, blockquote a:hover {
+  color: #825;
 }
 /* headings ***********************************************************/
 h1, h2, h3, h4, h5, h6 {
@@ -154,6 +167,7 @@ h3, h4, h5, h6 {
 }
 /* tables *************************************************************/
 table {
+  max-width: 96%;
   margin: 0 auto 1.5em;
   line-height: 1.25;
 }
