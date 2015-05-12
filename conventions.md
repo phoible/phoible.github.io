@@ -9,13 +9,13 @@ In order to preserve distinctions both within and across language descriptions, 
 There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:
 
 
-| Keyboard letter                   | Representation in PHOIBLE                     | Meaning in IPA       |
-|:----------------------------------|:----------------------------------------------|:---------------------|
-| `g` ==0067 LATIN SMALL LETTER G== | `ɡ` ==0261 LATIN SMALL LETTER SCRIPT G==      | voiced velar stop    |
-| `!` ==0021 EXCLAMATION POINT==    | `ǃ` ==01C3 LATIN LETTER RETROFLEX CLICK==     | (post)alveolar click |
-| <code>&#124;</code> ==007C VERTICAL LINE==        | `ǀ` ==01C0 LATIN LETTER DENTAL CLICK==        | dental click         |
-| `'` ==0027 APOSTROPHE==           | `ʼ` ==02BC MODIFIER LETTER APOSTROPHE==       | ejective             |
-| `:` ==003A COLON==                | `ː` ==02D0 MODIFIER LETTER TRIANGULAR COLON== | long                 |
+| Keyboard letter                            | Representation in PHOIBLE                     | Meaning in IPA       |
+|:-------------------------------------------|:----------------------------------------------|:---------------------|
+| `g` ==0067 LATIN SMALL LETTER G==          | `ɡ` ==0261 LATIN SMALL LETTER SCRIPT G==      | voiced velar stop    |
+| `!` ==0021 EXCLAMATION POINT==             | `ǃ` ==01C3 LATIN LETTER RETROFLEX CLICK==     | (post)alveolar click |
+| <code>&#124;</code> ==007C VERTICAL LINE== | `ǀ` ==01C0 LATIN LETTER DENTAL CLICK==        | dental click         |
+| `'` ==0027 APOSTROPHE==                    | `ʼ` ==02BC MODIFIER LETTER APOSTROPHE==       | ejective             |
+| `:` ==003A COLON==                         | `ː` ==02D0 MODIFIER LETTER TRIANGULAR COLON== | long                 |
 
 
 # Additions to the IPA
