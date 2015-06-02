@@ -3,7 +3,7 @@ layout: default
 title:  "PHOIBLE notational conventions"
 ---
 
-In order to preserve distinctions both within and across language descriptions, additions to the approved International Phonetic Alphabet (IPA) glyph set were needed; wherever possible these were drawn from the [extIPA symbols for disordered speech](https://www.internationalphoneticassociation.org/sites/default/files/extIPAChart2008.pdf). This page also describes any idiosyncracies in our interpretation and usage of approved IPA glyphs, and conventions regarding glyph ordering. The terms "official IPA", "approved IPA glyphs", or just "IPA" we are referring to [the 2005 update of the full chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) unless otherwise indicated.
+In order to preserve distinctions both within and across language descriptions, additions to the approved International Phonetic Alphabet (IPA) glyph set were needed; wherever possible these were drawn from the [extIPA symbols for disordered speech](https://www.internationalphoneticassociation.org/sites/default/files/extIPAChart2008.pdf). This page describes our additions to the IPA glyph set, and also describes any idiosyncracies in our interpretation and usage of approved IPA glyphs, and conventions regarding glyph ordering. The terms "official IPA", "approved IPA glyphs", or just "IPA" we are referring to [the 2005 update of the full chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) unless otherwise indicated.
 
 # Similar-looking glyphs
 There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:
@@ -24,6 +24,7 @@ Languages described as having a fortis/plain/lenis distinction that corresponds 
 
 ## Frictionalized sounds
 The frictionalized diacritic ~~`͓`~~ (==0353 COMBINING X BELOW==) is used in PHOIBLE to represent three types of sounds:
+
 - Click consonants where the release of the anterior closure involves an ingressive "sucking" sound similar to a fricative. In such cases the diacritic is placed on the click glyph, not on the glyph indicating the posterior closure location. Example: `kǃ͓ʰ`
 - "Frictionalized" vowels (sounds that are phonologically vocalic, but with sufficiently close closures to create buzzing).
 - Fricative sounds at places of articulation that do not have dedicated fricative glyphs (e.g., sounds with voiceless velar lateral frication: `ʟ̥͓`, `ɬʟ̥͓`, `kʟ̥͓ʼ`).
@@ -35,12 +36,12 @@ Languages described as having a sibilant/non-sibilant distinction among coronal 
 Retroflex clicks are represented by `‼` (==203C DOUBLE EXCLAMATION MARK==). Note that `ǃ` (==01C3==, the symbol representing (post)alveolar clicks in the IPA) is confusingly referred to as ==LATIN LETTER RETROFLEX CLICK== in the Unicode standard.
 
 ## Glottalization
-Sounds described as “glottalized” are marked with `ˀ` (==02C0 MODIFIER LETTER GLOTTAL STOP==), unless it is clear from context that either “ejective” or “creaky voicing” are the intended meaning. See the section on [Glottalization, laryngealization, and creaky voicing](#glottalization-laryngealization-and-creaky-voicing) for more details.
+Sounds described as “glottalized” are marked with `ˀ` (==02C0 MODIFIER LETTER GLOTTAL STOP==), unless it is clear from context that either “ejective” or “creaky voicing” are the intended meaning. See the section on [Glottalization, laryngealization, and creaky voicing](#glottalization,-laryngealization,-and-creaky-voicing) for more details.
 
 ## Summary table of PHOIBLE symbols not in the IPA
 
-| Glyph | Codepoint  | Description                              | Meaning in PHOIBLE   |
-|:-----:|:----------:|:-----------------------------------------|:---------------------|
+| Glyph   | Codepoint  | Description                              | Meaning in PHOIBLE   |
+|:-------:|:----------:|:-----------------------------------------|:---------------------|
 | ~~`͈`~~  | ==0348==   | ==COMBINING DOUBLE VERTICAL LINE BELOW== | Fortis               |
 | ~~`͉`~~  | ==0349==   | ==COMBINING LEFT ANGLE BELOW==           | Lenis                |
 | ~~`͓`~~  | ==0353==   | ==COMBINING X BELOW==                    | Frictionalized       |
@@ -85,7 +86,7 @@ The representations of speech sounds in PHOIBLE do not make use of the tie bar (
 # Ordering of diacritics and modifier letters
 *This section makes a distinction between “combining characters” and “spacing modifier letters”, which most linguists would group together under one term “diacritics”. Briefly, combining characters are diacritics that sit above or below the glyph they modify, or are superimposed on it (e.g., the tilde above a nasalized vowel ~~`̃`~~ is a combining character, encoded as ==0303== in the Unicode standard). Spacing modifier letters are diacritics that sit next to the glyph they modify (e.g., the superscript `ʰ` used to indicate aspiration is a modifier letter, encoded as ==02B0==).*
 
-Each segment type that is composed of more than one character is first normalized into a canonical decomposition form that adheres to the [Unicode Normalization Form D (NFD)](http://unicode.org/reports/tr15/). However, the NFD algorithm does not define a prescribed order for all possible pairs of combining characters. For example, ==0301== (combining acute accent) and ==0308== (combining diaresis) are not re-ordered with respect to one another by the NFD algorithm, regardless of which order they occurred in the input string. PHOIBLE imposes an ordering that is consistent with NFD, but sets an explicit order for all combining characters used in the database. A rigid ordering for spacing modifier letters is also enforced. The chosen ordering is guided by the linguistic literature and typographical concerns, since to the best of our knowledge the IPA does not provide a recommended ordering for diacritics.
+Each representation of a phoneme is first normalized into a canonical decomposition form that adheres to the [Unicode Normalization Form D (NFD)](http://unicode.org/reports/tr15/). However, the NFD algorithm does not define a prescribed order for all possible pairs of combining characters. For example, ==0301== (combining acute accent) and ==0308== (combining diaresis) are not re-ordered with respect to one another by the NFD algorithm, regardless of which order they occurred in the input string. PHOIBLE imposes an ordering that is consistent with NFD, but sets an explicit order for all combining characters used in the database. A rigid ordering for spacing modifier letters is also enforced. The chosen ordering is guided by the linguistic literature and typographical concerns, since to the best of our knowledge the IPA does not provide a recommended ordering for diacritics.
 
 The ordering conventions used in PHOIBLE are as follows:
 
