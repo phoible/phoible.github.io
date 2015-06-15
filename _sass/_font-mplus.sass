@@ -1,0 +1,57 @@
+// M+ 1c: a narrow sans-serif typeface with fairly good support for IPA
+@font-face
+  font-family: 'mplus'
+  src: url('/fonts/mplus-1c-regular.woff') format('woff')
+@font-face
+  font-family: 'mplus'
+  src: url('../fonts/mplus-1c-bold.woff') format('woff')
+  font-weight: bold
+@font-face
+  font-family: 'mplus-heavy'
+  src: url('../fonts/mplus-1c-heavy.woff') format('woff')
+@font-face
+  font-family: 'mplus-medium'
+  src: url('../fonts/mplus-1c-medium.woff') format('woff')
+@font-face
+  font-family: 'mplus-light'
+  src: url('../fonts/mplus-1c-light.woff') format('woff')
+@font-face
+  font-family: 'mplus-thin'
+  src: url('../fonts/mplus-1c-thin.woff') format('woff')
+// mplus 1m: a narrow monospaced sans-serif face
+@font-face
+  font-family: 'mplus-mono'
+  src: url('../fonts/mplus-1m-regular.woff') format('woff')
+@font-face
+  font-family: 'mplus-mono'
+  src: url('../fonts/mplus-1m-bold.woff') format('woff')
+  font-weight: bold
+@font-face
+  font-family: 'mplus-mono-medium'
+  src: url('../fonts/mplus-1m-medium.woff') format('woff')
+@font-face
+  font-family: 'mplus-mono-light'
+  src: url('../fonts/mplus-1m-light.woff') format('woff')
+@font-face
+  font-family: 'mplus-mono-thin'
+  src: url('../fonts/mplus-1m-thin.woff') format('woff')
+
+// class definitions
+.mpl
+  font-family: "mplus"
+.mpl .hvy
+  font-family: "mplus-heavy"
+.mpl .med
+  font-family: "mplus-medium"
+.mpl .lit
+  font-family: "mplus-light"
+.mpl .thn
+  font-family: "mplus-thin"
+.mpl .mon
+  font-family: "mplus-mono"
+.mpl .mon .med, .mpl .med .mon
+  font-family: "mplus-mono-medium"
+.mpl .mon .lit, .mpl .lit .mon
+  font-family: "mplus-mono-light"
+.mpl .mon .thn, .mpl .thn .mon
+  font-family: "mplus-mono-thin"

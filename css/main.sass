@@ -1,0 +1,251 @@
+---
+---
+// things that should be different on phones vs desktops:
+// blockquote width (smaller on larger screens)
+// text-align (justify on larger screens)
+@import reset
+@import font-charis
+@import font-mplus
+// fonts
+$font-mono:     'mplus-mono', 'DejaVu Sans Mono', monospace
+$font-light:    'mplus-light', 'DejaVu Sans', 'FreeSans', sans-serif
+$font-heavy:    'mplus-heavy', 'DejaVu Sans', 'FreeSans', sans-serif
+$font-ipa:      'charis', 'Linux Libertine O', 'DejaVu Serif', 'FreeSerif', serif
+// background colors
+$col-bg:        #eee
+$col-fg:        #fff
+$col-pre:       #eef
+$col-blkq:      #f0f9f0
+$col-blkq-bord: #cdc
+// text colors
+$col-head:      #000
+$col-text:      #333
+$col-mark:      #999
+// link colors
+$col-hover:     #825
+$col-visit:     #328
+$col-link:      #173
+$col-underline: #E6B2BB
+// lines and borders
+$line-hor:      #aaa solid 1px
+$bord-ipa:      #e0e0e0 solid 1px
+$bord-pre:      #ddd solid 1px
+// spacing
+$vsep:          0.5rem
+$hsep:          1.5rem
+// text sizes
+$xxs:           0.5rem
+$xs:            0.6rem
+$sm:            0.8rem
+$md:            1.0rem
+$lg:            1.2rem
+$xl:            1.5rem
+$xxl:           2.0rem
+// main layout elements
+html
+  margin:           0
+  padding:          0
+  background-color: $col-bg
+  font-size:        0.375cm
+  @media screen and (min-width: 12cm)
+    font-size:      0.425cm
+body
+  margin:           0 auto
+  padding:          $vsep 0
+  max-width:        30cm
+  width:            100%
+  @media screen and (min-width: 12cm)
+    width:          90%
+  background-color: $col-fg
+  color:            $col-text
+  font:             normal 1rem/1.75rem "mplus"
+  text-align:       left
+  @media screen and (min-width: 12cm)
+    text-align:       justify
+.header
+  margin-bottom:    2*$vsep
+  border-bottom:    $line-hor
+  padding-top:      3*$vsep
+  color:            $col-head
+  .title
+    display:        inline-block
+    margin:         0 $hsep
+    font-family:    "mplus-thin"
+    font-size:      $xxl
+.nav
+  display:          block
+  margin-left:      $hsep
+  @media screen and (min-width: 12cm)
+    display:        inline-block
+    margin-left:    0
+  .navitem
+    display:        inline-block
+    margin-right:   $hsep
+    a
+      color:        $col-head
+    a:hover
+      color:           $col-hover
+      text-decoration: none
+// headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  margin:                2*$vsep 0 $vsep/2
+  padding:               0 $hsep
+  color:                 $col-head
+h2
+  margin:                3*$vsep 0 $vsep/2
+  border-bottom:         $line-hor
+  font:                  normal $lg $font-light
+h1
+  margin:                2*$vsep 0 0
+  padding:               0 $hsep $vsep/4
+  border-bottom:         none
+  background-color:      $col-mark
+  color:                 $col-fg
+  font:                  normal $xl $font-light
+// links
+a
+  color:                 $col-link
+  text-decoration:       none
+a:visited
+  color:                 $col-visit
+  text-decoration:       none
+a:hover
+  color:                 $col-hover
+  text-decoration:       underline
+  text-decoration-color: $col-underline
+//main layout elements
+p
+  margin:                $vsep/2 0 $vsep
+  padding:               0 $hsep
+  img
+    vertical-align:      middle
+ol
+  margin:                0 3*$hsep
+ul
+  list-style-type:       none
+  padding:               0 $hsep
+.footer
+  margin:                4*$vsep 0 0
+  padding:               $vsep 0 8*$vsep
+  font:                  normal $sm $font-light
+  text-align:            left
+  color:                 $col-text
+  background-color:      $col-bg
+  border-top:            $line-hor
+  a,
+  a:visited
+    color:               inherit
+  a:hover
+    color:               $col-hover
+  ul
+    list-style-type:     none
+    padding:             0
+    margin-left:         $hsep
+    li
+      display:           inline
+      margin-right:      $hsep/2
+      @media screen and (min-width: 20cm)
+        margin-right:    $hsep
+      @media screen and (min-width: 20cm)
+        margin-right:    2*$hsep
+blockquote
+  margin:                2*$vsep $hsep/2
+  @media screen and (min-width: 10cm)
+    margin:              2*$vsep 2*$hsep
+  @media screen and (min-width: 20cm)
+    margin:              2*$vsep 4*$hsep
+  @media screen and (min-width: 30cm)
+    margin:              2*$vsep 6*$hsep
+  background-color:      $col-blkq
+  border:                $col-blkq-bord solid 1px
+  border-left:           $col-blkq-bord solid 12px
+  text-align:            left
+blockquote
+  p
+    margin:                0
+    padding:               $vsep $hsep/4
+    font-size:             $xs
+    line-height:           $md
+    @media screen and (min-width: 10cm)
+      padding:             $vsep $hsep
+      font-size:           $sm
+      line-height:         $lg
+    @media screen and (min-width: 20cm)
+      font-size:           $md
+      line-height:         $xl
+    a,
+    a:visited
+      color:               inherit
+    a:hover
+      color:               $col-hover
+// markdown ==double equals== yields the <mark> tag, used here for
+// formatting Unicode codepoints and descriptions
+mark
+  font:                  normal $sm $font-heavy
+  background-color:      inherit
+  color:                 $col-mark
+  border:                none
+// <code> is hijacked for pretty rendering of IPA glyphs
+code
+  padding:               0 $hsep/4 $vsep/4
+  font-family:           $font-ipa
+  font-size:             $lg
+  background-color:      $col-bg
+  border:                $bord-ipa
+// We use ~~`code within double-tildes`~~ for isolated diacritics.
+// Normally in markdown this yields strikethrough formatting. Here,
+// it just adds a non-breaking space before the diacritic. A possibly
+// helpful mnemonic when writing the markdown is: surround with ~~
+// because in LaTeX ~ means "non-breaking space".
+del
+  text-decoration:       none
+del
+  code::before
+    content:             '\00A0'
+// use class="mono" for inline code, since we hijacked <code> for IPA
+.mono
+  font-family:           $font-mono
+  font-weight:           bold
+// preformatted code blocks won't be IPA hijacked
+pre
+  padding:               0 $hsep
+  border:                $bord-pre
+  background-color:      $col-pre
+  code
+    border:              none
+    font-family:         $font-mono
+// tables
+table
+  margin:                0 auto 3*$vsep
+  max-width:             95%
+  line-height:           1.25
+th
+  background:            $col-fg
+  font-weight:           bold
+tr:nth-child(odd)
+  background:            $col-bg
+td,
+th
+  padding:               $vsep $hsep/3
+  font-size:             $xs
+  @media screen and (min-width: 10cm)
+    font-size:           $sm
+  @media screen and (min-width: 20cm)
+    font-size:           $md
+td code,
+th code
+  background-color:      inherit
+  border:                none
+td
+  .sm
+    line-height: 1
+    font-size:           $xxs
+    @media screen and (min-width: 10cm)
+      font-size:         $xs
+    @media screen and (min-width: 20cm)
+      font-size:         $sm
