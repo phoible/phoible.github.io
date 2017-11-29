@@ -5,4 +5,4 @@ markdown: redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "highlight", "strikethrough", "superscript"]
 permalink: pretty
-highlighter: pygments
+highlighter: rouge
