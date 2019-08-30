@@ -80,6 +80,9 @@ Clicks are always represented in PHOIBLE as a combination of anterior and poster
 ## Epilaryngeal phonation
 There are some rare articulations that make use of an epilaryngeal phonation mechanism (e.g., the “sphincteric vowels” of !Xóõ). To represent these vowels, we use `ᴱ` (<mark>1D31 MODIFIER LETTER CAPITAL E</mark>) to denote sphincteric phonation.
 
+## Apical vowels
+The so-called “apical vowels” (most famously described in Modern Standard Chinese, a.k.a. “Mandarin”) have been traditionally represented by many Sinologists using non-standard glyphs `ɿ` and `ʅ`. In PHOIBLE we follow [Lee-Kim 2014](https://doi.org/10.1017/S0025100314000267) in treating segments described as “apical vowels” as (possibly syllabic) approximants — in particular, as the dental approximant `ɹ̪̩` and the retroflex approximant `ɻ̩`.
+
 ## Double articulations / tie bars
 The representations of speech sounds in PHOIBLE do not make use of the tie bar (<mark>0361 COMBINING DOUBLE INVERTED BREVE</mark> or <mark>035C COMBINING DOUBLE BREVE BELOW</mark>). The reasons for this choice are (1) it aids legibility when there are other diacritics, and (2) since the data are limited to single phonemes (i.e., there are no transcriptions of words or longer passages), there is no need to distinguish single phonemes from sequences. Put another way, every phoneme in PHOIBLE that is represented as a digraph has an implicit tiebar.
 
