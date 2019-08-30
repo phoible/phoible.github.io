@@ -18,6 +18,8 @@ There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all
 | `:` <mark>003A COLON</mark>                         | `ː` <mark>02D0 MODIFIER LETTER TRIANGULAR COLON</mark> | long                 |
 
 
+In addition, PHOIBLE eschews the use of precomposed digraphs such as `ʤ`, `ʨ`, etc. to represent affricates. Note that since each entry in PHOIBLE represents a single phonologically contrastive sound in its doculect, there is never any risk that an entry such as `tɕ` might be confused as a sequence of two phonemes (stop + fricative) rather than a single affricate.
+
 # Additions to the IPA
 ## Fortis / Lenis
 Languages described as having a fortis/plain/lenis distinction that corresponds poorly with the traditional voiced/voiceless-unaspirated/voiceless-aspirated continuum are marked using the voiceless glyph for the “plain” phoneme, and either ~~`͈`~~ (<mark>0348 COMBINING DOUBLE VERTICAL LINE BELOW</mark>) to mark the fortis articulation, and/or ~~`͉`~~ (<mark>0349 COMBINING LEFT ANGLE BELOW</mark>) for the lenis articulation.
