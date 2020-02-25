@@ -95,14 +95,15 @@ Each representation of a phoneme is first normalized into a canonical decomposit
 
 The ordering conventions used in PHOIBLE are as follows:
 
-1. **Place features:** linguolabial ~~`̼`~~, dental ~~`̪`~~, apical ~~`̺`~~, laminal ~~`̻`~~, advanced ~~`̟`~~, retracted ~~`̠`~~
-2. **Manner features:** raised ~~`̝`~~, lowered ~~`̞`~~, advanced tongue root ~~`̘`~~, retracted tongue root ~~`̙`~~, frictionalized ~~`͓`~~
-3. **Secondary articulations:** more round ~~`̹`~~, less round ~~`̜`~~, derhoticized ~~`̮`~~
-4. **Laryngeal settings:** creaky ~~`̰`~~, breathy ~~`̤`~~, voiced ~~`̬`~~, devoiced (below) ~~`̥`~~, devoiced (above) ~~`̊`~~
-5. **Syllabicity:** syllabic ~~`̩`~~ and non-syllabic markers ~~`̯`~~
-6. **Vowel quality modifications**: nasalized ~~`̃`~~, centralized ~~`̈`~~, mid-centralized ~~`̽`~~
-7. **Stop release:** unreleased `̚`
-8. **Spacing modifier letters:** rhotic hook `˞`, nasal release `ⁿ`, lateral release `ˡ`, labialized `ʷ`, palatalized `ʲ`, velarized `ˠ`, pharyngealized `ˤ`, glottalized `ˀ`, aspirated `ʰ`, ejective `ʼ`, long `ː`, half long `ˑ`
+1. **Place features:** velarized/pharyngealized ~~`̴`~~, linguolabial ~~`̼`~~, dental ~~`̪`~~, apical ~~`̺`~~, laminal ~~`̻`~~, advanced ~~`̟`~~, retracted ~~`̠`~~
+2. **Manner features:** non-sibilant ~~`͇`~~, raised ~~`̝`~~, lowered ~~`̞`~~, advanced tongue root ~~`̘`~~, retracted tongue root ~~`̙`~~, frictionalized ~~`͓`~~
+3. **Secondary articulations:** more round ~~`̹`~~, less round ~~`̜`~~
+4. **Laryngeal settings:** creaky ~~`̰`~~, breathy ~~`̤`~~, voiced ~~`̬`~~, stiff ~~`̬`~~, devoiced (below) ~~`̥`~~, devoiced (above) ~~`̊`~~, fortis ~~`͈`~~, lenis ~~`͉`~~
+5. **Length:** short ~~`̆`~~
+6. **Syllabicity:** syllabic ~~`̩`~~ and non-syllabic markers ~~`̯`~~
+7. **Vowel quality modifications**: nasalized ~~`̃`~~, denasalized ~~`͊`~~, centralized ~~`̈`~~, mid-centralized ~~`̽`~~
+8. **Stop release:** unreleased `̚`
+9. **Spacing modifier letters:** rhotic hook `˞`, nasal release `ⁿ`, lateral release `ˡ`, labialized `ʷ`, palatalized `ʲ`, labial-palatalized `ᶣ`, velarized `ˠ`, pharyngealized `ˤ`, glottalized `ˀ`, schwa-like release `ᵊ`, epilaryngeal source `ᴱ`, aspirated `ʰ`, breathy aspirated `ʱ`, ejective `ʼ`, long `ː`, half long `ˑ`
 
 # Marginal phonemes
 Marginal phonemes are those that are notably different phonologically from the majority of segments found in a particular language. For example, loanwords containing non-native sounds can introduce maringal phonemes into the borrowing language. Any type of phoneme described as “marginal”, “dubious” or “occurs only in loan words” is included in the database alongside other phonemes, but is marked with a boolean <span class="mono">TRUE</span> value in the <span class="mono">Marginal</span> column of the data file. Ordinary phonemes typically have the value <span class="mono">FALSE</span>, although for data sources that explicitly exclude marginal phonemes, the <span class="mono">Marginal</span> column is given <span class="mono">NA</span> values for those inventories.
