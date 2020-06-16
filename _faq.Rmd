@@ -1,0 +1,224 @@
+---
+title: "PHOBILE frequently asked questions"
+layout: default
+---
+
+This page describes some of the basic properties of the PHOIBLE database,
+including XXX, YYY, ZZZ.
+
+```{r opts, echo=FALSE}
+knitr::opts_chunk$set(fig.path = "images/faq/")
+```
+
+# How we classify inventories
+
+For the most part, every phonological inventory in PHOIBLE is based on one and
+only one language description (usually a research article, book chapter,
+dissertation, or descriptive grammar). The conceptual term for this is
+"doculect" — an instance of documentation of an instance of linguistic behavior
+at a particular time and place. Occasionally, a single document may provide
+information about multiple doculects; for example, a dissertation that described
+and compared 3 related dialects or languages spoken in a particular region. In
+that case, 3 phonological inventories in PHOIBLE corresponding to 3 doculects
+might all be linked to the same document, but each inventory is still linked to
+only one document (it just happens to be *the same document* for those three
+inventories).
+
+An exception to the "one document per inventory" rule arises for inventories
+that were originally part of a curated phonological database such as UPSID or
+SPA. In those collections, inventories were often based on multiple descriptions
+of linguistic behavior, written by different linguists; those descriptions were
+believed to be describing the same language, and disagreements between the
+descriptions were adjudicated by the experts who compiled the collection.
+
+Since most PHOIBLE inventories (aside from some UPSID or SPA ones, as mentioned
+above) are based on a single document, it is fairly straightforward to link each
+PHOIBLE inventory to Glottolog, which provides links between linguistic
+description documents and unique identifiers for dialects, languages, and
+groupings of dialects and languages at various levels (the preferred term for
+any of these levels of specificity / grouping is "languoid"). Thus in PHOIBLE it
+is usually the case that a single inventory corresponds to a single languoid,
+and in most cases that languoid is a "leaf node" in the Glottolog tree, i.e., it
+represents a particular dialect known to be used at a particular place and time
+(rather than a group of dialects, a language, or a language family). However, in
+the few cases where multiple document sources were consulted for an inventory,
+it may not be possible to link that inventory to a unique Glottolog leaf node.
+In such cases, the inventory in PHOIBLE is linked to the lowest possible
+Glottolog node that dominates the leaf nodes of each source document. For
+example, XXX TODO GIVE A REAL-LIFE EXAMPLE HERE XXX.
+
+In addition to providing Glottolog languoid codes ("glottocodes") for each
+inventory, PHOIBLE also includes ISO 639-3 language codes ("isocodes") for each
+inventory. The link between glottocodes and isocodes is provided by Glottolog
+(PHOIBLE no longer maintains a separate mapping).
+
+# Duplicate entries in PHOIBLE
+
+In light of the above discussion of how we classify phonological inventories, it
+should come as no surprise that PHOIBLE can contain multiple inventories for
+"the same" languoid, depending on what kind of languoid you're interested in.
+All it takes is the existence of two or more descriptive documents associated
+with the same group of speakers, where "group of speakers" is ultimately
+determined by your desired level of granularity. To give a concrete example, one
+researcher may be interested in comparing "languages", and so might wish to
+treat all inventories of "English" as duplicates in some sense, regardless of
+the regional dialect, sociolect, etc. represented in the doculect and encoded in
+the phonological inventory. Such a researcher might *filter* or *sample* the
+PHOIBLE dataset in order to include only one inventory for each isocode (how she
+might choose to implement that filter is a separate question; see "Filtering and
+sampling inventories" for examples). Other researchers may not care about
+"duplicates" in that sense, and may choose to include all inventories in their
+analysis (or, they may filter the dataset to include only inventories with a
+particular feature of interest such as breathy-voiced vowels).
+
+Because a key principle of PHOIBLE is to remain as faithful as possible to the
+description of speech sounds in the original doculects (though not necessarily
+to the exact *symbols* used in the document, if they don't reflect the textual
+descriptions), it may arise that linguists disagree on their phonological
+analysis of a particular languoid, and hence there may be two PHOIBLE
+inventories (with unique inventory IDs) that link to the same glottocode (but
+different documents) but nonetheless contain different sets of phonemes.
+
+TODO: CONCRETE EXAMPLE OF TWO INVENTORIES WITH SAME LEAF NODE GLOTTOCODE THAT
+HAVE DIFFERENT PHONEMES / NUMBERS OF PHONEMES.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+
+url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
+phoible <- read.csv(url(url_), stringsAsFactors=FALSE)
+```
+
+Below is a summary of the number of isocodes that are represented by multiple
+inventories in PHOIBLE:
+
+```{r stemplot_inv_per_iso}
+phoible %>%
+    group_by(ISO6393) %>%
+    summarise(y=n_distinct(InventoryID)) %>%
+    count(y) %>%
+    ggplot(aes(y=as.factor(y), x=n)) +
+    geom_point() +
+    geom_segment(aes(x=0, xend=n, y=as.factor(y), yend=as.factor(y))) +
+    scale_x_log10() +
+    theme_light() +
+    labs(title="Prevalence of multiple inventories per ISO code",
+         x="Number of ISO codes having N inventories (log scale)",
+         y="N inventories")
+```
+
+So most ISO codes have only 1 inventory (the long, bottom line). What is the ISO
+code that has 37 inventories?!
+
+```{r}
+phoible %>%
+    group_by(ISO6393) %>%
+    summarise(n_inventories=n_distinct(InventoryID)) %>%
+    arrange(desc(n_inventories)) %>%
+    filter(n_inventories > 5) %>%
+    kable()
+```
+
+Turns out there are 37 inventories with `NA` as their isocode.
+XXX TODO ADD A SENTENCE ABOUT WHY THEY ARE `NA` XXX.
+
+Here is the same representation, for glottocodes instead of isocodes:
+
+```{r stemplot_inv_per_glotto}
+phoible %>%
+    group_by(Glottocode) %>%
+    summarise(y=n_distinct(InventoryID)) %>%
+    count(y) %>%
+    ggplot(aes(y=as.factor(y), x=n)) +
+    geom_point() +
+    geom_segment(aes(x=0, xend=n, y=as.factor(y), yend=as.factor(y))) +
+    scale_x_log10() +
+    theme_light() +
+    labs(title="Prevalence of multiple inventories per glottocode",
+         x="Number of glottocodes having N inventories (log scale)",
+         y="N inventories")
+```
+
+Again, most glottocodes are represented by just one or two inventories in
+PHOIBLE. Let's see what those few glottocodes are that have so many inventories:
+
+```{r}
+phoible %>%
+    group_by(Glottocode) %>%
+    summarise(n_inventories=n_distinct(InventoryID)) %>%
+    arrange(desc(n_inventories)) %>%
+    filter(n_inventories > 5) %>%
+    kable()
+```
+
+
+# Filtering and sampling inventories
+
+If multiple inventories per isocode/glottocode are problematic for your
+analysis or research question, one approach is to select one inventory from each
+isocode/glottocode via random sampling:
+
+```{r}
+phoible %>%
+    group_by(Glottocode) %>%
+    sample_n(1) ->
+    one_inv_per_glottocode
+
+phoible %>%
+    group_by(ISO6393) %>%
+    sample_n(1) ->
+    one_inv_per_isocode
+
+message("Picking one inventory per glottocode reduces PHOIBLE from ",
+        n_distinct(phoible$InventoryID), " inventories\nto ",
+        nrow(one_inv_per_glottocode),
+        " inventories. Picking one per ISO 639-3 code yields ",
+        nrow(one_inv_per_isocode), " inventories.")
+```
+
+Another approach is to only use only inventories from a data source that already
+provides a one-inventory-per-language sample. For example, UPSID represents a
+"quota" sample (one language per family, for some definition of "family"). To do
+this, you can filter the PHOIBLE data by the `Source` column:
+
+```{r}
+phoible %>%
+    filter(Source == "upsid") ->
+    upsid
+
+# show that there is exactly one inventory per ISO 639-3 code:
+upsid %>%
+    group_by(ISO6393) %>%
+    summarise(InventoryID=n_distinct(InventoryID)) %>%
+    select(InventoryID) %>%
+    distinct() %>%
+    kable()
+```
+
+However, note that the state of knowledge of linguistic genealogical groupings
+has changed since UPSID was published. A quota sample that reflects current
+understanding can also be achieved. Here, we choose one leaf node from within
+each top-level Glottolog family node that has representation in PHOIBLE:
+
+```{r}
+# TODO XXX EXAMPLE OF QUOTA SAMPLE USING GLOTTOLOG XXX
+# caveat: every Isolate will be included
+```
+
+Another approach is to select inventories based on properties of the inventories
+themselves, such as whether they include
+representations of allophones or contrastive tone, etc.
+
+```{r}
+# TODO XXX EXAMPLE OF PREFERENTIAL SOURCE ORDERING HERE XXX
+```
+
+If you're inclined to be a "splitter", you might prefer to pick the largest
+inventory for a given isocode...
+
+```{r}
+# TODO XXX EXAMPLE OF PICKING AMONG DUPLICATES BY INVENTORY SIZE XXX
+```
+
