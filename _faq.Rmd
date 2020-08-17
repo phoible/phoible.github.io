@@ -1,15 +1,10 @@
 ---
 title: "PHOBILE frequently asked questions"
 layout: default
----
-<!--pandoc
-s:
+bibliography: bib/faq.bibtex
+output: html_document
 csl: bib/phoible.csl
-
-t: html
-bibliography: bib/faq.bib
-o: faq.md
--->
+---
 
 ```{r opts, echo=FALSE}
 knitr::opts_chunk$set(fig.path = "images/faq/")
@@ -85,9 +80,9 @@ Doculects are tracked in PHOIBLE using BibTeX keys.
 # Why do some phonological inventories combine more than one doculect?
 
 An exception to the "one doculect per inventory" rule arises for inventories
-that were originally part of a curated phonological database such as UPSID
-[@Maddieson1984;MaddiesonPrecoda1990] or SPA [@CrothersEtAl1979]. In those
-collections, inventories were often based on multiple descriptions of
+that were originally part of a curated phonological database such as
+UPSID [@Maddieson1984;@MaddiesonPrecoda1990] or SPA [@CrothersEtAl1979]. In
+those collections, inventories were often based on multiple descriptions of
 linguistic behavior, written by different linguists; those descriptions were
 believed to be describing the same language, and disagreements between the
 descriptions were adjudicated by the experts who compiled the collection.
@@ -132,7 +127,7 @@ phoible %>%
 
 As we can see, this inventory represents a description of
 [Hausa](https://glottolog.org/resource/languoid/id/haus1257) and was added to
-PHOIBLE from the UPSID database [@Maddieson1984;MaddiesonPrecoda1990].
+PHOIBLE from the UPSID database [@Maddieson1984;@MaddiesonPrecoda1990].
 
 Maddieson's work on UPSID involved "typologizing" phonological inventories from different doculects, so that they were comparable across all entries in his database (cf [@Hyman2008]). Maddieson's work was groundbreaking at the time because he was the first typologist to generate a stratified language sample aimed at being genealogically balanced, i.e. for each language family he chose one representative language. This allowed Maddieson to make statements about the cross-linguistic distribution of contrastive speech sounds with some level of statistical confidence. In fact, much about what we know about the distribution of the sounds of the world's languages is due to Maddieson's original language sample and his meticulous curation of the data. Regarding Hausa, consider the fact that the [Glottolog](https://glottolog.org/) reference catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257) related to Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different sources when preparing the Hausa entry for UPSID.
 
