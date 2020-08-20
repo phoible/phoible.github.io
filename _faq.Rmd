@@ -1,5 +1,6 @@
 ---
 title: "PHOBILE frequently asked questions"
+author: Steven Moran and Dan McCloy
 layout: default
 bibliography: bib/faq.bibtex
 output: html_document
@@ -129,7 +130,7 @@ As we can see, this inventory represents a description of
 [Hausa](https://glottolog.org/resource/languoid/id/haus1257) and was added to
 PHOIBLE from the UPSID database [@Maddieson1984;@MaddiesonPrecoda1990].
 
-Maddieson's work on UPSID involved "typologizing" phonological inventories from different doculects, so that they were comparable across all entries in his database (cf [@Hyman2008]). Maddieson's work was groundbreaking at the time because he was the first typologist to generate a stratified language sample aimed at being genealogically balanced, i.e. for each language family he chose one representative language. This allowed Maddieson to make statements about the cross-linguistic distribution of contrastive speech sounds with some level of statistical confidence. In fact, much about what we know about the distribution of the sounds of the world's languages is due to Maddieson's original language sample and his meticulous curation of the data. Regarding Hausa, consider the fact that the [Glottolog](https://glottolog.org/) reference catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257) related to Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different sources when preparing the Hausa entry for UPSID.
+Maddieson's work on UPSID involved "typologizing" phonological inventories from different doculects, so that they were comparable across all entries in his database (cf. [@Hyman2008]). Maddieson's work was groundbreaking at the time because he was the first typologist to generate a stratified language sample aimed at being genealogically balanced, i.e. for each language family he chose one representative language. This allowed Maddieson to make statements about the cross-linguistic distribution of contrastive speech sounds with some level of statistical confidence. In fact, much about what we know about the distribution of the sounds of the world's languages is due to Maddieson's original language sample and his meticulous curation of the data. Regarding Hausa, consider the fact that the [Glottolog](https://glottolog.org/) reference catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257) related to Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different sources when preparing the Hausa entry for UPSID.
 
 
 # Where do the language codes in PHOIBLE come from?
@@ -236,7 +237,7 @@ reason is that these phonological descriptions represent different doculects
 (i.e., different instances of linguistic behavior at different places, times,
 or with different speakers). This should probably not surprise most linguists,
 since it has long been known that phoneme analysis is a non-deterministic
-process [@Chao1934;Hockett1963]. See also [@Moran2012] chapter 2.3.3 for a
+process [@Chao1934; @Hockett1963]. See also [@Moran2012] chapter 2.3.3 for a
 general discussion, and [@Hyman2008] page 99 for a detailed discussion of
 Kabardian in particular.
 
@@ -335,7 +336,44 @@ Occasionally, a single document may provide information about multiple phonologi
 
 # What are the different "sources" in PHOIBLE?
 
-TODO
+PHOIBLE contains inventories from various different [contriubutors](https://phoible.org/contributors). These contributions are grouped into so-called "sources", denoted by abbreviation, including (in order of bibliographic):
+
+* [SPA](https://github.com/phoible/dev/tree/master/raw-data/SPA): The Stanford Phonology Archive [@CrothersEtAl1979]
+* [UPSID](https://github.com/phoible/dev/tree/master/raw-data/UPSID): The [UCLA Phonological Segment Inventory Database](http://web.phonetik.uni-frankfurt.de/upsid.html) [@Maddieson1984, @MaddiesonPrecoda1990]
+* [AA](https://github.com/phoible/dev/tree/master/raw-data/AA): [Alphabets of Africa](http://sumale.vjf.cnrs.fr/phono/index.htm) [@hartell1993, @chanard2006]
+* [RA](https://github.com/phoible/dev/tree/master/raw-data/RA): Common Linguistic Features in Indian Languages [@ramaswami1999]
+* [SAPHON](https://github.com/phoible/dev/tree/master/raw-data/SAPHON): [South American Phonological Inventory Database](http://linguistics.berkeley.edu/~saphon/en/) [@saphon]
+* [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data drawn from journal articles, theses, and published grammars, added by members of the Linguistic Phonetics Laboratory at the University of Washington [@Moran2012]
+* [UZ](https://github.com/phoible/dev/tree/master/raw-data/UZ): Data drawn from journal articles, theses, and published grammars, added by the phoible developers while at the Department of Comparative Linguistics at the University of Zurich
+* [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data from African and Southeast Asian languages
+* [EA](https://github.com/phoible/dev/tree/master/raw-data/EA): The database of [Eurasian phonological inventories](http://eurasianphonology.info/) (beta version) [@nikolaev_etal2015]
+* [ER](https://github.com/phoible/dev/tree/master/raw-data/ER): Australian phonemic inventories [@Round2019]
+
+Click on the acronym links above for information about each raw data source and how we aggregated the different sources into PHOIBLE. When a source has a stand-alone website, we provide the link above as well.
+
+Some sources are specialized. For example, UPSID contains a quota sample, i.e. one language per genealogical grouping (see Section "How can I filter or sample inventories?"); AA contains descriptions of only African languages; RA represents languges of India; SAPHON represents languages of South America; GM represents languages of Africa and Asia; EA represents languages of Eurasia; ER represents languages of Australia. Other so-called sources, including PH and UZ, were curated mainly to fill in the typological gaps between these sources, including language isolates.
+
+Each source has a different number of inventories.
+
+```{r}
+phoible %>%
+    group_by(Source) %>%
+    summarise(n_inventories=n_distinct(InventoryID), .groups="drop") %>%
+    arrange(desc(n_inventories)) %>%
+    kable()
+```
+
+And note that the same languiod may be reported in different sources as encoded in different doculects.
+ 
+```{r}
+phoible %>%
+  select(Source, Glottocode) %>% distinct() %>% 
+  group_by(Glottocode) %>% 
+  filter(n() > 1) %>%
+  arrange(Glottocode) %>% 
+  head(n = 10) %>%  
+  kable()
+```
 
 
 # How can I filter or sample inventories?
@@ -407,20 +445,48 @@ inventory for a given isocode...
 
 # What kind geographic coverage does PHOIBLE have?
 
-TODO
+One way to look at the geographic coverage of PHOIBLE is to merge its data with information about languages and dialects as provided by [the Glottolog](https://glottolog.org/meta/downloads).
+
+Here we can simply merge the Glottolog geographic and genealogical data with the PHOIBLE index on glottocodes.
 
 ```{r}
-nrow(phoible %>% select(ISO6393) %>% distinct())
+phoible.index <- read_csv(url('https://raw.githubusercontent.com/phoible/dev/master/mappings/InventoryID-LanguageCodes.csv'))
+
+glottolog <- read_csv(url('https://cdstar.shh.mpg.de/bitstreams/EAEA0-18EC-5079-0173-0/languages_and_dialects_geo.csv'))
+
+phoible.index <- left_join(phoible.index, glottolog, by=c("Glottocode"="glottocode"))
 ```
 
+The merged data.
+
 ```{r}
-# https://github.com/bambooforest/phoible-scripts/blob/master/segment-counts/segment-counts.md
+phoible.index %>% head() %>% kable()
 ```
+
+How many data points are there (per unique isocodes) per macroarea?
+
+```{r}
+phoible.index %>%
+  select(ISO6393, macroarea, latitude, longitude) %>%
+  group_by(ISO6393) -> isocodes.by.area
+
+table(isocodes.by.area$macroarea) %>% kable()
+```
+
+What about the global coverage of PHOIBLE?
+
+```{r}
+ggplot(data=isocodes.by.area, aes(x=longitude,y=latitude)) + borders("world", colour="gray50", fill="gray50") + geom_point()
+```
+
+Of course this simple map does not show all of the data points for languages that are not in PHOIBLE!
 
 
 # What phonological feature set does PHOIBLE use?
 
-TODO
+In addition to phoneme inventories, PHOIBLE includes distinctive feature data for every phoneme in every language. The feature system used was created by the PHOIBLE developers to be descriptively adequate cross-linguistically. In other words, if two phonemes differ in their graphemic representation, then they necessarily differ in their featural representation as well (regardless of whether those two phonemes coexist in any known doculect). The feature system is loosely based on the feature system in [@Hayes2009] with some additions drawn from [@MoisikEsling2011].
+
+The final feature system goes beyond both of these sources, and is potentially subject to change as new languages are added in subsequent editions of PHOIBLE. More information about elements of the PHOIBLE feature set can be [found here](https://github.com/phoible/dev/tree/master/raw-data/FEATURES).
 
 
 # How is PHOIBLE used in academic research and/or industry?
@@ -428,5 +494,6 @@ TODO
 The data in PHOIBLE have been used in many published research papers pertaining to very different scientific fields and industrial applications:
 
 * https://scholar.google.com/scholar?oi=bibs&hl=en&cites=576981116309388928&as_sdt=5
+
 
 # References
