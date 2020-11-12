@@ -528,7 +528,7 @@ message("Sampling one inventory per ISO code while *requiring* allophones yielde
 You can then apply your sample like this:
 
 ```{r how_to_apply_a_sample}
-phoible %>% filter(InventoryID %in% sample_of_inventories_with_allophones) ->
+phoible %>% filter(InventoryID %in% sample_of_inventory_ids_with_allophones) ->
     my_sample
 ```
 
