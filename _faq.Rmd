@@ -134,9 +134,23 @@ that Hausa is typologically interesting (e.g., it has both ejective and
 implosive phonation mechanisms) and has tens of millions of speakers, making it
 relatively well-studied (the [Glottolog](https://glottolog.org/) reference
 catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257)
-related to Hausa). 
+related to Hausa).
 
-Second, note that Maddieson's work on UPSID involved "typologizing" phonological inventories from different doculects, so that they were comparable across all entries in his database [cf. @Hyman2008]. Maddieson's work was groundbreaking at the time because he was the first typologist to generate a stratified language sample aimed at being genealogically balanced, i.e. for each language family he chose one representative language. This allowed Maddieson to make statements about the cross-linguistic distribution of contrastive speech sounds with some level of statistical confidence. In fact, much about what we know about the distribution of the sounds of the world's languages is due to Maddieson's original language sample and his meticulous curation of the data. Regarding Hausa, consider the fact that the [Glottolog](https://glottolog.org/) reference catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257) related to Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different sources when preparing the Hausa entry for UPSID.
+Second, note that Maddieson's work on UPSID involved "typologizing"
+phonological inventories from different doculects, so that they were comparable
+across all entries in his database [cf. @Hyman2008]. Maddieson's work was
+groundbreaking at the time because he was the first typologist to generate a
+stratified language sample aimed at being genealogically balanced, i.e. for
+each language family he chose one representative language. This allowed
+Maddieson to make statements about the cross-linguistic distribution of
+contrastive speech sounds with some level of statistical confidence. In fact,
+much about what we know about the distribution of the sounds of the world's
+languages is due to Maddieson's original language sample and his meticulous
+curation of the data. Regarding Hausa, consider the fact that the
+[Glottolog](https://glottolog.org/) reference catalog has [more than 1400
+references](https://glottolog.org/resource/languoid/id/haus1257) related to
+Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different
+sources when preparing the Hausa entry for UPSID.
 
 
 # Where do the language codes in PHOIBLE come from?
@@ -162,7 +176,7 @@ For example, inventory 298 describes the Dan language, and was ingested from
 UPSID and ultimately based on a single journal article. At the time UPSID was
 compiled, Dan and Kla-Dan were considered a single language (isocode `daf`) but
 in 2013 a proposal was accepted to assign them separate isocodes (`dnj` and
-`lda`, respectively). Since it is unknown whether the consultants for the 
+`lda`, respectively). Since it is unknown whether the consultants for the
 doculect were speakers of what we would now call "Dan" or "Kla-Dan", the
 inventory is labeled with the old isocode `daf` and linked to the corresponding
 non-leaf node in the glottolog (`dann1241`).
@@ -345,7 +359,16 @@ phoible %>%
 
 # Why are multiple inventories sometimes linked to the same document?
 
-Occasionally, a single document may provide information about multiple phonological inventories. For example, a dissertation that describes and compares three related dialects or languages spoken in a particular region. In that case, three phonological inventories in PHOIBLE corresponding to three doculects might all be linked to the same document, but each inventory is still linked to only one document (it just happens to be *the same document* for those three inventories). One example is @Terrill1998, a grammar of [Biri](https://en.wikipedia.org/wiki/Biri_language), which contains a chapter describing its dialects, [many of which appear in PHOIBLE](https://phoible.org/languages/biri1256).
+Occasionally, a single document may provide information about multiple
+phonological inventories. For example, a dissertation that describes and
+compares three related dialects or languages spoken in a particular region. In
+that case, three phonological inventories in PHOIBLE corresponding to three
+doculects might all be linked to the same document, but each inventory is still
+linked to only one document (it just happens to be *the same document* for
+those three inventories). One example is @Terrill1998, a grammar of
+[Biri](https://en.wikipedia.org/wiki/Biri_language), which contains a chapter
+describing its dialects, [many of which appear in
+PHOIBLE](https://phoible.org/languages/biri1256).
 
 
 # What are the different "sources" in PHOIBLE?
