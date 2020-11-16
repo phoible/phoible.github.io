@@ -546,10 +546,10 @@ information) and merge it with the Glottolog geographic and genealogical data:
 
 ```{r merge_glottolog_geo}
 url_ <- "https://raw.githubusercontent.com/phoible/dev/master/mappings/InventoryID-LanguageCodes.csv"
-phoible_index <- read_csv(url(url_), cols=cols(InventoryID='i', .default='c'))
+phoible_index <- read_csv(url(url_), col_types=cols(InventoryID='i', .default='c'))
 
 url_ <- "https://cdstar.shh.mpg.de/bitstreams/EAEA0-18EC-5079-0173-0/languages_and_dialects_geo.csv"
-glottolog <- read_csv(url(url_), cols=cols(latitude='d', longitude='d', .default='c'))
+glottolog <- read_csv(url(url_), col_types=cols(latitude='d', longitude='d', .default='c'))
 
 phoible_geo <- left_join(phoible_index, glottolog,
                          by=c("Glottocode"="glottocode"))
