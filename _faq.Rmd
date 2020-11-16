@@ -99,11 +99,9 @@ id_to_bibtex_mapping <- read_csv(url(url_), col_types=cols(InventoryID='i',
 
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    select(references) %>%
-    table() %>%
-    as.data.frame(responseName="number of inventories") %>%
-    select("number of doculects consulted"=".", "number of inventories") %>%
+    tally(name="Number of doculects consulted") %>%
+    group_by(`Number of doculects consulted`) %>%
+    count(name="Number of inventories") %>%
     kable()
 ```
 
@@ -115,10 +113,13 @@ Let's examine it:
 ```{r eleven_doculect_inv}
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    filter(references == 11) %>%
-    pull(InventoryID) %>%
-    filter(phoible, InventoryID == .) %>%
+    tally(name="Number of doculects consulted") %>%
+    filter(`Number of doculects consulted` == 11) %>%
+    pull(InventoryID) ->
+    this_inventory_id
+
+phoible %>%
+    filter(InventoryID == this_inventory_id) %>%
     distinct(Source, LanguageName, Glottocode, ISO6393) %>%
     kable()
 ```
@@ -256,7 +257,7 @@ is represented in PHOIBLE by
 phoible %>%
     filter(ISO6393 == "kbd") %>%
     group_by(InventoryID) %>%
-    summarise(n_phonemes=n(),
+    summarise(`Number of phonemes`=n(),
               Phonemes=str_c(Phoneme, collapse=" "),
               .groups="drop") %>%
     kable()
@@ -413,7 +414,7 @@ phoible %>%
     summarise(`Found in how many sources?`=n(),
               `Which ones?`=str_c(Source, collapse=", "),
               .groups="drop") %>%
-    filter(`Found in how many sources?` == max(`Found in how many sources?`)) %>%
+    filter(`Found in how many sources?` > 3) %>%
     kable()
 ```
 
@@ -426,20 +427,32 @@ isocode/glottocode via random sampling:
 
 ```{r sample_one_per_code}
 phoible %>%
+    distinct(InventoryID, Glottocode) %>%
     group_by(Glottocode) %>%
-    sample_n(1) ->
-    one_inv_per_glottocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_glottocode
 
 phoible %>%
+    distinct(InventoryID, ISO6393) %>%
     group_by(ISO6393) %>%
-    sample_n(1) ->
-    one_inv_per_isocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_isocode
 
 message("Picking one inventory per glottocode reduces PHOIBLE from ",
         n_distinct(phoible$InventoryID), " inventories\nto ",
-        nrow(one_inv_per_glottocode),
+        length(inventory_ids_sampled_one_per_glottocode),
         " inventories. Picking one per ISO 639-3 code yields ",
-        nrow(one_inv_per_isocode), " inventories.")
+        length(inventory_ids_sampled_one_per_isocode), " inventories.")
+```
+
+You can then apply your sample like this:
+
+```{r how_to_apply_a_sample}
+phoible %>%
+    filter(InventoryID %in% inventory_ids_sampled_one_per_glottocode) ->
+    my_sample
 ```
 
 Another approach is to only use only inventories from a data source that already
@@ -477,7 +490,7 @@ Another approach is to select inventories based on properties of the
 inventories themselves, such as whether they include information about
 allophones, contrastive tone, etc. For example, one might wish to include
 phonological inventories from sources other than UPSID, when available, since
-it does not include tone in its inventories.
+it does not include allophones in its inventories.
 
 ```{r preferred_source_ordering}
 # get lists of all sources, and sources that include allophones
@@ -520,9 +533,9 @@ message("Sampling one inventory per ISO code while *requiring* allophones yielde
         " inventories.")
 ```
 
-You can then apply your sample like this:
+You can then extract your sample using `filter()` as seen above:
 
-```{r how_to_apply_a_sample}
+```{r how_to_apply_a_sample_2}
 phoible %>% filter(InventoryID %in% sample_of_inventory_ids_with_allophones) ->
     my_sample
 ```
@@ -538,11 +551,15 @@ phoible %>%
     arrange(desc(n_phonemes), .by_group=TRUE) %>%
     slice_head(n=1) %>%
     pull(InventoryID) ->
-    inventory_ids_of_big_inventories
+    inventory_ids_of_biggest_inventories
 ```
 
-... at which point you can apply your sample using `filter()` as seen above.
+... and again, extracting your sample using `filter()`:
 
+```{r how_to_apply_a_sample_3}
+phoible %>% filter(InventoryID %in% inventory_ids_of_biggest_inventories) ->
+    my_sample
+```
 
 # What kind geographic coverage does PHOIBLE have?
 
