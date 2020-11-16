@@ -3,7 +3,10 @@ title: "PHOIBLE frequently asked questions"
 author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 1
 csl: bib/phoible.csl
 ---
 
@@ -12,24 +15,11 @@ knitr::opts_chunk$set(fig.path = "images/faq/")
 ```
 
 
-# Overview
+# Introduction
 
 This FAQ answers questions regarding the editorial principles and design
-decisions that went into the creation of PHOIBLE, including:
-
-* How are PHOIBLE inventories created?
-* Why do some phonological inventories combine more than one doculect?
-* Where do the language codes in PHOIBLE come from?
-* Why do some languages have multiple inventories in PHOIBLE?
-* Why are multiple inventories sometimes linked to the same document?
-* How can I filter or sample inventories?
-* What kind geographic coverage does PHOIBLE have?
-* What are the different "sources" in PHOIBLE?
-* What phonological feature set does PHOIBLE use?
-* How is PHOIBLE used in academic research and/or industry?
-
-
-We appreciate and welcome feedback regarding these FAQs via
+decisions that went into the creation of PHOIBLE. We appreciate and welcome
+feedback regarding these FAQs via
 [our issue tracker](https://github.com/phoible/dev/issues)
 or by contacting the editors directly.
 
