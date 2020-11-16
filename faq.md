@@ -6,7 +6,7 @@ bibliography: bib/faq.bibtex
 output:
   html_document:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
 csl: bib/phoible.csl
 ---
 
@@ -37,7 +37,7 @@ versions dplyr: 1.0.2, readr: 1.4.0, stringr: 1.4.0, knitr: 1.30,
 ggplot2: 3.3.2.
 
 How do I get the data?
-======================
+----------------------
 
 You can get the most recent “official” release from our [download
 page](https://phoible.org/download), get the most current version (with
@@ -52,8 +52,11 @@ col_types <- cols(InventoryID='i', Marginal='l', .default='c')
 phoible <- read_csv(url(url_), col_types=col_types)
 ```
 
+Inventories, language codes, doculects, and sources
+===================================================
+
 How are PHOIBLE inventories created?
-====================================
+------------------------------------
 
 For the most part, every phonological inventory in PHOIBLE is based on
 one-and-only-one language description (usually a research article, book
@@ -77,7 +80,7 @@ adding the inventory to PHOIBLE. Each inventory is then given a unique
 numeric ID. Doculects are tracked in PHOIBLE using BibTeX keys.
 
 Why do some phonological inventories combine more than one doculect?
-====================================================================
+--------------------------------------------------------------------
 
 An exception to the “one doculect per inventory” rule arises for
 inventories that were originally part of a curated phonological database
@@ -167,7 +170,7 @@ Maddieson’s original language sample and his meticulous curation of the
 data.
 
 Where do the language codes in PHOIBLE come from?
-=================================================
+-------------------------------------------------
 
 Every phonological inventory in PHOIBLE has a unique numeric inventory
 ID. Since most PHOIBLE inventories (aside from some UPSID or SPA ones,
@@ -302,11 +305,11 @@ different doculects into a single apparent inventory. This could lead to
 incorrect results (e.g., if the goal is to count the number of
 phonemes). Therefore, **most analyses of inventory properties should be
 done on the level of inventory IDs** rather than isocodes or
-glottocodes. See also the “How can I filter or sample inventories?”
-section below.
+glottocodes. See also the [section on filtering and sampling](#filtsamp)
+below.
 
 Why do some languages have multiple entries in PHOIBLE?
-=======================================================
+-------------------------------------------------------
 
 It is not uncommon that phonological descriptions of a particular
 language’s speech sounds have different sets of contrastive phonemes
@@ -442,7 +445,7 @@ phoible %>%
 | lith1251   | Lithuanian, LITHUANIAN                                                                                                                    |                     6 |
 
 Why are multiple inventories sometimes linked to the same document?
-===================================================================
+-------------------------------------------------------------------
 
 Occasionally, a single document may provide information about multiple
 phonological inventories. For example, a dissertation that describes and
@@ -457,7 +460,7 @@ chapter describing its dialects, [many of which appear in
 PHOIBLE](https://phoible.org/languages/biri1256).
 
 What are the different “sources” in PHOIBLE?
-============================================
+--------------------------------------------
 
 PHOIBLE contains inventories from various
 [contributors](https://phoible.org/contributors). These contributions
@@ -581,8 +584,15 @@ phoible %>%
 | west2369   |                          4 | spa, upsid, uz, ea     |
 | yuec1235   |                          4 | spa, upsid, uz, ea     |
 
-How can I filter or sample inventories?
-=======================================
+Filtering and sampling
+======================
+
+Different research questions will require including / excluding certain
+inventories from PHOIBLE. These sections describe how to *filter* and
+*sample* the PHOIBLE data based on various criteria.
+
+Random sampling: one inventory per isocode/glottocode
+-----------------------------------------------------
 
 If multiple inventories per isocode/glottocode are problematic for your
 analysis or research question, one approach is to select one inventory
@@ -621,6 +631,9 @@ phoible %>%
     my_sample
 ```
 
+Filtering by data source
+------------------------
+
 Another approach is to only use only inventories from a data source that
 already provides a one-inventory-per-language sample. For example, UPSID
 represents a “quota” sample (one language per family, for some
@@ -655,6 +668,9 @@ each top-level Glottolog family node that has representation in PHOIBLE:
 # NB: every Isolate will be included
 ```
 -->
+
+Filtering and sampling based on inventory properties
+----------------------------------------------------
 
 Another approach is to select inventories based on properties of the
 inventories themselves, such as whether they include information about
@@ -733,8 +749,8 @@ phoible %>% filter(InventoryID %in% inventory_ids_of_biggest_inventories) ->
     my_sample
 ```
 
-What kind geographic coverage does PHOIBLE have?
-================================================
+Integrating geographic information
+==================================
 
 One way to look at the geographic coverage of PHOIBLE is to merge its
 data with information about languages and dialects as provided by [the
@@ -787,7 +803,7 @@ phoible_geo %>%
 | South America |                       334 |
 | NA            |                         5 |
 
-Or, we can count the total number of inventories:
+Or, we can count the total number of inventories per macroarea:
 
 ``` r
 phoible_geo %>%
@@ -807,7 +823,10 @@ phoible_geo %>%
 | NA            |                    16 |
 
 Note that there are some langoids/glottocodes for which geographic
-information is unavailable (their macroarea is `NA`).
+information is unavailable (their macroarea is `NA`). Also note that
+each languoid is given a single latitude-longitude coordinate pair
+(i.e., there is no information about the *spatial extent* of a
+languoid’s use).
 
 Finally, let’s look at the global distribution of languages represented
 in PHOIBLE:
@@ -825,8 +844,8 @@ ggplot(data=phoible_geo, aes(x=longitude, y=latitude)) +
 Of course this does not show all of the data points for languages that
 are *not* in PHOIBLE!
 
-What phonological feature set does PHOIBLE use?
-===============================================
+Phonological features in PHOIBLE
+================================
 
 In addition to phoneme inventories, PHOIBLE includes distinctive feature
 data for every phoneme in every inventory. The feature system was
