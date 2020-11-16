@@ -905,7 +905,7 @@ the Stanford Phonology Archive*. Palo Alto, CA:
 
 Cysouw M, & Good J (2013). Languoid, Doculect, and Glossonym:
 Formalizing the notion ‘language.’ *Language Documentation &
-Conservation*, *7*, 331–360.
+Conservation*, *7*, 331–360. <http://hdl.handle.net/10125/4606>
 
 </div>
 
@@ -942,29 +942,30 @@ doi:[10.1515/TLIR.2008.003](https://doi.org/10.1515/TLIR.2008.003)
 
 Maddieson I (1984). *Patterns of sounds*. Cambridge Studies in Speech
 Science and Communication. New York: Cambridge University Press.
+<http://ebooks.cambridge.org/ref/id/CBO9780511753459>
 
 </div>
 
 <div id="ref-MaddiesonPrecoda1990" class="csl-entry">
 
 Maddieson I, & Precoda K (1990). Updating UPSID. *UCLA Working Papers in
-Phonetics*, *74*, 104–111.
+Phonetics*, *74*, 104–111. <http://escholarship.org/uc/item/71s1701m>
 
 </div>
 
 <div id="ref-saphon" class="csl-entry">
 
-Michael L, Stark T, & Chang W (2012). South american phonological
+Michael L, Stark T, & Chang W (2012). South American phonological
 inventory database. University of California.
-[http://linguistics.berkeley.edu/ saphon/en/](http://linguistics.berkeley.edu/ saphon/en/)
+<http://linguistics.berkeley.edu/saphon/en/>
 
 </div>
 
 <div id="ref-MoisikEsling2011" class="csl-entry">
 
-Moisik S, & Esling J (2011). <span class="nocase">The ‘Whole Larynx’
-Approach to Laryngeal Features</span>. *Proceedings of ICPhS XVII*. Hong
-Kong.
+Moisik SR, & Esling JH (2011). The ‘whole larynx’ approach to laryngeal
+features. *Proceedings of the 17th International Congress of Phonetic
+Sciences* (pp. 1406–1409). Hong Kong.
 
 </div>
 
@@ -978,15 +979,15 @@ Dissertation). University of Washington, Seattle, WA.
 
 <div id="ref-nikolaev_etal2015" class="csl-entry">
 
-Nikolaev D, Nikulin A, & Kukhto A (2015). The database of eurasian
+Nikolaev D, Nikulin A, & Kukhto A (2015). The database of Eurasian
 phonological inventories. <http://eurasianphonology.info/>
 
 </div>
 
 <div id="ref-ramaswami1999" class="csl-entry">
 
-Ramaswami N (1999). *Common linguistic features in indian languages:
-phonetics*. Central Institute of Indian Languages.
+Ramaswami N (1999). *Common linguistic features in Indian languages:
+Phonetics*. Central Institute of Indian Languages.
 
 </div>
 
@@ -1001,7 +1002,7 @@ Round E (2019). Australian phonemic inventories contributed to PHOIBLE
 <div id="ref-Terrill1998" class="csl-entry">
 
 Terrill A (1998). *Biri*. Languages of the world. Materials. München:
-LINCOM Europa.
+LINCOM Europa. <https://nla.gov.au/nla.cat-vn573959>
 
 </div>
 
