@@ -596,7 +596,7 @@ phoible_geo %>%
 
 Or, we can count the total number of inventories:
 
-```{r}
+```{r invs_by_macroarea}
 phoible_geo %>%
     group_by(macroarea) %>%
     tally(name="Number of inventories") %>%
