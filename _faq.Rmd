@@ -104,8 +104,8 @@ id_to_bibtex_mapping %>%
     summarise(references=n(), .groups="drop") %>%
     select(references) %>%
     table() %>%
-    as.data.frame(responseName="n_inventories") %>%
-    select("n_inventories", "n_doculects_used_in_inventory"=".") %>%
+    as.data.frame(responseName="number of inventories") %>%
+    select("number of doculects consulted"=".", "number of inventories") %>%
     kable()
 ```
 
@@ -119,11 +119,8 @@ id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
     summarise(references=n(), .groups="drop") %>%
     filter(references == 11) %>%
-    pull(InventoryID) ->
-    this_inventory_id
-
-phoible %>%
-    filter(InventoryID == this_inventory_id) %>%
+    pull(InventoryID) %>%
+    filter(phoible, InventoryID == .) %>%
     distinct(Source, LanguageName, Glottocode, ISO6393) %>%
     kable()
 ```
@@ -396,7 +393,8 @@ GM represents languages of Africa and Asia; EA represents languages of Eurasia;
 ER represents languages of Australia. Other sources like PH and UZ were added
 mainly to fill in the typological gaps left by the more specialized sources
 (e.g., to add language isolates, or to increase coverage of poorly-represented
-geographic areas or language families).
+geographic areas or language families). Here is a table showing the number of
+inventories per source:
 
 ```{r invs_per_source}
 phoible %>%
@@ -407,14 +405,16 @@ phoible %>%
     kable()
 ```
 
-Note that the same languiod may be reported in different sources as encoded in
+Note that the same languoid may be reported in different sources as encoded in
 different doculects. Here are the lects included in the most sources:
 
 ```{r lects_in_most_sources}
 phoible %>%
     group_by(Glottocode) %>%
     distinct(Glottocode, Source) %>%
-    summarise(`Found in how many sources?`=n(), `Which ones?`=str_c(Source, collapse=", ")) %>%
+    summarise(`Found in how many sources?`=n(),
+              `Which ones?`=str_c(Source, collapse=", "),
+              .groups="drop") %>%
     filter(`Found in how many sources?` == max(`Found in how many sources?`)) %>%
     kable()
 ```
@@ -543,7 +543,7 @@ phoible %>%
     inventory_ids_of_big_inventories
 ```
 
-...at which point you can apply your sample using `filter()` as seen above.
+... at which point you can apply your sample using `filter()` as seen above.
 
 
 # What kind geographic coverage does PHOIBLE have?
