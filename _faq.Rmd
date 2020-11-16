@@ -46,6 +46,8 @@ library(knitr)
 library(ggplot2)
 ```
 
+This document was rendered with `r R.version.string` and package versions
+`r c("dplyr", "readr", "stringr", "knitr", "ggplot2") %>% sapply(function(pkg) as.character(packageVersion(pkg))) %>% str_c(names(.), ., sep=": ", collapse=", ")`.
 To start off we'll load the most-up-to-date
 [PHOIBLE data](https://github.com/phoible/dev/blob/master/data/phoible.csv):
 
