@@ -38,14 +38,22 @@ library(ggplot2)
 
 This document was rendered with `r R.version.string` and package versions
 `r c("dplyr", "readr", "stringr", "knitr", "ggplot2") %>% sapply(function(pkg) as.character(packageVersion(pkg))) %>% str_c(names(.), ., sep=": ", collapse=", ")`.
-To start off we'll load the most-up-to-date
-[PHOIBLE data](https://github.com/phoible/dev/blob/master/data/phoible.csv):
+
+
+# How do I get the data?
+
+You can get the most recent official release from our [download page](https://phoible.org/download),
+[view the data](https://github.com/phoible/dev/blob/master/data/phoible.csv) or
+[directly download](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true)
+the most up-to-date version from GitHub, or use the following code snippet to
+download the most up-to-date version directly from within `R`:
 
 ```{r load_data}
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
 col_types <- cols(InventoryID='i', Marginal='l', .default='c')
 phoible <- read_csv(url(url_), col_types=col_types)
 ```
+
 
 # How are PHOIBLE inventories created?
 
