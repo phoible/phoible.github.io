@@ -4,7 +4,9 @@ author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
 output:
-  html_document:
+  md_document:
+    variant: gfm
+    preserve_yaml: true
     toc: true
     toc_depth: 2
 csl: bib/phoible.csl

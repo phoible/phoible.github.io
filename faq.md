@@ -4,11 +4,44 @@ author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
 output:
-  html_document:
+  md_document:
+    variant: gfm
+    preserve_yaml: true
     toc: true
     toc_depth: 2
 csl: bib/phoible.csl
 ---
+
+-   [Introduction](#introduction)
+    -   [How do I get the data?](#how-do-i-get-the-data)
+-   [Inventories, language codes, doculects, and
+    sources](#inventories-language-codes-doculects-and-sources)
+    -   [How are PHOIBLE inventories
+        created?](#how-are-phoible-inventories-created)
+    -   [Why do some phonological inventories combine more than one
+        doculect?](#why-do-some-phonological-inventories-combine-more-than-one-doculect)
+    -   [Where do the language codes in PHOIBLE come
+        from?](#where-do-the-language-codes-in-phoible-come-from)
+    -   [Missing isocodes](#missing-isocodes)
+    -   [Why do some languages have multiple entries in
+        PHOIBLE?](#why-do-some-languages-have-multiple-entries-in-phoible)
+    -   [Why are multiple inventories sometimes linked to the same
+        document?](#why-are-multiple-inventories-sometimes-linked-to-the-same-document)
+    -   [What are the different “sources” in
+        PHOIBLE?](#what-are-the-different-sources-in-phoible)
+-   [Filtering and sampling](#filtsamp)
+    -   [Random sampling: one inventory per
+        isocode/glottocode](#random-sampling-one-inventory-per-isocodeglottocode)
+    -   [Filtering by data source](#filtering-by-data-source)
+    -   [Filtering and sampling based on inventory
+        properties](#filtering-and-sampling-based-on-inventory-properties)
+-   [Integrating geographic
+    information](#integrating-geographic-information)
+-   [Phonological features in
+    PHOIBLE](#phonological-features-in-phoible)
+-   [How is PHOIBLE used in academic research and/or
+    industry?](#how-is-phoible-used-in-academic-research-andor-industry)
+-   [References](#references)
 
 Introduction
 ============
