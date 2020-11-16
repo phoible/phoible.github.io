@@ -376,11 +376,11 @@ are in the chronological order that they were added to PHOIBLE:
 * [SPA](https://github.com/phoible/dev/tree/master/raw-data/SPA): The Stanford Phonology Archive [@CrothersEtAl1979]
 * [UPSID](https://github.com/phoible/dev/tree/master/raw-data/UPSID): The [UCLA Phonological Segment Inventory Database](http://web.phonetik.uni-frankfurt.de/upsid.html) [@Maddieson1984;@MaddiesonPrecoda1990]
 * [AA](https://github.com/phoible/dev/tree/master/raw-data/AA): [Alphabets of Africa](http://sumale.vjf.cnrs.fr/phono/index.htm) [@hartell1993;@chanard2006]
+* [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data drawn from journal articles, theses, and published grammars, added by members of the Linguistic Phonetics Laboratory at the University of Washington [@Moran2012]
+* [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data from African and Southeast Asian languages
 * [RA](https://github.com/phoible/dev/tree/master/raw-data/RA): Common Linguistic Features in Indian Languages [@ramaswami1999]
 * [SAPHON](https://github.com/phoible/dev/tree/master/raw-data/SAPHON): [South American Phonological Inventory Database](http://linguistics.berkeley.edu/~saphon/en/) [@saphon]
-* [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data drawn from journal articles, theses, and published grammars, added by members of the Linguistic Phonetics Laboratory at the University of Washington [@Moran2012]
 * [UZ](https://github.com/phoible/dev/tree/master/raw-data/UZ): Data drawn from journal articles, theses, and published grammars, added by the phoible developers while at the Department of Comparative Linguistics at the University of Zurich
-* [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data from African and Southeast Asian languages
 * [EA](https://github.com/phoible/dev/tree/master/raw-data/EA): The database of [Eurasian phonological inventories](http://eurasianphonology.info/) (beta version) [@nikolaev_etal2015]
 * [ER](https://github.com/phoible/dev/tree/master/raw-data/ER): Australian phonemic inventories [@Round2019]
 
