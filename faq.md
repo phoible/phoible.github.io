@@ -39,14 +39,12 @@ ggplot2: 3.3.2.
 How do I get the data?
 ======================
 
-You can get the most recent official release from our [download
-page](https://phoible.org/download), [view the
-data](https://github.com/phoible/dev/blob/master/data/phoible.csv) or
-[directly
-download](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true)
-the most up-to-date version from GitHub, or use the following code
-snippet to download the most up-to-date version directly from within
-`R`:
+You can get the most recent “official” release from our [download
+page](https://phoible.org/download), get the most current version (with
+bugfixes or new additions since last release) from
+[GitHub](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true),
+or use the following code snippet to download the most current version
+from GitHub directly within `R`:
 
 ``` r
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
