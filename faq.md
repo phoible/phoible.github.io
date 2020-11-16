@@ -3,28 +3,19 @@ title: "PHOIBLE frequently asked questions"
 author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 1
 csl: bib/phoible.csl
 ---
 
-Overview
-========
+Introduction
+============
 
 This FAQ answers questions regarding the editorial principles and design
-decisions that went into the creation of PHOIBLE, including:
-
--   How are PHOIBLE inventories created?
--   Why do some phonological inventories combine more than one doculect?
--   Where do the language codes in PHOIBLE come from?
--   Why do some languages have multiple inventories in PHOIBLE?
--   Why are multiple inventories sometimes linked to the same document?
--   How can I filter or sample inventories?
--   What kind geographic coverage does PHOIBLE have?
--   What are the different “sources” in PHOIBLE?
--   What phonological feature set does PHOIBLE use?
--   How is PHOIBLE used in academic research and/or industry?
-
-We appreciate and welcome feedback regarding these FAQs via [our issue
+decisions that went into the creation of PHOIBLE. We appreciate and
+welcome feedback regarding these FAQs via [our issue
 tracker](https://github.com/phoible/dev/issues) or by contacting the
 editors directly.
 
@@ -41,8 +32,21 @@ library(knitr)
 library(ggplot2)
 ```
 
-To start off we’ll load the most-up-to-date [PHOIBLE
-data](https://github.com/phoible/dev/blob/master/data/phoible.csv):
+This document was rendered with R version 4.0.3 (2020-10-10) and package
+versions dplyr: 1.0.2, readr: 1.4.0, stringr: 1.4.0, knitr: 1.30,
+ggplot2: 3.3.2.
+
+How do I get the data?
+======================
+
+You can get the most recent official release from our [download
+page](https://phoible.org/download), [view the
+data](https://github.com/phoible/dev/blob/master/data/phoible.csv) or
+[directly
+download](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true)
+the most up-to-date version from GitHub, or use the following code
+snippet to download the most up-to-date version directly from within
+`R`:
 
 ``` r
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
@@ -98,25 +102,23 @@ id_to_bibtex_mapping <- read_csv(url(url_), col_types=cols(InventoryID='i',
 
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    select(references) %>%
-    table() %>%
-    as.data.frame(responseName="n_inventories") %>%
-    select("n_inventories", "n_doculects_used_in_inventory"=".") %>%
+    tally(name="Number of doculects consulted") %>%
+    group_by(`Number of doculects consulted`) %>%
+    count(name="Number of inventories") %>%
     kable()
 ```
 
-| n\_inventories | n\_doculects\_used\_in\_inventory |
-|---------------:|:----------------------------------|
-|           2435 | 1                                 |
-|            442 | 2                                 |
-|             93 | 3                                 |
-|             29 | 4                                 |
-|             10 | 5                                 |
-|              7 | 6                                 |
-|              2 | 7                                 |
-|              1 | 9                                 |
-|              1 | 11                                |
+| Number of doculects consulted | Number of inventories |
+|------------------------------:|----------------------:|
+|                             1 |                  2435 |
+|                             2 |                   442 |
+|                             3 |                    93 |
+|                             4 |                    29 |
+|                             5 |                    10 |
+|                             6 |                     7 |
+|                             7 |                     2 |
+|                             9 |                     1 |
+|                            11 |                     1 |
 
 Clearly, the majority of inventories in PHOIBLE represent a phonological
 description from a single doculect. But it seems strange that a single
@@ -126,8 +128,8 @@ doculects. Let’s examine it:
 ``` r
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    filter(references == 11) %>%
+    tally(name="Number of doculects consulted") %>%
+    filter(`Number of doculects consulted` == 11) %>%
     pull(InventoryID) ->
     this_inventory_id
 
@@ -164,11 +166,7 @@ the cross-linguistic distribution of contrastive speech sounds with some
 level of statistical confidence. In fact, much about what we know about
 the distribution of the sounds of the world’s languages is due to
 Maddieson’s original language sample and his meticulous curation of the
-data. Regarding Hausa, consider the fact that the
-[Glottolog](https://glottolog.org/) reference catalog has [more than
-1400 references](https://glottolog.org/resource/languoid/id/haus1257)
-related to Hausa, so perhaps it is unsurprising that Maddieson consulted
-11 different sources when preparing the Hausa entry for UPSID.
+data.
 
 Where do the language codes in PHOIBLE come from?
 =================================================
@@ -262,9 +260,11 @@ phoible %>%
 |        2352 | lizu1234   | mis     | Lizu              |
 |        2388 | east2773   | mis     | Dolakha Newar     |
 |        2420 | zhon1235   | mis     | Zhongu Tibetan    |
+|        2434 | vach1239   | mis     | Eastern Khanty    |
 |        2450 | fore1274   | mis     | Forest Nenets     |
 |        2691 | mink1237   | mis     | Minkin            |
 |        2714 | guwa1244   | mis     | Guwar             |
+|        2729 | NA         | mis     | Djindewal         |
 |        2748 | mith1236   | mis     | Mithaka           |
 |        2773 | cola1237   | mis     | Kolakngat         |
 |        2778 | yari1243   | mis     | Yari-Yari         |
@@ -322,19 +322,19 @@ inventories](https://phoible.org/languages/kaba1278).
 phoible %>%
     filter(ISO6393 == "kbd") %>%
     group_by(InventoryID) %>%
-    summarise(n_phonemes=n(),
+    summarise(`Number of phonemes`=n(),
               Phonemes=str_c(Phoneme, collapse=" "),
               .groups="drop") %>%
     kable()
 ```
 
-| InventoryID | n\_phonemes | Phonemes                                                                                                                                                              |
-|------------:|------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|           4 |          56 | b d̻ d̻z̻ f fʼ j kʷʰ kʷʼ k̟ʲʰ k̟ʲʼ m n̻ pʰ pʼ qχ qχʷ qχʷʼ qχʼ r s̻ t̻s̻ t̻s̻ʼ t̻ʰ t̻ʼ v w xʷ x̟ʲ z̻ ç̟ ħ ɡʷ ɡ̟ʲ ɣ̟ʲ ɦ ɬʲ ɬʲʼ ɮʲ ʁ ʁʷ ʃ ʃʼ ʒ ʔ ʔʷ ʕ ʝ̟ χ χʷ a̟ː e̞ː iː o̞ː uː ɜ ɨ            |
-|         391 |          56 | b d̪ d̪z̪ f fʼ j kʲʰ kʲʼ kʷʰ kʷʼ m n̪ pʰ pʼ qʷʼ qʼ qχ qχʷ r s̪ t̪s̪ t̪s̪ʼ t̪ʰ t̪ʼ v w xʲ xʷ z̪ ħ ɡʲ ɡʷ ɣʲ ɦ ɬ̪ʲ ɬ̪ʲʼ ɮ̪ʲ ʁ ʁʷ ʃ ʃʼ ʃ͇ ʒ ʒ͇ ʔ ʔʷ ʕ χ χʷ a̟ː e̞ː iː o̞ː uː ɜ ɨ              |
-|        2310 |          55 | b d dz d̠ʒ f fʼ j kʷ kʷʼ m n p pʼ q qʷ qʷʼ qʼ r s t ts tsʼ tʼ t̠ʃ t̠ʃʼ v w x xʷ z ħ ɡʷ ɣ ɬ ɬʼ ɮ ʁ ʁʷ ʃ ʆ ʆʼ ʒ ʓ ʔ ʔʷ χ χʷ ä e̞ː iː o̞ o̞ː uː ɑː ə                           |
-|        2401 |          63 | b d dz dʑ f fʼ j kʷ kʷʼ kʼ l m n p pʼ q qʷ qʷʼ qʼ r s t ts tsʷʼ tsʼ tɕ tɕʼ tʷʼ tʼ t̠ʃ t̠ʃʼ v w x xʷ z zʷ ħ ɕ ɡʷ ɣ ɬ ɬʼ ʁ ʁʷ ʃ ʆ ʆʼ ʑ ʒ ʓ ʔ ʔʷ χ χʷ ä e̞ː iː o̞ o̞ː uː ɑː ə |
-|        2610 |          51 | b d dz f fʼ h j kʲʼ kʷʰ kʷʼ l m n pʰ pʼ qʰ qʷʰ qʷʼ qʼ s ts tsʼ tʰ tʼ w xʷ z ç ħ ɡʲ ɡʷ ɬ ɬʼ ɾ ʁ ʁʷ ʃ ʃʼ ʒ ʔ ʔʷ ʝ χ χʷ äː eː iː oː uː ɐ ə                               |
+| InventoryID | Number of phonemes | Phonemes                                                                                                                                                              |
+|------------:|-------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|           4 |                 56 | b d̻ d̻z̻ f fʼ j kʷʰ kʷʼ k̟ʲʰ k̟ʲʼ m n̻ pʰ pʼ qχ qχʷ qχʷʼ qχʼ r s̻ t̻s̻ t̻s̻ʼ t̻ʰ t̻ʼ v w xʷ x̟ʲ z̻ ç̟ ħ ɡʷ ɡ̟ʲ ɣ̟ʲ ɦ ɬʲ ɬʲʼ ɮʲ ʁ ʁʷ ʃ ʃʼ ʒ ʔ ʔʷ ʕ ʝ̟ χ χʷ a̟ː e̞ː iː o̞ː uː ɜ ɨ            |
+|         391 |                 56 | b d̪ d̪z̪ f fʼ j kʲʰ kʲʼ kʷʰ kʷʼ m n̪ pʰ pʼ qʷʼ qʼ qχ qχʷ r s̪ t̪s̪ t̪s̪ʼ t̪ʰ t̪ʼ v w xʲ xʷ z̪ ħ ɡʲ ɡʷ ɣʲ ɦ ɬ̪ʲ ɬ̪ʲʼ ɮ̪ʲ ʁ ʁʷ ʃ ʃʼ ʃ͇ ʒ ʒ͇ ʔ ʔʷ ʕ χ χʷ a̟ː e̞ː iː o̞ː uː ɜ ɨ              |
+|        2310 |                 55 | b d dz d̠ʒ f fʼ j kʷ kʷʼ m n p pʼ q qʷ qʷʼ qʼ r s t ts tsʼ tʼ t̠ʃ t̠ʃʼ v w x xʷ z ħ ɡʷ ɣ ɬ ɬʼ ɮ ʁ ʁʷ ʃ ʆ ʆʼ ʒ ʓ ʔ ʔʷ χ χʷ ä e̞ː iː o̞ o̞ː uː ɑː ə                           |
+|        2401 |                 63 | b d dz dʑ f fʼ j kʷ kʷʼ kʼ l m n p pʼ q qʷ qʷʼ qʼ r s t ts tsʷʼ tsʼ tɕ tɕʼ tʷʼ tʼ t̠ʃ t̠ʃʼ v w x xʷ z zʷ ħ ɕ ɡʷ ɣ ɬ ɬʼ ʁ ʁʷ ʃ ʆ ʆʼ ʑ ʒ ʓ ʔ ʔʷ χ χʷ ä e̞ː iː o̞ o̞ː uː ɑː ə |
+|        2610 |                 51 | b d dz f fʼ h j kʲʼ kʷʰ kʷʼ l m n pʰ pʼ qʰ qʷʰ qʷʼ qʼ s ts tsʼ tʰ tʼ w xʷ z ç ħ ɡʲ ɡʷ ɬ ɬʼ ɾ ʁ ʁʷ ʃ ʃʼ ʒ ʔ ʔʷ ʝ χ χʷ äː eː iː oː uː ɐ ə                               |
 
 The differences among them can be due to a variety of reasons, but the
 main reason is that these phonological descriptions represent different
@@ -476,22 +476,22 @@ they are in the chronological order that they were added to PHOIBLE:
 -   [AA](https://github.com/phoible/dev/tree/master/raw-data/AA):
     [Alphabets of Africa](http://sumale.vjf.cnrs.fr/phono/index.htm)
     (Chanard, 2006; Hartell, 1993)
+-   [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data
+    drawn from journal articles, theses, and published grammars, added
+    by members of the Linguistic Phonetics Laboratory at the University
+    of Washington (Moran, 2012)
+-   [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data
+    from African and Southeast Asian languages
 -   [RA](https://github.com/phoible/dev/tree/master/raw-data/RA): Common
     Linguistic Features in Indian Languages (Ramaswami, 1999)
 -   [SAPHON](https://github.com/phoible/dev/tree/master/raw-data/SAPHON):
     [South American Phonological Inventory
     Database](http://linguistics.berkeley.edu/~saphon/en/) (Michael,
     Stark, & Chang, 2012)
--   [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data
-    drawn from journal articles, theses, and published grammars, added
-    by members of the Linguistic Phonetics Laboratory at the University
-    of Washington (Moran, 2012)
 -   [UZ](https://github.com/phoible/dev/tree/master/raw-data/UZ): Data
     drawn from journal articles, theses, and published grammars, added
     by the phoible developers while at the Department of Comparative
     Linguistics at the University of Zurich
--   [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data
-    from African and Southeast Asian languages
 -   [EA](https://github.com/phoible/dev/tree/master/raw-data/EA): The
     database of [Eurasian phonological
     inventories](http://eurasianphonology.info/) (beta version)
@@ -510,7 +510,8 @@ Africa and Asia; EA represents languages of Eurasia; ER represents
 languages of Australia. Other sources like PH and UZ were added mainly
 to fill in the typological gaps left by the more specialized sources
 (e.g., to add language isolates, or to increase coverage of
-poorly-represented geographic areas or language families).
+poorly-represented geographic areas or language families). Here is a
+table showing the number of inventories per source:
 
 ``` r
 phoible %>%
@@ -534,7 +535,7 @@ phoible %>%
 | ra     |                   100 |
 | uz     |                    83 |
 
-Note that the same languiod may be reported in different sources as
+Note that the same languoid may be reported in different sources as
 encoded in different doculects. Here are the lects included in the most
 sources:
 
@@ -542,18 +543,45 @@ sources:
 phoible %>%
     group_by(Glottocode) %>%
     distinct(Glottocode, Source) %>%
-    summarise(`Found in how many sources?`=n(), `Which ones?`=str_c(Source, collapse=", ")) %>%
-    filter(`Found in how many sources?` == max(`Found in how many sources?`)) %>%
+    summarise(`Found in how many sources?`=n(),
+              `Which ones?`=str_c(Source, collapse=", "),
+              .groups="drop") %>%
+    filter(`Found in how many sources?` > 3) %>%
     kable()
 ```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
 | Glottocode | Found in how many sources? | Which ones?            |
 |:-----------|---------------------------:|:-----------------------|
+| akan1250   |                          4 | spa, upsid, aa, gm     |
+| basq1248   |                          4 | spa, upsid, uz, ea     |
 | beng1280   |                          5 | spa, upsid, ra, uz, ea |
+| bulg1262   |                          4 | spa, upsid, uz, ea     |
+| east2328   |                          4 | spa, upsid, ph, ea     |
+| hakk1236   |                          4 | spa, upsid, uz, ea     |
+| haus1257   |                          4 | spa, upsid, aa, uz     |
 | hind1269   |                          5 | spa, upsid, ra, uz, ea |
+| hung1274   |                          4 | spa, upsid, uz, ea     |
+| iris1253   |                          4 | spa, upsid, uz, ea     |
+| khan1273   |                          4 | spa, upsid, ph, ea     |
 | khar1287   |                          5 | spa, upsid, ph, ra, ea |
+| kore1280   |                          4 | spa, upsid, uz, ea     |
+| mand1415   |                          4 | spa, upsid, ph, ea     |
+| mode1248   |                          4 | spa, upsid, uz, ea     |
+| mund1320   |                          4 | spa, upsid, ra, ea     |
+| nepa1254   |                          4 | upsid, ra, uz, ea      |
+| nucl1301   |                          4 | spa, upsid, uz, ea     |
+| nucl1302   |                          4 | spa, upsid, uz, ea     |
+| nucl1310   |                          4 | spa, upsid, uz, ea     |
+| nucl1417   |                          4 | spa, upsid, aa, uz     |
+| stan1288   |                          4 | spa, upsid, uz, ea     |
+| stan1290   |                          4 | spa, upsid, uz, ea     |
+| stan1295   |                          4 | spa, upsid, uz, ea     |
+| tach1250   |                          4 | spa, upsid, gm, uz     |
+| taga1270   |                          4 | spa, upsid, gm, ea     |
+| telu1262   |                          4 | spa, upsid, ra, ea     |
+| viet1252   |                          4 | spa, upsid, uz, ea     |
+| west2369   |                          4 | spa, upsid, uz, ea     |
+| yuec1235   |                          4 | spa, upsid, uz, ea     |
 
 How can I filter or sample inventories?
 =======================================
@@ -564,24 +592,36 @@ from each isocode/glottocode via random sampling:
 
 ``` r
 phoible %>%
+    distinct(InventoryID, Glottocode) %>%
     group_by(Glottocode) %>%
-    sample_n(1) ->
-    one_inv_per_glottocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_glottocode
 
 phoible %>%
+    distinct(InventoryID, ISO6393) %>%
     group_by(ISO6393) %>%
-    sample_n(1) ->
-    one_inv_per_isocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_isocode
 
 message("Picking one inventory per glottocode reduces PHOIBLE from ",
         n_distinct(phoible$InventoryID), " inventories\nto ",
-        nrow(one_inv_per_glottocode),
+        length(inventory_ids_sampled_one_per_glottocode),
         " inventories. Picking one per ISO 639-3 code yields ",
-        nrow(one_inv_per_isocode), " inventories.")
+        length(inventory_ids_sampled_one_per_isocode), " inventories.")
 ```
 
     ## Picking one inventory per glottocode reduces PHOIBLE from 3020 inventories
-    ## to 2177 inventories. Picking one per ISO 639-3 code yields 2100 inventories.
+    ## to 2177 inventories. Picking one per ISO 639-3 code yields 2099 inventories.
+
+You can then apply your sample like this:
+
+``` r
+phoible %>%
+    filter(InventoryID %in% inventory_ids_sampled_one_per_glottocode) ->
+    my_sample
+```
 
 Another approach is to only use only inventories from a data source that
 already provides a one-inventory-per-language sample. For example, UPSID
@@ -622,7 +662,7 @@ Another approach is to select inventories based on properties of the
 inventories themselves, such as whether they include information about
 allophones, contrastive tone, etc. For example, one might wish to
 include phonological inventories from sources other than UPSID, when
-available, since it does not include tone in its inventories.
+available, since it does not include allophones in its inventories.
 
 ``` r
 # get lists of all sources, and sources that include allophones
@@ -665,9 +705,9 @@ message("Sampling one inventory per ISO code while *requiring* allophones yielde
         " inventories.")
 ```
 
-    ## Sampling one inventory per ISO code while *requiring* allophones yielded 1155 inventories; merely *preferring* allophones yielded 2100 inventories.
+    ## Sampling one inventory per ISO code while *requiring* allophones yielded 1155 inventories; merely *preferring* allophones yielded 2099 inventories.
 
-You can then apply your sample like this:
+You can then extract your sample using `filter()` as seen above:
 
 ``` r
 phoible %>% filter(InventoryID %in% sample_of_inventory_ids_with_allophones) ->
@@ -685,11 +725,15 @@ phoible %>%
     arrange(desc(n_phonemes), .by_group=TRUE) %>%
     slice_head(n=1) %>%
     pull(InventoryID) ->
-    inventory_ids_of_big_inventories
+    inventory_ids_of_biggest_inventories
 ```
 
-…at which point you can apply your sample using `filter()` as seen
-above.
+… and again, extracting your sample using `filter()`:
+
+``` r
+phoible %>% filter(InventoryID %in% inventory_ids_of_biggest_inventories) ->
+    my_sample
+```
 
 What kind geographic coverage does PHOIBLE have?
 ================================================
@@ -703,37 +747,11 @@ genealogical data:
 
 ``` r
 url_ <- "https://raw.githubusercontent.com/phoible/dev/master/mappings/InventoryID-LanguageCodes.csv"
-phoible_index <- read_csv(url(url_))
-```
+phoible_index <- read_csv(url(url_), col_types=cols(InventoryID='i', .default='c'))
 
-    ## 
-    ## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    ## cols(
-    ##   InventoryID = col_double(),
-    ##   ISO6393 = col_character(),
-    ##   Glottocode = col_character(),
-    ##   LanguageName = col_character(),
-    ##   Source = col_character()
-    ## )
-
-``` r
 url_ <- "https://cdstar.shh.mpg.de/bitstreams/EAEA0-18EC-5079-0173-0/languages_and_dialects_geo.csv"
-glottolog <- read_csv(url(url_))
-```
+glottolog <- read_csv(url(url_), col_types=cols(latitude='d', longitude='d', .default='c'))
 
-    ## 
-    ## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    ## cols(
-    ##   glottocode = col_character(),
-    ##   name = col_character(),
-    ##   isocodes = col_character(),
-    ##   level = col_character(),
-    ##   macroarea = col_character(),
-    ##   latitude = col_double(),
-    ##   longitude = col_double()
-    ## )
-
-``` r
 phoible_geo <- left_join(phoible_index, glottolog,
                          by=c("Glottocode"="glottocode"))
 
@@ -765,7 +783,7 @@ phoible_geo %>%
 |:--------------|--------------------------:|
 | Africa        |                       707 |
 | Australia     |                       292 |
-| Eurasia       |                       441 |
+| Eurasia       |                       440 |
 | North America |                       144 |
 | Papunesia     |                       182 |
 | South America |                       334 |
