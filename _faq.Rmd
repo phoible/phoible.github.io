@@ -146,12 +146,7 @@ Maddieson to make statements about the cross-linguistic distribution of
 contrastive speech sounds with some level of statistical confidence. In fact,
 much about what we know about the distribution of the sounds of the world's
 languages is due to Maddieson's original language sample and his meticulous
-curation of the data. Regarding Hausa, consider the fact that the
-[Glottolog](https://glottolog.org/) reference catalog has [more than 1400
-references](https://glottolog.org/resource/languoid/id/haus1257) related to
-Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different
-sources when preparing the Hausa entry for UPSID.
-
+curation of the data.
 
 # Where do the language codes in PHOIBLE come from?
 
