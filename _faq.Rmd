@@ -3,7 +3,12 @@ title: "PHOIBLE frequently asked questions"
 author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
-output: html_document
+output:
+  md_document:
+    variant: gfm
+    preserve_yaml: true
+    toc: true
+    toc_depth: 2
 csl: bib/phoible.csl
 ---
 
@@ -12,24 +17,11 @@ knitr::opts_chunk$set(fig.path = "images/faq/")
 ```
 
 
-# Overview
+# Introduction
 
 This FAQ answers questions regarding the editorial principles and design
-decisions that went into the creation of PHOIBLE, including:
-
-* How are PHOIBLE inventories created?
-* Why do some phonological inventories combine more than one doculect?
-* Where do the language codes in PHOIBLE come from?
-* Why do some languages have multiple inventories in PHOIBLE?
-* Why are multiple inventories sometimes linked to the same document?
-* How can I filter or sample inventories?
-* What kind geographic coverage does PHOIBLE have?
-* What are the different "sources" in PHOIBLE?
-* What phonological feature set does PHOIBLE use?
-* How is PHOIBLE used in academic research and/or industry?
-
-
-We appreciate and welcome feedback regarding these FAQs via
+decisions that went into the creation of PHOIBLE. We appreciate and welcome
+feedback regarding these FAQs via
 [our issue tracker](https://github.com/phoible/dev/issues)
 or by contacting the editors directly.
 
@@ -46,8 +38,18 @@ library(knitr)
 library(ggplot2)
 ```
 
-To start off we'll load the most-up-to-date
-[PHOIBLE data](https://github.com/phoible/dev/blob/master/data/phoible.csv):
+This document was rendered with `r R.version.string` and package versions
+`r c("dplyr", "readr", "stringr", "knitr", "ggplot2") %>% sapply(function(pkg) as.character(packageVersion(pkg))) %>% str_c(names(.), ., sep=": ", collapse=", ")`.
+
+
+## How do I get the data?
+
+You can get the most recent "official" release from our
+[download page](https://phoible.org/download), get the most current version
+(with bugfixes or new additions since last release) from
+[GitHub](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true),
+or use the following code snippet to download the most current version from
+GitHub directly within `R`:
 
 ```{r load_data}
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
@@ -55,7 +57,10 @@ col_types <- cols(InventoryID='i', Marginal='l', .default='c')
 phoible <- read_csv(url(url_), col_types=col_types)
 ```
 
-# How are PHOIBLE inventories created?
+
+# Inventories, language codes, doculects, and sources
+
+## How are PHOIBLE inventories created?
 
 For the most part, every phonological inventory in PHOIBLE is based on
 one-and-only-one language description (usually a research article, book
@@ -78,7 +83,7 @@ Each inventory is then given a unique numeric ID.
 Doculects are tracked in PHOIBLE using BibTeX keys.
 
 
-# Why do some phonological inventories combine more than one doculect?
+## Why do some phonological inventories combine more than one doculect?
 
 An exception to the "one doculect per inventory" rule arises for inventories
 that were originally part of a curated phonological database such as
@@ -94,15 +99,14 @@ BibTeX keys:
 
 ```{r multiple_doculect_invs}
 url_ <- "https://github.com/phoible/dev/blob/master/mappings/InventoryID-Bibtex.csv?raw=true"
-id_to_bibtex_mapping <- read.csv(url(url_), stringsAsFactors=FALSE)
+id_to_bibtex_mapping <- read_csv(url(url_), col_types=cols(InventoryID='i',
+                                                           .default='c'))
 
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    select(references) %>%
-    table() %>%
-    as.data.frame(responseName="n_inventories") %>%
-    select("n_inventories", "n_doculects_used_in_inventory"=".") %>%
+    tally(name="Number of doculects consulted") %>%
+    group_by(`Number of doculects consulted`) %>%
+    count(name="Number of inventories") %>%
     kable()
 ```
 
@@ -114,27 +118,42 @@ Let's examine it:
 ```{r eleven_doculect_inv}
 id_to_bibtex_mapping %>%
     group_by(InventoryID) %>%
-    summarise(references=n(), .groups="drop") %>%
-    filter(references == 11) %>%
+    tally(name="Number of doculects consulted") %>%
+    filter(`Number of doculects consulted` == 11) %>%
     pull(InventoryID) ->
     this_inventory_id
 
 phoible %>%
     filter(InventoryID == this_inventory_id) %>%
-    select(Source, LanguageName, Glottocode, ISO6393) %>%
-    distinct() %>%
+    distinct(Source, LanguageName, Glottocode, ISO6393) %>%
     kable()
 ```
 
 As we can see, this inventory represents a description of
 [Hausa](https://glottolog.org/resource/languoid/id/haus1257) and was added to
-PHOIBLE from the UPSID database [@Maddieson1984;@MaddiesonPrecoda1990].
+PHOIBLE from the UPSID database [@Maddieson1984;@MaddiesonPrecoda1990]. To
+understand why this UPSID entry consulted 11 different sources, consider first
+that Hausa is typologically interesting (e.g., it has both ejective and
+implosive phonation mechanisms) and has tens of millions of speakers, making it
+relatively well-studied (the [Glottolog](https://glottolog.org/) reference
+catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257)
+related to Hausa).
 
-Maddieson's work on UPSID involved "typologizing" phonological inventories from different doculects, so that they were comparable across all entries in his database [cf. @Hyman2008]. Maddieson's work was groundbreaking at the time because he was the first typologist to generate a stratified language sample aimed at being genealogically balanced, i.e. for each language family he chose one representative language. This allowed Maddieson to make statements about the cross-linguistic distribution of contrastive speech sounds with some level of statistical confidence. In fact, much about what we know about the distribution of the sounds of the world's languages is due to Maddieson's original language sample and his meticulous curation of the data. Regarding Hausa, consider the fact that the [Glottolog](https://glottolog.org/) reference catalog has [more than 1400 references](https://glottolog.org/resource/languoid/id/haus1257) related to Hausa, so perhaps it is unsurprising that Maddieson consulted 11 different sources when preparing the Hausa entry for UPSID.
+Second, note that Maddieson's work on UPSID involved "typologizing"
+phonological inventories from different doculects, so that they were comparable
+across all entries in his database [cf. @Hyman2008]. Maddieson's work was
+groundbreaking at the time because he was the first typologist to generate a
+stratified language sample aimed at being genealogically balanced, i.e. for
+each language family he chose one representative language. This allowed
+Maddieson to make statements about the cross-linguistic distribution of
+contrastive speech sounds with some level of statistical confidence. In fact,
+much about what we know about the distribution of the sounds of the world's
+languages is due to Maddieson's original language sample and his meticulous
+curation of the data.
 
+## Where do the language codes in PHOIBLE come from?
 
-# Where do the language codes in PHOIBLE come from?
-
+Every phonological inventory in PHOIBLE has a unique numeric inventory ID.
 Since most PHOIBLE inventories (aside from some UPSID or SPA ones, as mentioned
 above) are based on a single document, it is fairly straightforward to link
 each PHOIBLE inventory to [the Glottolog](https://glottolog.org/), which
@@ -151,10 +170,14 @@ not be possible to link that inventory to a unique Glottolog leaf node.
 In such cases, the inventory in PHOIBLE is linked to the lowest possible
 Glottolog node that dominates the leaf nodes of each source document.
 
-<!--
-For example, XXX TODO GIVE A REAL-LIFE EXAMPLE HERE XXX.
-SPA/UPSID might link to different level Glottolog / ISO entries.
--->
+For example, inventory 298 describes the Dan language, and was ingested from
+UPSID and ultimately based on a single journal article. At the time UPSID was
+compiled, Dan and Kla-Dan were considered a single language (isocode `daf`) but
+in 2013 a proposal was accepted to assign them separate isocodes (`dnj` and
+`lda`, respectively). Since it is unknown whether the consultants for the
+doculect were speakers of what we would now call "Dan" or "Kla-Dan", the
+inventory is labeled with the old isocode `daf` and linked to the corresponding
+non-leaf node in the glottolog (`dann1241`).
 
 In addition to providing Glottolog languoid codes ("glottocodes") for each
 inventory, PHOIBLE also includes
@@ -170,7 +193,7 @@ problems:
   releases of Glottolog.
 
 * In some cases, the editors of the Glottolog do not agree with the language
-  classification choices of ISO 639-3 (see also the above-mentioned
+  classification choices of ISO 639-3 (see again the above-mentioned
   [blog post by Cysouw](https://dlc.hypotheses.org/623)). This disagreement
   results in cases where PHOIBLE must choose whether to accept the official
   ISO 639-3 code assignment, or use the isocode that the Glottolog associates
@@ -184,27 +207,18 @@ problems:
 
 ## Missing isocodes
 
-<!--
-TODO: Pisamira is actually a bad example to choose here, because what we say
-later is that in cases where Glottolog & SIL disagree about the ISO code, we go
-with SIL. Should replace with an example of an extinct language perhaps? But
-we could re-use this paragraph in the discussion of conflicts.
--->
-
-There are many cases of languages reported in the Glottolog for which there
-exists no isocode. For example,
-[Pisamira](https://en.wikipedia.org/wiki/Pisamira_language)
-is a Tucanoan language classifed in the Glottolog as
-[pisa1245](https://glottolog.org/resource/languoid/id/pisa1245),
-in a separate sub-branch from
-[Tucano](https://glottolog.org/resource/languoid/id/tuca1252)
-in the "Eastern Eastern Tucanoan" tree. However, [SIL](https://www.sil.org/)
-classifies Pisamira as a dialect of Tucano, and because SIL is the Registration
-Authority of [ISO 639-3](https://iso639-3.sil.org/), Pisamira has not been
-assigned its own isocode distinct from Tucano.
+There are cases of languages reported in the Glottolog for which there exists
+no isocode. For example, the Vach-Vasjugan variety of
+[Khanty](https://en.wikipedia.org/wiki/Khanty_language) is a Uralic language
+classified in the Glottolog as
+[vach1239](https://glottolog.org/resource/languoid/id/vach1239). However,
+[SIL](https://www.sil.org/) only assigns an isocode for one variety of Northern
+Khanty (isocode `kca`, glottocode `khan1273`), and because SIL is the
+Registration Authority of [ISO 639-3](https://iso639-3.sil.org/), Vach-Vasjugan
+Khanty has not been assigned its own isocode distinct from Northern Khanty.
 
 When no isocode exists for a particular phonological inventory in PHOIBLE, as
-in the Pisamira example above, PHOIBLE follows the recommended practice of
+in the Vach-Vasjugan example above, PHOIBLE follows the recommended practice of
 using the isocode `mis` ("missing") to denote that the language is not included
 in the ISO 639-3 standard. In PHOIBLE these are these inventories with missing
 isocodes:
@@ -212,8 +226,7 @@ isocodes:
 ```{r missing_isocodes}
 phoible %>%
     filter(ISO6393 == "mis") %>%
-    select(InventoryID, LanguageName, ISO6393, Glottocode) %>%
-    distinct() %>%
+    distinct(InventoryID, LanguageName, ISO6393, Glottocode) %>%
     kable()
 ```
 
@@ -228,14 +241,14 @@ For users, it is important to note that multiple phonological inventories in
 PHOIBLE may have the same isocode (e.g. "mis") or the same glottocode (e.g.,
 in cases of two different descriptions of the same lect). In essence, this
 means that any programmatic code that groups by isocode or glottocode risks
-combining inventories from different doculects into a single apparent source.
+combining inventories from different doculects into a single apparent inventory.
 This could lead to incorrect results (e.g., if the goal is to count the number
 of phonemes). Therefore, **most analyses of inventory properties should be done
 on the level of inventory IDs** rather than isocodes or glottocodes. See also
-the "How can I filter or sample inventories?" section below.
+the [section on filtering and sampling](#filtsamp) below.
 
 
-# Why do some languages have multiple entries in PHOIBLE?
+## Why do some languages have multiple entries in PHOIBLE?
 
 It is not uncommon that phonological descriptions of a particular language's
 speech sounds have different sets of contrastive phonemes when analyzed by
@@ -249,7 +262,7 @@ is represented in PHOIBLE by
 phoible %>%
     filter(ISO6393 == "kbd") %>%
     group_by(InventoryID) %>%
-    summarise(n_phonemes=n(),
+    summarise(`Number of phonemes`=n(),
               Phonemes=str_c(Phoneme, collapse=" "),
               .groups="drop") %>%
     kable()
@@ -296,7 +309,7 @@ counts %>%
     ggplot(aes(y=as.factor(y), x=n)) +
     geom_point() +
     geom_text(aes(x=n+offset, label=n), hjust=0) +
-    geom_segment(aes(x=0, xend=n, y=as.factor(y), yend=as.factor(y))) +
+    geom_segment(aes(xend=0, yend=as.factor(y))) +
     xlim(NA, max(counts$n) + 2*offset) +
     theme_light() +
     labs(title="Prevalence of multiple inventories per ISO code",
@@ -319,7 +332,7 @@ counts %>%
     ggplot(aes(y=as.factor(y), x=n)) +
     geom_point() +
     geom_text(aes(x=n+offset, label=n), hjust=0) +
-    geom_segment(aes(x=0, xend=n, y=as.factor(y), yend=as.factor(y))) +
+    geom_segment(aes(xend=0, yend=as.factor(y))) +
     xlim(NA, max(counts$n) + 2*offset) +
     theme_light() +
     labs(title="Prevalence of multiple inventories per glottocode",
@@ -342,14 +355,23 @@ phoible %>%
 ```
 
 
-# Why are multiple inventories sometimes linked to the same document?
+## Why are multiple inventories sometimes linked to the same document?
 
-Occasionally, a single document may provide information about multiple phonological inventories. For example, a dissertation that describes and compares three related dialects or languages spoken in a particular region. In that case, three phonological inventories in PHOIBLE corresponding to three doculects might all be linked to the same document, but each inventory is still linked to only one document (it just happens to be *the same document* for those three inventories). One example is @Terrill1998, a grammar of [Biri](https://en.wikipedia.org/wiki/Biri_language), which contains a chapter describing its dialects, [many of which appear in PHOIBLE](https://phoible.org/languages/biri1256).
+Occasionally, a single document may provide information about multiple
+phonological inventories. For example, a dissertation that describes and
+compares three related dialects or languages spoken in a particular region. In
+that case, three phonological inventories in PHOIBLE corresponding to three
+doculects might all be linked to the same document, but each inventory is still
+linked to only one document (it just happens to be *the same document* for
+those three inventories). One example is @Terrill1998, a grammar of
+[Biri](https://en.wikipedia.org/wiki/Biri_language), which contains a chapter
+describing its dialects, [many of which appear in
+PHOIBLE](https://phoible.org/languages/biri1256).
 
 
-# What are the different "sources" in PHOIBLE?
+## What are the different "sources" in PHOIBLE?
 
-PHOIBLE contains inventories from various different
+PHOIBLE contains inventories from various
 [contributors](https://phoible.org/contributors). These contributions are
 grouped into so-called "sources", denoted by abbreviations. Here they
 are in the chronological order that they were added to PHOIBLE:
@@ -357,11 +379,11 @@ are in the chronological order that they were added to PHOIBLE:
 * [SPA](https://github.com/phoible/dev/tree/master/raw-data/SPA): The Stanford Phonology Archive [@CrothersEtAl1979]
 * [UPSID](https://github.com/phoible/dev/tree/master/raw-data/UPSID): The [UCLA Phonological Segment Inventory Database](http://web.phonetik.uni-frankfurt.de/upsid.html) [@Maddieson1984;@MaddiesonPrecoda1990]
 * [AA](https://github.com/phoible/dev/tree/master/raw-data/AA): [Alphabets of Africa](http://sumale.vjf.cnrs.fr/phono/index.htm) [@hartell1993;@chanard2006]
+* [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data drawn from journal articles, theses, and published grammars, added by members of the Linguistic Phonetics Laboratory at the University of Washington [@Moran2012]
+* [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data from African and Southeast Asian languages
 * [RA](https://github.com/phoible/dev/tree/master/raw-data/RA): Common Linguistic Features in Indian Languages [@ramaswami1999]
 * [SAPHON](https://github.com/phoible/dev/tree/master/raw-data/SAPHON): [South American Phonological Inventory Database](http://linguistics.berkeley.edu/~saphon/en/) [@saphon]
-* [PH](https://github.com/phoible/dev/tree/master/raw-data/PH): Data drawn from journal articles, theses, and published grammars, added by members of the Linguistic Phonetics Laboratory at the University of Washington [@Moran2012]
 * [UZ](https://github.com/phoible/dev/tree/master/raw-data/UZ): Data drawn from journal articles, theses, and published grammars, added by the phoible developers while at the Department of Comparative Linguistics at the University of Zurich
-* [GM](https://github.com/phoible/dev/tree/master/raw-data/GM): Data from African and Southeast Asian languages
 * [EA](https://github.com/phoible/dev/tree/master/raw-data/EA): The database of [Eurasian phonological inventories](http://eurasianphonology.info/) (beta version) [@nikolaev_etal2015]
 * [ER](https://github.com/phoible/dev/tree/master/raw-data/ER): Australian phonemic inventories [@Round2019]
 
@@ -375,7 +397,8 @@ GM represents languages of Africa and Asia; EA represents languages of Eurasia;
 ER represents languages of Australia. Other sources like PH and UZ were added
 mainly to fill in the typological gaps left by the more specialized sources
 (e.g., to add language isolates, or to increase coverage of poorly-represented
-geographic areas or language families).
+geographic areas or language families). Here is a table showing the number of
+inventories per source:
 
 ```{r invs_per_source}
 phoible %>%
@@ -386,22 +409,29 @@ phoible %>%
     kable()
 ```
 
-And note that the same languiod may be reported in different sources as encoded
-in different doculects. Here are the lects included in the most sources:
+Note that the same languoid may be reported in different sources as encoded in
+different doculects. Here are the lects included in the most sources:
 
 ```{r lects_in_most_sources}
 phoible %>%
     group_by(Glottocode) %>%
-    select(Glottocode, Source) %>%
-    distinct() %>%
-    mutate(N=n()) %>%
-    filter(N == max(.$N)) %>%
-    arrange(Glottocode) %>%
+    distinct(Glottocode, Source) %>%
+    summarise(`Found in how many sources?`=n(),
+              `Which ones?`=str_c(Source, collapse=", "),
+              .groups="drop") %>%
+    filter(`Found in how many sources?` > 3) %>%
     kable()
 ```
 
 
-# How can I filter or sample inventories?
+# Filtering and sampling {#filtsamp}
+
+Different research questions will require including / excluding certain
+inventories from PHOIBLE. These sections describe how to *filter* and *sample*
+the PHOIBLE data based on various criteria.
+
+
+## Random sampling: one inventory per isocode/glottocode
 
 If multiple inventories per isocode/glottocode are problematic for your
 analysis or research question, one approach is to select one inventory from each
@@ -409,21 +439,36 @@ isocode/glottocode via random sampling:
 
 ```{r sample_one_per_code}
 phoible %>%
+    distinct(InventoryID, Glottocode) %>%
     group_by(Glottocode) %>%
-    sample_n(1) ->
-    one_inv_per_glottocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_glottocode
 
 phoible %>%
+    distinct(InventoryID, ISO6393) %>%
     group_by(ISO6393) %>%
-    sample_n(1) ->
-    one_inv_per_isocode
+    sample_n(1) %>%
+    pull(InventoryID) ->
+    inventory_ids_sampled_one_per_isocode
 
 message("Picking one inventory per glottocode reduces PHOIBLE from ",
         n_distinct(phoible$InventoryID), " inventories\nto ",
-        nrow(one_inv_per_glottocode),
+        length(inventory_ids_sampled_one_per_glottocode),
         " inventories. Picking one per ISO 639-3 code yields ",
-        nrow(one_inv_per_isocode), " inventories.")
+        length(inventory_ids_sampled_one_per_isocode), " inventories.")
 ```
+
+You can then apply your sample like this:
+
+```{r how_to_apply_a_sample}
+phoible %>%
+    filter(InventoryID %in% inventory_ids_sampled_one_per_glottocode) ->
+    my_sample
+```
+
+
+## Filtering by data source
 
 Another approach is to only use only inventories from a data source that already
 provides a one-inventory-per-language sample. For example, UPSID represents a
@@ -444,6 +489,7 @@ upsid %>%
     all(. == 1)
 ```
 
+<!--
 However, note that the state of knowledge of linguistic genealogical groupings
 has changed since UPSID was published. A quota sample that reflects current
 understanding can also be achieved. Here, we choose one leaf node from within
@@ -453,22 +499,88 @@ each top-level Glottolog family node that has representation in PHOIBLE:
 # TODO: EXAMPLE OF QUOTA SAMPLE USING GLOTTOLOG
 # NB: every Isolate will be included
 ```
+-->
 
-Another approach is to select inventories based on properties of the inventories themselves, such as whether they include representations of allophones or contrastive tone, etc. For example, one might wish to include phonological inventories from sources other than UPSID, when available, since it does not include tone in its inventories.
+
+## Filtering and sampling based on inventory properties
+
+Another approach is to select inventories based on properties of the
+inventories themselves, such as whether they include information about
+allophones, contrastive tone, etc. For example, one might wish to include
+phonological inventories from sources other than UPSID, when available, since
+it does not include allophones in its inventories.
 
 ```{r preferred_source_ordering}
-# TODO: EXAMPLE OF PREFERENTIAL SOURCE ORDERING
+# get lists of all sources, and sources that include allophones
+phoible %>% distinct(Source) %>% pull() -> all_sources
+
+phoible %>%
+    filter(!is.na(Allophones)) %>%
+    distinct(Source) %>%
+    pull() ->
+    sources_with_allophones
+
+# make a vector encoding allophone absence/presence as 0/1
+all_sources %in% sources_with_allophones %>%
+    as.integer() %>%
+    setNames(all_sources) ->
+    source_weights
+
+# example 1: one language per isocode, only keep if includes allophones
+phoible %>%
+    distinct(InventoryID, ISO6393, Source) %>%
+    filter(source_weights[Source] == 1) %>%
+    group_by(ISO6393) %>%
+    slice_sample(n=1) %>%
+    pull(InventoryID) ->
+    sample_of_inventory_ids_with_allophones
+
+# example 2: one language per isocode, *preferentially* pick ones w/ allophones
+new_weights <- source_weights + 1e-9  # so that all weights are non-zero
+phoible %>%
+    distinct(InventoryID, ISO6393, Source) %>%
+    group_by(ISO6393) %>%
+    slice_sample(n=1, weight_by=new_weights[Source]) %>%
+    pull(InventoryID) ->
+    sample_of_inventory_ids_with_preference_for_having_allophones
+
+message("Sampling one inventory per ISO code while *requiring* allophones yielded ",
+        length(sample_of_inventory_ids_with_allophones),
+        " inventories; merely *preferring* allophones yielded ",
+        length(sample_of_inventory_ids_with_preference_for_having_allophones),
+        " inventories.")
 ```
 
-If you're inclined to be a "splitter", you might prefer to pick the largest
-inventory for a given isocode...
+You can then extract your sample using `filter()` as seen above:
+
+```{r how_to_apply_a_sample_2}
+phoible %>% filter(InventoryID %in% sample_of_inventory_ids_with_allophones) ->
+    my_sample
+```
+
+If you're inclined to be a "phoneme splitter", you might prefer to pick the
+largest inventory for a given isocode:
 
 ```{r sample_by_inventory_size}
-# TODO: EXAMPLE OF PICKING AMONG DUPLICATES BY INVENTORY SIZE
+phoible %>%
+    group_by(InventoryID) %>%
+    summarise(n_phonemes=n(), isocode=unique(ISO6393), .groups="drop") %>%
+    group_by(isocode) %>%
+    arrange(desc(n_phonemes), .by_group=TRUE) %>%
+    slice_head(n=1) %>%
+    pull(InventoryID) ->
+    inventory_ids_of_biggest_inventories
+```
+
+... and again, extracting your sample using `filter()`:
+
+```{r how_to_apply_a_sample_3}
+phoible %>% filter(InventoryID %in% inventory_ids_of_biggest_inventories) ->
+    my_sample
 ```
 
 
-# What kind geographic coverage does PHOIBLE have?
+# Integrating geographic information
 
 One way to look at the geographic coverage of PHOIBLE is to merge its data with
 information about languages and dialects as provided by
@@ -478,10 +590,10 @@ information) and merge it with the Glottolog geographic and genealogical data:
 
 ```{r merge_glottolog_geo}
 url_ <- "https://raw.githubusercontent.com/phoible/dev/master/mappings/InventoryID-LanguageCodes.csv"
-phoible_index <- read_csv(url(url_))
+phoible_index <- read_csv(url(url_), col_types=cols(InventoryID='i', .default='c'))
 
 url_ <- "https://cdstar.shh.mpg.de/bitstreams/EAEA0-18EC-5079-0173-0/languages_and_dialects_geo.csv"
-glottolog <- read_csv(url(url_))
+glottolog <- read_csv(url(url_), col_types=cols(latitude='d', longitude='d', .default='c'))
 
 phoible_geo <- left_join(phoible_index, glottolog,
                          by=c("Glottocode"="glottocode"))
@@ -495,16 +607,15 @@ macroarea:
 
 ```{r iso_by_macroarea}
 phoible_geo %>%
-    select(ISO6393, macroarea) %>%
-    distinct() %>%
+    distinct(ISO6393, macroarea) %>%
     group_by(macroarea) %>%
     tally(name="Number of unique isocodes") %>%
     kable()
 ```
 
-Or, we can count the total number of inventories:
+Or, we can count the total number of inventories per macroarea:
 
-```
+```{r invs_by_macroarea}
 phoible_geo %>%
     group_by(macroarea) %>%
     tally(name="Number of inventories") %>%
@@ -512,7 +623,9 @@ phoible_geo %>%
 ```
 
 Note that there are some langoids/glottocodes for which geographic information
-is unavailable (their macroarea is `NA`).
+is unavailable (their macroarea is `NA`). Also note that each languoid is given
+a single latitude-longitude coordinate pair (i.e., there is no information
+about the *spatial extent* of a languoid's use).
 
 Finally, let's look at the global distribution of languages represented in
 PHOIBLE:
@@ -527,7 +640,7 @@ Of course this does not show all of the data points for languages that are
 *not* in PHOIBLE!
 
 
-# What phonological feature set does PHOIBLE use?
+# Phonological features in PHOIBLE
 
 In addition to phoneme inventories, PHOIBLE includes distinctive feature data
 for every phoneme in every inventory. The feature system was created by the
