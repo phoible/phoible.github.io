@@ -190,14 +190,10 @@ mark
   background-color:      inherit
   color:                 $col-mark
   border:                none
-// <code> is hijacked for pretty rendering of IPA glyphs
+// <code> for inline code
 code
-  padding:               0 $hsep/4 $vsep/4
-  font-family:           $font-ipa
-  font-size:             $lg
-  background-color:      $col-bg
-  border:                $bord-ipa
-// We use ~~`code within double-tildes`~~ for isolated diacritics.
+  font-family:           $font-mono
+// We use ~~class ipa within double-tildes~~ for isolated diacritics.
 // Normally in markdown this yields strikethrough formatting. Here,
 // it just adds a non-breaking space before the diacritic. A possibly
 // helpful mnemonic when writing the markdown is: surround with ~~
@@ -205,13 +201,16 @@ code
 del
   text-decoration:       none
 del
-  code::before
+  .ipa::before
     content:             '\00A0'
-// use class="mono" for inline code, since we hijacked <code> for IPA
-.mono
-  font-family:           $font-mono
-  font-weight:           bold
-// preformatted code blocks won't be IPA hijacked
+// use class="ipa" for pretty rendering of IPA glyphs
+.ipa
+  padding:               0 $hsep/4 $vsep/4
+  font-family:           $font-ipa
+  font-size:             $lg
+  background-color:      $col-bg
+  border:                $bord-ipa
+// preformatted code blocks
 pre
   padding:               0 $hsep
   border:                $bord-pre
@@ -237,8 +236,8 @@ th
     font-size:           $sm
   @media screen and (min-width: 20cm)
     font-size:           $md
-td code,
-th code
+td .ipa,
+th .ipa
   background-color:      inherit
   border:                none
 td
