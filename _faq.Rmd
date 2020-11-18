@@ -390,8 +390,9 @@ are in the chronological order that they were added to PHOIBLE:
 The acronyms above link to the GitHub page for each data source, which provides
 information about the source and how it was aggregated into PHOIBLE. Some
 sources are quite specialized; for example, UPSID contains a quota sample,
-i.e., one language per genealogical grouping (see Section "How can I filter or
-sample inventories?"); AA contains descriptions of only African languages;
+i.e., one language per genealogical grouping (see the
+[section on filtering and sampling](#filtsamp)); AA contains descriptions of
+only African languages;
 RA represents languges of India; SAPHON represents languages of South America;
 GM represents languages of Africa and Asia; EA represents languages of Eurasia;
 ER represents languages of Australia. Other sources like PH and UZ were added
