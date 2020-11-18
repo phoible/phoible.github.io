@@ -49,7 +49,7 @@ You can get the most recent "official" release from our
 (with bugfixes or new additions since last release) from
 [GitHub](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true),
 or use the following code snippet to download the most current version from
-GitHub directly within `R`:
+GitHub directly within R:
 
 ```{r load_data}
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
@@ -546,7 +546,7 @@ phoible %>%
 
 message("Sampling one inventory per ISO code while *requiring* allophones yielded ",
         length(sample_of_inventory_ids_with_allophones),
-        " inventories; merely *preferring* allophones yielded ",
+        " inventories;\nmerely *preferring* allophones yielded ",
         length(sample_of_inventory_ids_with_preference_for_having_allophones),
         " inventories.")
 ```
