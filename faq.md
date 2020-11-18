@@ -77,7 +77,7 @@ page](https://phoible.org/download), get the most current version (with
 bugfixes or new additions since last release) from
 [GitHub](https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true),
 or use the following code snippet to download the most current version
-from GitHub directly within `R`:
+from GitHub directly within R:
 
 ``` r
 url_ <- "https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"
@@ -536,8 +536,8 @@ they are in the chronological order that they were added to PHOIBLE:
 The acronyms above link to the GitHub page for each data source, which
 provides information about the source and how it was aggregated into
 PHOIBLE. Some sources are quite specialized; for example, UPSID contains
-a quota sample, i.e., one language per genealogical grouping (see
-Section “How can I filter or sample inventories?”); AA contains
+a quota sample, i.e., one language per genealogical grouping (see the
+[section on filtering and sampling](#filtsamp)); AA contains
 descriptions of only African languages; RA represents languges of India;
 SAPHON represents languages of South America; GM represents languages of
 Africa and Asia; EA represents languages of Eurasia; ER represents
@@ -747,12 +747,13 @@ phoible %>%
 
 message("Sampling one inventory per ISO code while *requiring* allophones yielded ",
         length(sample_of_inventory_ids_with_allophones),
-        " inventories; merely *preferring* allophones yielded ",
+        " inventories;\nmerely *preferring* allophones yielded ",
         length(sample_of_inventory_ids_with_preference_for_having_allophones),
         " inventories.")
 ```
 
-    ## Sampling one inventory per ISO code while *requiring* allophones yielded 1155 inventories; merely *preferring* allophones yielded 2099 inventories.
+    ## Sampling one inventory per ISO code while *requiring* allophones yielded 1155 inventories;
+    ## merely *preferring* allophones yielded 2099 inventories.
 
 You can then extract your sample using `filter()` as seen above:
 
