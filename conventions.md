@@ -28,7 +28,9 @@ Languages described as having a fortis/plain/lenis distinction that corresponds 
 The frictionalized diacritic ~~<span class='ipa'>͓</span>~~ (<mark>0353 COMBINING X BELOW</mark>) is used in PHOIBLE to represent three types of sounds:
 
 - Click consonants where the release of the anterior closure involves an ingressive "sucking" sound similar to a fricative. In such cases the diacritic is placed on the click glyph, not on the glyph indicating the posterior closure location. Example: <span class='ipa'>kǃ͓ʰ</span>
+
 - "Frictionalized" vowels (sounds that are phonologically vocalic, but with sufficiently close closures to create buzzing).
+
 - Fricative sounds at places of articulation that do not have dedicated fricative glyphs (e.g., sounds with voiceless velar lateral frication: <span class='ipa'>ʟ̥͓</span>, <span class='ipa'>ɬʟ̥͓</span>, <span class='ipa'>kʟ̥͓ʼ</span>).
 
 ## Non-sibilant fricatives
