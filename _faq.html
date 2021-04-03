@@ -370,6 +370,12 @@ library(ggplot2)</code></pre>
 <pre class="r"><code>url_ &lt;- &quot;https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true&quot;
 col_types &lt;- cols(InventoryID='i', Marginal='l', .default='c')
 phoible &lt;- read_csv(url(url_), col_types=col_types)</code></pre>
+<pre><code>## Warning: 4 parsing failures.
+##   row                col           expected        actual         file
+## 74126 front              delimiter or quote I             &lt;connection&gt;
+## 74126 front                                 embedded null &lt;connection&gt;
+## 74126 advancedTongueRoot delimiter or quote 0             &lt;connection&gt;
+## 74126 NA                 48 columns         76 columns    &lt;connection&gt;</code></pre>
 </div>
 </div>
 <div id="inventories-language-codes-doculects-and-sources" class="section level1">
