@@ -8,6 +8,7 @@ RSTUDIO_PANDOC = "/Applications/RStudio.app/Contents/MacOS/pandoc"
 
 
 def generate_indexes(file_path, output_path):
+    soup = None
     with open(file_path) as f:
         soup = bs4.BeautifulSoup(f.read(), "html.parser")
         ul = soup.new_tag("ul")
@@ -43,18 +44,30 @@ def generate_indexes(file_path, output_path):
         # print(ul.prettify())
         div_intro = soup.find("div", {"id": "introduction"})
         div_intro.insert(0, ul)
+    with open(output_path, "w") as file:
+        file.write(soup.prettify())
+
+
+def extract_content(file_path, output_path):
+    div_content = None
+    with open(file_path) as f:
+        soup = bs4.BeautifulSoup(f.read(), "html.parser")
+        div_content = soup.find("div", {"class": "container-fluid main-container"})
+        print(div_content)
         with open(output_path, "w") as file:
-            file.write(soup.prettify())
+            file.write(div_content.prettify())
 
 
 def main():
     print("Start kniting Rmd to HTML...")
     print("File: _faq.Rmd")
     os.system("Rscript --vanilla knitRmdToHTML.R _faq.Rmd " + RSTUDIO_PANDOC)
+    extract_content("_faq.html", "_faq.html")
     print("Generating FAQ indexes...")
     generate_indexes("_faq.html", "faq_with_indexes.html")
     print("File: conventions.Rmd")
     os.system("Rscript --vanilla knitRmdToHTML.R conventions.md " + RSTUDIO_PANDOC)
+    extract_content("conventions.html", "conventions.html")
     print('Converted! Output files: \033[94m faq_with_indexes.html conventions.html')
 
 
