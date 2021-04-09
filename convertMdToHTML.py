@@ -78,7 +78,9 @@ def extract_content(file_path, output_path):
         # fix <em> Spacing
         ems = soup.find_all('em')
         for em in ems:
-            em.string = em.get_text().strip()
+            temp = str(em).replace('<em>', '').replace('</em>', '').strip()
+            em.clear()
+            em.append(bs4.BeautifulSoup(temp, 'html.parser'))
         # fix references
         references_div = soup.find('div', {'class':'references'})
         if references_div is not None:
