@@ -1,0 +1,27 @@
+/* IPA glyphs and diacritics */
+.ipa, .dia {
+    font-size: larger;
+    font-family: "Charis SIL";
+    background-color: #e0e0e0;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem;
+}
+
+.dia {
+    padding: 0.1rem 0.3rem;
+}
+
+.dia::before {
+    content: "\2007";  /* non-breaking space */
+}
+
+/* ISO codes and glottocodes; unicode codepoints & descriptions */
+.iso, .codept {
+    text-transform: lowercase;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+.codept {
+    color: #666;
+}
