@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<title>PHOIBLE notational conventions</title>
+<style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: minimal.css 8642 2021-03-26 13:51:14Z milde $               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS2.1_ stylesheet defines rules for Docutils elements without    */
+/* HTML equivalent. It is required to make the document semantic visible. */
+/*                                                                        */
+/* .. _CSS2.1: http://www.w3.org/TR/CSS2                                  */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link       */
+
+/* titles */
+p.topic-title,
+p.admonition-title,
+p.system-message-title {
+  font-weight: bold;
+}
+p.sidebar-title,
+p.rubric {
+  font-weight: bold;
+  font-size: larger;
+}
+p.rubric {
+  color: maroon;
+}
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+h1 + p.subtitle {
+  font-size: 1.6em;
+}
+h2 + p.section-subtitle, a.toc-backref {
+  color: black;
+  text-decoration: none;
+}
+
+/* Warnings, Errors */
+.system-messages h2,
+.system-message-title,
+span.problematic {
+  color: red;
+}
+
+/* Inline Literals */
+.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wrap at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .simple  ul, .simple  ol,
+.compact li, .compact ul, .compact ol,
+.simple  > li p, dl.simple  > dd,
+.compact > li p, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Nested Paragraphs */
+p:first-child { margin-top: 0; }
+p:last-child { margin-bottom: 0; }
+td > p, th > p { margin-bottom: 0; }
+
+/* Table of Contents */
+.topic.contents { margin: 0.5em 0; }
+.topic.contents ul.auto-toc {
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+/* Definition Lists and Derivatives */
+dt .classifier { font-style: italic }
+dt .classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+/* Field Lists and similar */
+/* bold field name, content starts on the same line */
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt,
+dl.footnote > dt,
+dl.citation > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples, fit all Docinfo fields */
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+/* field names followed by a colon */
+dl.field-list > dt:after,
+dl.docinfo > dt:after {
+  content: ":";
+}
+
+/* Bibliographic Fields (docinfo) */
+dl.docinfo pre.address {
+  font: inherit;
+  margin: 0.5em 0;
+}
+dl.docinfo > dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+dl.footnote.superscript > dd { margin-left: 1em; }
+dl.footnote.brackets > dd { margin-left: 2em; }
+dl.footnote > dt { font-weight: normal; }
+a.footnote-reference.brackets:before,
+dt.label > span.brackets:before { content: "["; }
+a.footnote-reference.brackets:after,
+dt.label > span.brackets:after { content: "]"; }
+a.footnote-reference.superscript,
+dl.footnote.superscript > dt.label {
+  vertical-align: super;
+  font-size: small;
+}
+dt.label > span.fn-backref {
+  margin-left: 0.2em;
+  font-weight: normal;
+}
+dt.label > span.fn-backref > a { font-style: italic; }
+
+/* Alignment */
+.align-left   {
+  text-align: left;
+  margin-right: auto;
+}
+.align-center {
+  clear: both;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-right  {
+  text-align: right;
+  margin-left: auto;
+}
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* reset inner alignment in figures and tables */
+figure.align-left, figure.align-right,
+table.align-left, table.align-center, table.align-right {
+  text-align: inherit;
+}
+
+/* Text Blocks */
+blockquote,
+div.topic,
+aside.topic {
+  margin: 1em 2em;
+}
+.sidebar,
+.admonition,
+.system-message {
+  border: thin solid;
+  margin: 1em 2em;
+  padding: 0.5em 1em;
+}
+.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
+}
+div.line-block { display: block; }
+div.line-block div.line-block, pre { margin-left: 2em; }
+
+/* Code line numbers: dropped when copying text from the page */
+pre.code .ln { display: none; }
+pre.code code:before {
+  content: attr(data-lineno); /* …, none) fallback not supported by any browser */
+  color: gray;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+td, th {
+  border: thin solid silver;
+  padding: 0 1ex;
+}
+.borderless td, .borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+table > caption {
+  text-align: left;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+table.captionbelow {
+  caption-side: bottom;
+}
+
+/* Document Header and Footer */
+header { border-bottom: 1px solid black; }
+footer { border-top: 1px solid black; }
+
+/* Images are block-level by default in Docutils */
+/* New HTML5 block elements: set display for older browsers */
+img, header, section, footer, aside, nav, main, article, figure, video {
+  display: block;
+}
+/* inline images */
+p img, p video, figure img, figure video {
+  display: inline;
+}
+
+</style>
+<style type="text/css">
+
+/* CSS31_ style sheet for the output of Docutils HTML writers.             */
+/* Rules for easy reading and pre-defined style variants.                  */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: plain.css 8636 2021-03-19 00:23:33Z milde $                                                               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: http://www.w3.org/TR/CSS3                                     */
+
+
+/* Document Structure */
+/* ****************** */
+
+/* "page layout" */
+body {
+  margin: 0;
+  background-color: #dbdbdb;
+}
+main, footer, header {
+  line-height:1.3;
+  /* avoid long lines --> better reading */
+  /* optimum is 45…75 characters/line <http://webtypography.net/2.1.2> */
+  /* OTOH: lines should not be too short because of missing hyphenation, */
+  max-width: 50rem;
+  padding: 1px 2%; /* 1px on top avoids grey bar above title (mozilla) */
+  margin: auto;
+}
+main {
+  counter-reset: table figure;
+  background-color: white;
+}
+footer, header {
+  font-size: smaller;
+  padding: 0.5em 2%;
+  border: none;
+}
+
+/* Transitions */
+hr.docutils {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Paragraphs */
+
+/* vertical space (parskip) */
+p, ol, ul, dl, li, dd,
+div.line-block,
+div.topic,
+table {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+p:first-child { margin-top: 0; }
+/* (:last-child is new in CSS 3) */
+p:last-child  { margin-bottom: 0; }
+
+h1, h2, h3, h4, h5, h6,
+dl > dd {
+  margin-bottom: 0.5em;
+}
+
+/* Lists */
+/* ===== */
+
+/* Separate list entries in compound lists */
+dl > dd, ol > li,
+
+/* Definition Lists */
+/* Indent lists nested in definition lists */
+/* (:only-child is new in CSS 3)           */
+dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
+
+/* Description Lists */
+/* styled like in most dictionaries, encyclopedias etc. */
+dl.description > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+
+/* Field Lists */
+
+/* example for custom field-name width */
+dl.field-list.narrow > dd {
+  margin-left: 5em;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+
+/* Bibliographic Fields */
+
+/* generally, bibliographic fields use special definition list dl.docinfo */
+/* but dedication and abstract are placed into "topic" divs */
+div.abstract p.topic-title {
+  text-align: center;
+}
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic;
+}
+div.dedication p.topic-title {
+  font-style: normal;
+}
+
+/* Text Blocks */
+/* =========== */
+
+/* Literal Blocks */
+pre.literal-block, pre.doctest-block,
+pre.math, pre.code {
+  font-family: monospace;
+}
+
+/* Block Quotes */
+blockquote > table,
+div.topic > table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote p.attribution,
+div.topic p.attribution {
+  text-align: right;
+  margin-left: 20%;
+}
+
+/* Tables */
+/* ====== */
+
+/* th { vertical-align: bottom; } */
+
+table tr { text-align: left; }
+
+/* "booktabs" style (no vertical lines) */
+table.booktabs {
+  border: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+
+/* numbered tables (counter defined in div.document) */
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+}
+
+/* Explicit Markup Blocks */
+/* ====================== */
+
+/* Footnotes and Citations */
+/* ----------------------- */
+
+/* line on the left */
+dl.footnote {
+  padding-left: 1ex;
+  border-left: solid;
+  border-left-width: thin;
+}
+
+/* Directives */
+/* ---------- */
+
+/* Body Elements */
+/* ~~~~~~~~~~~~~ */
+
+/* Images and Figures */
+
+/* let content flow to the side of aligned images and figures */
+figure.align-left,
+img.align-left,
+video.align-left,
+object.align-left {
+  clear: left;
+  float: left;
+  margin-right: 1em;
+}
+figure.align-right,
+img.align-right,
+video.align-right,
+object.align-right {
+  clear: right;
+  float: right;
+  margin-left: 1em;
+}
+/* Stop floating sidebars, images and figures */
+h1, h2, h3, h4, footer, header { clear: both; }
+
+/* Numbered figures */
+figure.numbered > figcaption > p:before {
+  counter-increment: figure;
+  content: "Figure " counter(figure) ": ";
+  font-weight: bold;
+}
+
+/* Admonitions and System Messages */
+.caution p.admonition-title,
+.attention p.admonition-title,
+.danger p.admonition-title,
+.error p.admonition-title,
+.warning p.admonition-title,
+div.error {
+  color: red;
+}
+
+/* Sidebar */
+/* Move right. In a layout with fixed margins, */
+/* it can be moved into the margin.            */
+aside.sidebar {
+  width: 30%;
+  max-width: 26em;
+  margin-left: 1em;
+  margin-right: -2%;
+  background-color: #ffffee;
+}
+
+/* Code */
+pre.code { padding: 0.7ex }
+pre.code, code { background-color: #eeeeee }
+/* basic highlighting: for a complete scheme, see */
+/* http://docutils.sourceforge.net/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Math */
+/* styled separately (see math.css for math-output=HTML) */
+
+/* Epigraph           */
+/* Highlights         */
+/* Pull-Quote         */
+/* Compound Paragraph */
+/* Container          */
+
+/* Inline Markup */
+/* ============= */
+
+/* Inline Literals                                          */
+/* possible values: normal, nowrap, pre, pre-wrap, pre-line */
+/*   span.docutils.literal { white-space: pre-wrap; }       */
+
+/* Hyperlink References */
+a { text-decoration: none; }
+
+/* External Targets       */
+/*   span.target.external */
+/* Internal Targets       */
+/*   span.target.internal */
+/* Footnote References    */
+/*   a.footnote-reference */
+/* Citation References    */
+/*   a.citation-reference */
+
+</style>
+</head>
+<body>
+<main id="phoible-notational-conventions">
+<h1 class="title">PHOIBLE notational conventions</h1>
+
+<p>In order to preserve distinctions both within and across language descriptions, additions to the approved International Phonetic Alphabet (IPA) glyph set were needed; wherever possible these were drawn from the <a class="reference external" href="https://www.internationalphoneticassociation.org/sites/default/files/extIPAChart2008.pdf">extIPA symbols for disordered speech</a>. This page describes our additions to the IPA glyph set, and also describes any idiosyncracies in our interpretation and usage of approved IPA glyphs, and conventions regarding glyph ordering. When we use the terms “official IPA”, “approved IPA glyphs”, or just “IPA” we are referring to <a class="reference external" href="https://www.internationalphoneticassociation.org/content/full-ipa-chart">the 2005 update of the full chart</a> unless otherwise indicated.</p>
+<section id="similar-looking-glyphs">
+<h2>Similar-looking glyphs</h2>
+<p>There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:</p>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 44%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr><th class="head"><p>Keyboard letter</p></th>
+<th class="head"><p>Representation in PHOIBLE</p></th>
+<th class="head"><p>Meaning in IPA</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p><span class="ipa">g</span>      <span class="codept">0067 LATIN SMALL LETTER G</span></p></td>
+<td><p><span class="ipa">ɡ</span> <span class="codept">0261 LATIN SMALL LETTER SCRIPT G</span></p></td>
+<td><p>voiced velar stop</p></td>
+</tr>
+<tr><td><p><span class="ipa">!</span>      <span class="codept">0021 EXCLAMATION POINT</span></p></td>
+<td><p><span class="ipa">ǃ</span> <span class="codept">01C3 LATIN LETTER RETROFLEX CLICK</span></p></td>
+<td><p>(post)alveolar click</p></td>
+</tr>
+<tr><td><p><span class="ipa">&amp;#124;</span> <span class="codept">007C VERTICAL LINE</span></p></td>
+<td><p><span class="ipa">ǀ</span> <span class="codept">01C0 LATIN LETTER DENTAL CLICK</span></p></td>
+<td><p>dental click</p></td>
+</tr>
+<tr><td><p><span class="ipa">'</span>      <span class="codept">0027 APOSTROPHE</span></p></td>
+<td><p><span class="ipa">ʼ</span> <span class="codept">02BC MODIFIER LETTER APOSTROPHE</span></p></td>
+<td><p>ejective</p></td>
+</tr>
+<tr><td><p><span class="ipa">:</span>      <span class="codept">003A COLON</span></p></td>
+<td><p><span class="ipa">ː</span> <span class="codept">02D0 MODIFIER LETTER TRIANGULAR COLON</span></p></td>
+<td><p>long</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, PHOIBLE eschews the use of precomposed digraphs such as <span class="ipa">ʤ</span>, <span class="ipa">ʨ</span>, etc. to represent affricates. Note that since each entry in PHOIBLE represents a single phonologically contrastive sound in its doculect, there is never any risk that an entry such as <span class="ipa">tɕ</span> might be confused as a sequence of two phonemes (stop + fricative) rather than a single affricate.</p>
+</section>
+<section id="additions-to-the-ipa">
+<h2>Additions to the IPA</h2>
+<section id="fortis-lenis">
+<h3>Fortis / Lenis</h3>
+<p>Languages described as having a fortis/plain/lenis distinction that corresponds poorly with the traditional voiced/voiceless-unaspirated/voiceless-aspirated continuum are marked using the voiceless glyph for the “plain” phoneme, and either <span class="dia">͈</span> (<span class="codept">0348 COMBINING DOUBLE VERTICAL LINE BELOW</span>) to mark the fortis articulation, and/or <span class="dia">͉</span> (<span class="codept">0349 COMBINING LEFT ANGLE BELOW</span>) for the lenis articulation.</p>
+</section>
+<section id="frictionalized-sounds">
+<h3>Frictionalized sounds</h3>
+<p>The frictionalized diacritic <span class="dia">͓</span> (<span class="codept">0353 COMBINING X BELOW</span>) is used in PHOIBLE to represent three types of sounds:</p>
+<ul class="simple">
+<li><p>Click consonants where the release of the anterior closure involves an ingressive “sucking” sound similar to a fricative. In such cases the diacritic is placed on the click glyph, not on the glyph indicating the posterior closure location. Example: <span class="ipa">kǃ͓ʰ</span></p></li>
+<li><p>“Frictionalized” vowels (sounds that are phonologically vocalic, but with sufficiently close closures to create buzzing).</p></li>
+<li><p>Fricative sounds at places of articulation that do not have dedicated fricative glyphs (e.g., sounds with voiceless velar lateral frication: <span class="ipa">ʟ̥͓</span>, <span class="ipa">ɬʟ̥͓</span>, <span class="ipa">kʟ̥͓ʼ</span>).</p></li>
+</ul>
+</section>
+<section id="non-sibilant-fricatives">
+<h3>Non-sibilant fricatives</h3>
+<p>Languages described as having a sibilant/non-sibilant distinction among coronal fricatives and affricates are handled using <span class="dia">͇</span> (<span class="codept">0347 COMBINING EQUALS SIGN BELOW</span>) to mark the non-sibilant phoneme.</p>
+</section>
+<section id="retroflex-clicks">
+<h3>Retroflex clicks</h3>
+<p>Retroflex clicks are represented by <span class="ipa">‼</span> (<span class="codept">203C DOUBLE EXCLAMATION MARK</span>). Note that <span class="ipa">ǃ</span> (<span class="codept">01C3</span>, the symbol representing (post)alveolar clicks in the IPA) is confusingly referred to as <span class="codept">LATIN LETTER RETROFLEX CLICK</span> in the Unicode standard.</p>
+</section>
+<section id="glottalization">
+<h3>Glottalization</h3>
+<p>Sounds described as “glottalized” are marked with <span class="ipa">ˀ</span> (<span class="codept">02C0 MODIFIER LETTER GLOTTAL STOP</span>), unless it is clear from context that either “ejective” or “creaky voicing” are the intended meaning. See the section on <a class="reference internal" href="#glottalization-laryngealization-and-creaky-voicing">Glottalization, laryngealization, and creaky voicing</a> for more details.</p>
+</section>
+<section id="summary-table-of-phoible-symbols-not-in-the-ipa">
+<h3>Summary table of PHOIBLE symbols not in the IPA</h3>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 17%" />
+<col style="width: 49%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr><th class="head"><p>Glyph</p></th>
+<th class="head"><p>Codepoint</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Meaning in PHOIBLE</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p><span class="dia">͈</span></p></td>
+<td><p><span class="codept">0348</span></p></td>
+<td><p><span class="codept">COMBINING DOUBLE VERTICAL LINE BELOW</span></p></td>
+<td><p>Fortis</p></td>
+</tr>
+<tr><td><p><span class="dia">͉</span></p></td>
+<td><p><span class="codept">0349</span></p></td>
+<td><p><span class="codept">COMBINING LEFT ANGLE BELOW</span></p></td>
+<td><p>Lenis</p></td>
+</tr>
+<tr><td><p><span class="dia">͓</span></p></td>
+<td><p><span class="codept">0353</span></p></td>
+<td><p><span class="codept">COMBINING X BELOW</span></p></td>
+<td><p>Frictionalized</p></td>
+</tr>
+<tr><td><p><span class="dia">͇</span></p></td>
+<td><p><span class="codept">0347</span></p></td>
+<td><p><span class="codept">COMBINING EQUALS SIGN BELOW</span></p></td>
+<td><p>Non-sibilant</p></td>
+</tr>
+<tr><td><p><span class="ipa">‼</span></p></td>
+<td><p><span class="codept">203C</span></p></td>
+<td><p><span class="codept">DOUBLE EXCLAMATION MARK</span></p></td>
+<td><p>Retroflex click</p></td>
+</tr>
+<tr><td><p><span class="ipa">ˀ</span></p></td>
+<td><p><span class="codept">02C0</span></p></td>
+<td><p><span class="codept">MODIFIER LETTER GLOTTAL STOP</span></p></td>
+<td><p>(Pre-)glottalization</p></td>
+</tr>
+<tr><td><p><span class="ipa">ʱ</span></p></td>
+<td><p><span class="codept">02B1</span></p></td>
+<td><p><span class="codept">MODIFIER LETTER SMALL H WITH HOOK</span></p></td>
+<td><p>Pre-aspirated voiced</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="idiosyncratic-usages">
+<h2>Idiosyncratic usages</h2>
+<section id="place-matching">
+<h3>Place matching</h3>
+<p>In PHOIBLE, all affricates, prenasalized stops, and pre-stopped nasals adhere to strict place-matching. For example, although it is common to use <span class="ipa">t</span> or <span class="ipa">d</span> to designate the stop portion of all coronal affricates, in PHOIBLE a palatal affricate will always be represented as <span class="ipa">cç</span> (not <span class="ipa">tç</span>). A similar constraint holds for dental affricates <span class="ipa">t̪s̪</span> and <span class="ipa">t̪θ</span>, post-alveolar affricates <span class="ipa">t̠ʃ</span>, and retroflex affricates <span class="ipa">ʈʂ</span>. Note that <span class="ipa">tɕ</span> is considered simultaneously (lamino-)alveolar and palatal, so no retraction diacritic is used on the <span class="ipa">t</span>.</p>
+</section>
+<section id="labialization-velarization-and-pharyngealization">
+<h3>Labialization, velarization and pharyngealization</h3>
+<p>In PHOIBLE we do not use <span class="dia">̴</span> (<span class="codept">0334 COMBINING TILDE OVERLAY</span>), which the IPA defines as a “velarized or pharyngealized” diacritic. For velarized articulations we use <span class="ipa">ˠ</span> (<span class="codept">02E0 MODIFIER LETTER SMALL GAMMA</span>), for pharyngealized articulations we use <span class="ipa">ˤ</span> (<span class="codept">02E4 MODIFIER LETTER REVERSED GLOTTAL STOP</span>).</p>
+<p>The diacritic <span class="ipa">ʷ</span> (<span class="codept">02B7 MODIFIER LETTER SMALL W</span>) is strictly used to mark <em>labialization</em> and not <em>labio-velarization</em>. If a source describes a sound as “labio-velarized” we use modifier letters <span class="ipa">ʷ</span> and <span class="ipa">ˠ</span> together.</p>
+</section>
+<section id="aspiration-murmur-and-breathy-voicing">
+<h3>Aspiration, murmur, and breathy voicing</h3>
+<p>Voiceless aspirated sounds are marked with the standard <span class="ipa">ʰ</span> (<span class="codept">02B0 MODIFIER LETTER SMALL H</span>). Voiceless sounds that are described as “pre-aspirated” are marked with the diacritic to the left of the base glyph: <span class="ipa">ʰt</span>. Voiced sounds described as either “aspirated”, “breathy”, or “murmured” are marked with <span class="dia">̤</span> (<span class="codept">0324 COMBINING DIARESIS BELOW</span>). Voiced sounds described as “pre-aspirated” are marked with <span class="ipa">ʱ</span> (<span class="codept">02B1 MODIFIER LETTER SMALL H WITH HOOK</span>) to the left of the base glyph: <span class="ipa">ʱd</span>.</p>
+</section>
+<section id="glottalization-laryngealization-and-creaky-voicing">
+<h3>Glottalization, laryngealization, and creaky voicing</h3>
+<p>Voiced sounds described as creaky or laryngealized are marked with <span class="dia">̰</span> (<span class="codept">0330 COMBINING TILDE BELOW</span>). Sounds described as “glottalized” are marked with <span class="ipa">ˀ</span> (<span class="codept">02C0 MODIFIER LETTER GLOTTAL STOP</span>), unless the sound is voiceless and it is evident from the surrounding description that what is meant is that the consonant is ejective, in which case we use <span class="ipa">ʼ</span> (<span class="codept">02BC MODIFIER LETTER APOSTROPHE</span>). Sounds described as “pre-glottalized” are marked with <span class="ipa">ˀ</span> to the left of the base glyphː <span class="ipa">ˀt</span>.</p>
+<p>## Lowered fricatives and raised approximants
+PHOIBLE somewhat grudgingly follows common practice in the literature in using the “uptack” and “downtack” to convert between fricative and approximant manners of articulation, when no suitable single glyph is available. For example, the Stanford Phonology Archive includes sounds described as “z-approximant” and “ɻ-fricative”, which we represent as <span class="ipa">z̞</span> and <span class="ipa">ɻ̝</span>, respectively. The raised diacritic is also used with the pharyngeal fricative to indicate a voiced pharyngeal plosive <span class="ipa">ʕ̝</span></p>
+</section>
+<section id="low-vowels">
+<h3>Low vowels</h3>
+<p>As with all representations in PHOIBLE, we privilege the textual description of the original authors over their choice of symbols. Consequently, sounds described as “low back unrounded vowels” are represented as <span class="ipa">ɑ</span> (<span class="codept">0251 LATIN SMALL LETTER ALPHA</span>), even if the author used the keyboard <span class="ipa">a</span> in his or her charts.</p>
+</section>
+<section id="diphthongs">
+<h3>Diphthongs</h3>
+<p>The glyphs <span class="ipa">j</span>, <span class="ipa">ɰ</span>, <span class="ipa">ɥ</span>, <span class="ipa">w</span> are used only for glide consonants, and never occur as on- or off-glides in diphthongs and triphthongs. Instead, polyphthong on- and off-glides use vowel symbols <span class="ipa">i</span>, <span class="ipa">ɯ</span>, <span class="ipa">y</span>, and <span class="ipa">u</span>. If necessary, the non-syllabic diacritic <span class="dia">̯</span> (<span class="codept">032F COMBINING INVERTED BREVE BELOW</span>) is used to disambiguate nucleus from glide portion (when such is indicated in the language description).</p>
+</section>
+<section id="clicks">
+<h3>Clicks</h3>
+<p>Clicks are always represented in PHOIBLE as a combination of anterior and posterior articulations. The posterior articulation is given first, and indicates both place (velar or uvular) and phonation during the click. Posterior click glyphs thus comprise the set <span class="ipa">k</span> <span class="ipa">q</span> <span class="ipa">ɡ</span> <span class="ipa">ɢ</span> <span class="ipa">ŋ</span> <span class="ipa">ɴ</span>. Laryngeal/phonatory modifiers are placed on the posterior glyph: <span class="ipa">ŋ̊ǃ</span>. The anterior place and manner of the click are then indicated with the usual IPA click symbols <span class="ipa">ʘ</span> <span class="ipa">ǀ</span> <span class="ipa">ǁ</span> <span class="ipa">ǃ</span> <span class="ipa">ǂ</span> and the PHOIBLE symbol for retroflex clicks <span class="ipa">‼</span>. Note also that alveolar and post-alveolar clicks are distinguished in PHOIBLE by the use of the retraction diacritic: <span class="ipa">kǃ</span> for alveolar, <span class="ipa">kǃ̠</span> for post-alveolar. See also the section on <a class="reference internal" href="#frictionalized-sounds">frictionalized sounds</a> for notation of frictionalized clicks.</p>
+</section>
+<section id="epilaryngeal-phonation">
+<h3>Epilaryngeal phonation</h3>
+<p>There are some rare articulations that make use of an epilaryngeal phonation mechanism (e.g., the “sphincteric vowels” of !Xóõ). To represent these vowels, we use <span class="ipa">ᴱ</span> (<span class="codept">1D31 MODIFIER LETTER CAPITAL E</span>) to denote sphincteric phonation.</p>
+</section>
+<section id="apical-vowels">
+<h3>Apical vowels</h3>
+<p>The so-called “apical vowels” (most famously described in Modern Standard Chinese, a.k.a. “Mandarin”) have been traditionally represented by many Sinologists using non-standard glyphs <span class="ipa">ɿ</span> and <span class="ipa">ʅ</span>. In PHOIBLE we follow <a class="reference external" href="https://doi.org/10.1017/S0025100314000267">Lee-Kim 2014</a> in treating segments described as “apical vowels” as (possibly syllabic) approximants — in particular, as the dental approximant <span class="ipa">ɹ̪̩</span> and the retroflex approximant <span class="ipa">ɻ̩</span>.</p>
+</section>
+<section id="double-articulations-tie-bars">
+<h3>Double articulations / tie bars</h3>
+<p>The representations of speech sounds in PHOIBLE do not make use of the tie bar (<span class="codept">0361 COMBINING DOUBLE INVERTED BREVE</span> or <span class="codept">035C COMBINING DOUBLE BREVE BELOW</span>). The reasons for this choice are (1) it aids legibility when there are other diacritics, and (2) since the data are limited to single phonemes (i.e., there are no transcriptions of words or longer passages), there is no need to distinguish single phonemes from sequences. Put another way, every phoneme in PHOIBLE that is represented as a digraph has an implicit tiebar.</p>
+</section>
+</section>
+<section id="ordering-of-diacritics-and-modifier-letters">
+<h2>Ordering of diacritics and modifier letters</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section makes a distinction between “combining characters” and “spacing modifier letters”, which most linguists would group together under one term “diacritics”. Briefly, combining characters are diacritics that sit above or below the glyph they modify, or are superimposed on it (e.g., the tilde above a nasalized vowel <span class="dia">̃</span> is a combining character, encoded as <span class="codept">0303</span> in the Unicode standard). Spacing modifier letters are diacritics that sit next to the glyph they modify (e.g., the superscript <span class="ipa">ʰ</span> used to indicate aspiration is a modifier letter, encoded as <span class="codept">02B0</span>).</p>
+</div>
+<p>Each representation of a phoneme is first normalized into a canonical decomposition form that adheres to the <a class="reference external" href="http://unicode.org/reports/tr15/">Unicode Normalization Form D (NFD)</a>. However, the NFD algorithm does not define a prescribed order for all possible pairs of combining characters. For example, <span class="codept">0301</span> (combining acute accent) and <span class="codept">0308</span> (combining diaresis) are not re-ordered with respect to one another by the NFD algorithm, regardless of which order they occurred in the input string. PHOIBLE imposes an ordering that is consistent with NFD, but sets an explicit order for all combining characters used in the database. A rigid ordering for spacing modifier letters is also enforced. The chosen ordering is guided by the linguistic literature and typographical concerns, since to the best of our knowledge the IPA does not provide a recommended ordering for diacritics.</p>
+<p>The ordering conventions used in PHOIBLE are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Place features:</strong> velarized/pharyngealized <span class="dia">̴</span>, linguolabial <span class="dia">̼</span>, dental <span class="dia">̪</span>, apical <span class="dia">̺</span>, laminal <span class="dia">̻</span>, advanced <span class="dia">̟</span>, retracted <span class="dia">̠</span></p></li>
+<li><p><strong>Manner features:</strong> non-sibilant <span class="dia">͇</span>, raised <span class="dia">̝</span>, lowered <span class="dia">̞</span>, advanced tongue root <span class="dia">̘</span>, retracted tongue root <span class="dia">̙</span>, frictionalized <span class="dia">͓</span></p></li>
+<li><p><strong>Secondary articulations:</strong> more round <span class="dia">̹</span>, less round <span class="dia">̜</span></p></li>
+<li><p><strong>Laryngeal settings:</strong> creaky <span class="dia">̰</span>, breathy <span class="dia">̤</span>, voiced <span class="dia">̬</span>, stiff <span class="dia">̬</span>, devoiced (below) <span class="dia">̥</span>, devoiced (above) <span class="dia">̊</span>, fortis <span class="dia">͈</span>, lenis <span class="dia">͉</span></p></li>
+<li><p><strong>Length:</strong> short <span class="dia">̆</span></p></li>
+<li><p><strong>Syllabicity:</strong> syllabic <span class="dia">̩</span> and non-syllabic markers <span class="dia">̯</span></p></li>
+<li><p><strong>Vowel quality modifications</strong>: nasalized <span class="dia">̃</span>, denasalized <span class="dia">͊</span>, centralized <span class="dia">̈</span>, mid-centralized <span class="dia">̽</span></p></li>
+<li><p><strong>Stop release:</strong> unreleased <span class="dia">̚</span></p></li>
+<li><p><strong>Spacing modifier letters:</strong> rhotic hook <span class="ipa">˞</span>, nasal release <span class="ipa">ⁿ</span>, lateral release <span class="ipa">ˡ</span>, labialized <span class="ipa">ʷ</span>, palatalized <span class="ipa">ʲ</span>, labial-palatalized <span class="ipa">ᶣ</span>, velarized <span class="ipa">ˠ</span>, pharyngealized <span class="ipa">ˤ</span>, glottalized <span class="ipa">ˀ</span>, schwa-like release <span class="ipa">ᵊ</span>, epilaryngeal source <span class="ipa">ᴱ</span>, aspirated <span class="ipa">ʰ</span>, breathy aspirated <span class="ipa">ʱ</span>, ejective <span class="ipa">ʼ</span>, long <span class="ipa">ː</span>, half long <span class="ipa">ˑ</span></p></li>
+</ol>
+</section>
+<section id="marginal-phonemes">
+<h2>Marginal phonemes</h2>
+<p>Marginal phonemes are those that are notably different phonologically from the majority of segments found in a particular language. For example, loanwords containing non-native sounds can introduce maringal phonemes into the borrowing language. Any type of phoneme described as “marginal”, “dubious” or “occurs only in loan words” is included in the database alongside other phonemes, but is marked with a boolean <span class="docutils literal">TRUE</span> value in the <span class="docutils literal">Marginal</span> column of the data file. Ordinary phonemes typically have the value <span class="docutils literal">FALSE</span>, although for data sources that explicitly exclude marginal phonemes, the <span class="docutils literal">Marginal</span> column is given <span class="docutils literal">NA</span> values for those inventories.</p>
+</section>
+<section id="pitch-accent">
+<h2>Pitch accent</h2>
+<p>This section lists inventories that are known to have pitch accents among their tonemes, and describes how the pitch accents were encoded in PHOIBLE. This list should not be considered exhaustive; there may be doculects where the author chose not to describe pitch accent even though it was present in the object language, or (in doculects absorbed into PHOIBLE from other databases) cases where the original database aggregator ignored information about pitch accent when building their database.</p>
+<section id="nld-dutch">
+<h3><span class="iso">nld</span> (Dutch)</h3>
+<section id="hasselt-dialect">
+<h4>Hasselt dialect</h4>
+<p>Accent 1: no underlying tone. Accent 2: low tone. Peters 2006, p.121 (emphasis added):</p>
+<blockquote>
+<p>The timing difference between accent 1 and accent 2 can be accounted for by assuming that <strong>accent 2 words have a lexical L tone</strong>, while accent 1 words are lexically toneless. In nuclear position, the lexical L tone, which is pre-linked to the accented syllable, does not allow  H∗ to  associate.</p>
+</blockquote>
+</section>
+<section id="maastricht-dialect">
+<h4>Maastricht dialect</h4>
+<p>Accent 1: no underlying tone. Accent 2: high tone. Gussenhoven 1999, p.162 (emphasis added):</p>
+<blockquote>
+<p>... the fundamental frequency of syllables with Accent 2 differs from those with Accent 1. In view of its effect in utterances with Accent 2 as compared with equivalent utterances with Accent 1, <strong>it is reasonable to assume that Accent 2 is a H-tone</strong> occurring in or immediately after the stressed syllable.</p>
+</blockquote>
+</section>
+</section>
+</section>
+</main>
+</body>
+</html>
