@@ -19,6 +19,8 @@ Similar-looking glyphs
 There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:
 
 
+.. class:: table table-bordered order-column compact stripe dataTable no-footer table-nonfluid
+
 +----------------------------------------------+----------------------------------------------------------+----------------------+
 | Keyboard letter                              | Representation in PHOIBLE                                | Meaning in IPA       |
 +==============================================+==========================================================+======================+
@@ -75,6 +77,7 @@ Sounds described as "glottalized" are marked with :ipa:`ˀ` (:codept:`02C0 MODIF
 Summary table of PHOIBLE symbols not in the IPA
 -----------------------------------------------
 
+.. class:: table table-bordered order-column compact stripe dataTable no-footer table-nonfluid
 
 ===========  ================  ===============================================  ======================
  Glyph        Codepoint         Description                                      Meaning in PHOIBLE
