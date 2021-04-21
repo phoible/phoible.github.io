@@ -19,19 +19,19 @@ Similar-looking glyphs
 There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:
 
 
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
-| Keyboard letter                                   | Representation in PHOIBLE                                | Meaning in IPA       |
-+===================================================+==========================================================+======================+
-| :ipa:`g`      :codept:`0067 LATIN SMALL LETTER G` | :ipa:`ɡ` :codept:`0261 LATIN SMALL LETTER SCRIPT G`      | voiced velar stop    |
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
-| :ipa:`!`      :codept:`0021 EXCLAMATION POINT`    | :ipa:`ǃ` :codept:`01C3 LATIN LETTER RETROFLEX CLICK`     | (post)alveolar click |
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
-| :ipa:`&#124;` :codept:`007C VERTICAL LINE`        | :ipa:`ǀ` :codept:`01C0 LATIN LETTER DENTAL CLICK`        | dental click         |
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
-| :ipa:`'`      :codept:`0027 APOSTROPHE`           | :ipa:`ʼ` :codept:`02BC MODIFIER LETTER APOSTROPHE`       | ejective             |
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
-| :ipa:`:`      :codept:`003A COLON`                | :ipa:`ː` :codept:`02D0 MODIFIER LETTER TRIANGULAR COLON` | long                 |
-+---------------------------------------------------+----------------------------------------------------------+----------------------+
++----------------------------------------------+----------------------------------------------------------+----------------------+
+| Keyboard letter                              | Representation in PHOIBLE                                | Meaning in IPA       |
++==============================================+==========================================================+======================+
+| :ipa:`g` :codept:`0067 LATIN SMALL LETTER G` | :ipa:`ɡ` :codept:`0261 LATIN SMALL LETTER SCRIPT G`      | voiced velar stop    |
++----------------------------------------------+----------------------------------------------------------+----------------------+
+| :ipa:`!` :codept:`0021 EXCLAMATION POINT`    | :ipa:`ǃ` :codept:`01C3 LATIN LETTER RETROFLEX CLICK`     | (post)alveolar click |
++----------------------------------------------+----------------------------------------------------------+----------------------+
+| :ipa:`|` :codept:`007C VERTICAL LINE`        | :ipa:`ǀ` :codept:`01C0 LATIN LETTER DENTAL CLICK`        | dental click         |
++----------------------------------------------+----------------------------------------------------------+----------------------+
+| :ipa:`'` :codept:`0027 APOSTROPHE`           | :ipa:`ʼ` :codept:`02BC MODIFIER LETTER APOSTROPHE`       | ejective             |
++----------------------------------------------+----------------------------------------------------------+----------------------+
+| :ipa:`:` :codept:`003A COLON`                | :ipa:`ː` :codept:`02D0 MODIFIER LETTER TRIANGULAR COLON` | long                 |
++----------------------------------------------+----------------------------------------------------------+----------------------+
 
 
 In addition, PHOIBLE eschews the use of precomposed digraphs such as :ipa:`ʤ`, :ipa:`ʨ`, etc. to represent affricates. Note that since each entry in PHOIBLE represents a single phonologically contrastive sound in its doculect, there is never any risk that an entry such as :ipa:`tɕ` might be confused as a sequence of two phonemes (stop + fricative) rather than a single affricate.
