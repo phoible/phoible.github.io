@@ -69,10 +69,12 @@ Retroflex clicks
 
 Retroflex clicks are represented by :ipa:`‼` (:codept:`203C DOUBLE EXCLAMATION MARK`). Note that :ipa:`ǃ` (:codept:`01C3`, the symbol representing (post)alveolar clicks in the IPA) is confusingly referred to as :codept:`LATIN LETTER RETROFLEX CLICK` in the Unicode standard.
 
+
 Glottalization
 --------------
 
 Sounds described as "glottalized" are marked with :ipa:`ˀ` (:codept:`02C0 MODIFIER LETTER GLOTTAL STOP`), unless it is clear from context that either "ejective" or "creaky voicing" are the intended meaning. See the section on `Glottalization, laryngealization, and creaky voicing`_ for more details.
+
 
 Summary table of PHOIBLE symbols not in the IPA
 -----------------------------------------------
