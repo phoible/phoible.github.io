@@ -8,47 +8,6 @@ from ipapy import is_valid_ipa
 RSTUDIO_PANDOC = '/Applications/RStudio.app/Contents/MacOS/pandoc'
 
 
-def generate_indexes(file_path, output_path):
-    soup = None
-    with open(file_path) as f:
-        soup = bs4.BeautifulSoup(f.read(), 'html.parser')
-        ul = soup.new_tag('ul')
-        new_li = True
-        li = None
-        li_ul = None
-        for h in soup.find_all(re.compile(r'h[1-2]+')):
-            if 'class=\'title' not in str(h):
-                h_str = str(h.findAll(text=True))
-                h['id'] = re.sub('[^a-zA-Z-]+', '', h_str.replace(' ', '-'))
-                if h.name == 'h1':
-                    if li is not None and li_ul is not None:
-                        li.append(li_ul)
-                        li_ul = None
-                    new_li = True
-                    li = soup.new_tag('li')
-                    a = soup.new_tag('a', href='#' + h['id'])
-                    a.string = h.string
-                    li.append(a)
-                    ul.append(li)
-                if li is not None and h.name == 'h2':
-                    if new_li:
-                        new_li = False
-                        li_ul = soup.new_tag('ul')
-                    li_2 = soup.new_tag('li')
-                    a = soup.new_tag('a', href='#' + h['id'])
-                    a.string = h.string
-                    li_2.append(a)
-                    li_ul.append(li_2)
-                # print(h)
-        if li_ul is not None:
-            li.append(li_ul)
-        # print(ul.prettify())
-        div_intro = soup.find('div', {'id': 'introduction'})
-        div_intro.insert(0, ul)
-    with open(output_path, 'w') as file:
-        file.write(soup.prettify())
-
-
 def extract_content(file_path, output_path):
     div_content = None
     with open(file_path) as f:
@@ -155,18 +114,50 @@ def change_table_font(file_path, output_path):
             file.write(str(div_content))
 
 
+def fix_conventions(file_path, output_path):
+    div_content = None
+    with open(file_path) as f:
+        soup = bs4.BeautifulSoup(f.read(), 'html.parser')
+        # beautify tables
+        tables = soup.find_all('table')
+        ths = soup.find_all('th')
+        for table in tables:
+            table['cellpadding'] = '0'
+            table['cellspacing'] = '0'
+            table['border'] = '0'
+            table['class'] = 'table table-bordered order-column compact stripe dataTable no-footer table-nonfluid'
+            table['role'] = 'grid'
+        for th in ths:
+            th['role'] = 'row'
+        tbodys = soup.find_all('tbody')
+        for tbody in tbodys:
+            counter = 1
+            for tr in tbody.find_all('tr'):
+                if counter % 2 == 0:
+                    tr['class'] = 'even'
+                else:
+                    tr['class'] = 'odd'
+                counter += 1
+        # fix titles size
+        h2s = soup.find_all('h2')
+        for h2 in h2s:
+            h2.name = 'h3'
+        h1s = soup.find_all('h1')
+        for h1 in h1s:
+            h1.name = 'h2'
+        with open(output_path, 'w') as file:
+            file.write(str(soup))
+
+
 def main():
     print('Start kniting Rmd to HTML...')
     print('File: _faq.Rmd')
     os.system('Rscript --vanilla knitRmdToHTML.R _faq.Rmd ' + RSTUDIO_PANDOC)
     change_table_font('_faq.html', '_faq.html')
     extract_content('_faq.html', 'faq_with_indexes.html')
-    # print('Generating FAQ indexes...')
-    # generate_indexes('__faq.html', 'faq_with_indexes.html')
-    print('File: conventions.Rmd')
-    os.system('Rscript --vanilla knitRmdToHTML.R conventions.md ' + RSTUDIO_PANDOC)
-    change_font('conventions.html','conventions.html')
-    extract_content('conventions.html', 'conventions.html')
+    print('File: conventions.rst')
+    os.system('rst2html5 conventions.rst conventions.html')
+    fix_conventions('conventions.html', 'conventions.html')
     print('Converted! Output files: \033[94m faq_with_indexes.html conventions.html')
 
 
