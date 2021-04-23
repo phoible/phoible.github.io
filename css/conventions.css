@@ -1,12 +1,19 @@
 /* IPA glyphs and diacritics */
 .ipa, .dia {
     font-size: larger;
+<<<<<<< HEAD
     font-family: CharisSILW, sans-serif;
     background-color: #e0e0e0;
     padding: 0.1rem 0.2rem;
     border-radius: 0.2rem;
     /* To fix glyphs overlapping*/
     line-height: normal;
+=======
+    font-family: "charis";
+    background-color: #e0e0e0;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem;
+>>>>>>> c734df92ea15fd150ee2812c50a20143cb5e5a8e
 }
 
 .dia {

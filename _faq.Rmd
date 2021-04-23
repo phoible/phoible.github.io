@@ -4,6 +4,11 @@ author: Steven Moran & Daniel McCloy
 layout: default
 bibliography: bib/faq.bibtex
 output:
+  md_document:
+    variant: gfm
+    preserve_yaml: true
+    toc: true
+    toc_depth: 2
   html_document:
     toc: true
     theme: default
