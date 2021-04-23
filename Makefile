@@ -6,7 +6,6 @@ conventions:
 	--no-generator \
 	--no-datestamp \
 	--no-section-numbering \
-	--smart-quotes=yes \
 	--stylesheet-path=css/conventions.css,css/main.css \
 	--link-stylesheet \
 	conventions.rst \
