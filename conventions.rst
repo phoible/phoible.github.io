@@ -11,15 +11,12 @@ PHOIBLE notational conventions
 .. role:: iso
 
 
-In order to preserve distinctions both within and across language descriptions, additions to the approved International Phonetic Alphabet (IPA) glyph set were needed; wherever possible these were drawn from the `extIPA symbols for disordered speech`_. This page describes our additions to the IPA glyph set, and also describes any idiosyncracies in our interpretation and usage of approved IPA glyphs, and conventions regarding glyph ordering. When we use the terms "official IPA", "approved IPA glyphs", or just "IPA" we are referring to `the 2005 update of the full chart`_ unless otherwise indicated.
+In order to preserve distinctions both within and across language descriptions, additions to the approved International Phonetic Alphabet (IPA) glyph set were needed; wherever possible these were drawn from the `extIPA symbols for disordered speech`_. This page describes our additions to the IPA glyph set, and also describes any idiosyncracies in our interpretation and usage of approved IPA glyphs, and conventions regarding glyph ordering. When we use the terms “official IPA”, “approved IPA glyphs”, or just “IPA” we are referring to `the 2005 update of the full chart`_ unless otherwise indicated.
 
 Similar-looking glyphs
 ======================
 
 There are a number of IPA symbols that resemble ordinary keyboard glyphs. In all cases the data in PHOIBLE use the codepoints for the official glyphs. The most common of these are summarized here:
-
-
-.. class:: table table-bordered order-column compact stripe dataTable no-footer table-nonfluid
 
 +----------------------------------------------+----------------------------------------------------------+----------------------+
 | Keyboard letter                              | Representation in PHOIBLE                                | Meaning in IPA       |
@@ -73,13 +70,11 @@ Retroflex clicks are represented by :ipa:`‼` (:codept:`203C DOUBLE EXCLAMATION
 Glottalization
 --------------
 
-Sounds described as "glottalized" are marked with :ipa:`ˀ` (:codept:`02C0 MODIFIER LETTER GLOTTAL STOP`), unless it is clear from context that either "ejective" or "creaky voicing" are the intended meaning. See the section on `Glottalization, laryngealization, and creaky voicing`_ for more details.
+Sounds described as “glottalized” are marked with :ipa:`ˀ` (:codept:`02C0 MODIFIER LETTER GLOTTAL STOP`), unless it is clear from context that either “ejective” or “creaky voicing” are the intended meaning. See the section on `Glottalization, laryngealization, and creaky voicing`_ for more details.
 
 
 Summary table of PHOIBLE symbols not in the IPA
 -----------------------------------------------
-
-.. class:: table table-bordered order-column compact stripe dataTable no-footer table-nonfluid
 
 ===========  ================  ===============================================  ======================
  Glyph        Codepoint         Description                                      Meaning in PHOIBLE
