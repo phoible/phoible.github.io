@@ -2,11 +2,9 @@
 
 conventions:
 	mkdir -p conventions; \
-	rst2html5.py \
-	--no-generator \
-	--no-datestamp \
-	--no-section-numbering \
-	--stylesheet-path=css/conventions.css,css/main.css \
-	--link-stylesheet \
+	rst2html5 \
+	--template=_template.html \
+	--stylesheet=css/conventions.css \
+	--stylesheet=css/main.css \
 	conventions.rst \
 	conventions/index.html
