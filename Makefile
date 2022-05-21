@@ -6,5 +6,6 @@ conventions:
 	--template=_template.html \
 	--stylesheet=css/conventions.css \
 	--stylesheet=css/main.css \
-	conventions.rst \
+	conventions.rst | \
+	python _html5_postprocessor.py > \
 	conventions/index.html
