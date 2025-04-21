@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
-require 'json'
-require 'open-uri'
-versions = JSON.parse(open('https://pages.github.com/versions.json').read)
-
-gem 'github-pages', versions['github-pages']
+gem 'github-pages', '>= 232'
 gem 'redcarpet'
-gem 'kramdown', '>= 2.3.1'
+gem 'kramdown', '>= 2.4.0'
 gem "nokogiri", ">= 1.18.4"
